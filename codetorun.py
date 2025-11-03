@@ -140,6 +140,35 @@ def create_jsonl_from_documents(doc_texts: Dict[int, str], output_path: str, log
     logger.log(f"JSONL file created successfully with {doc_count} documents")
 
 
+def load_stopwords(stopwords_file: str, logger: Logger) -> set:
+    """
+    Load stopwords from a text file.
+    
+    Args:
+        stopwords_file: Path to the stopwords file (space-separated words)
+        logger: Logger instance for output
+        
+    Returns:
+        Set of stopwords
+    """
+    stopwords_path = Path(stopwords_file)
+    
+    if not stopwords_path.exists():
+        logger.log_error(f"Stopwords file not found: {stopwords_file}")
+        raise FileNotFoundError(f"Stopwords file not found: {stopwords_file}")
+    
+    try:
+        with open(stopwords_path, 'r', encoding='utf-8') as f:
+            content = f.read().strip()
+            # Split by whitespace and convert to set
+            stopwords = set(word.strip().lower() for word in content.split() if word.strip())
+            logger.log(f"Loaded {len(stopwords)} stopwords from {stopwords_file}")
+            return stopwords
+    except Exception as e:
+        logger.log_error(f"Error reading stopwords file {stopwords_file}", e)
+        raise
+
+
 def extract_chunks(text: str, chunk_size: int = 200, overlap: int = 50) -> List[str]:
     """
     Extract overlapping chunks of text from a document.
@@ -184,6 +213,44 @@ def extract_chunks(text: str, chunk_size: int = 200, overlap: int = 50) -> List[
     return chunks
 
 
+def find_best_matching_chunk(source_chunk: str, target_text: str, chunk_size: int = 200, overlap: int = 50) -> Tuple[int, str]:
+    """
+    Find the chunk in target_text that best matches source_chunk.
+    
+    Args:
+        source_chunk: The source chunk text from paper A
+        target_text: The full text of the target document (paper B)
+        chunk_size: Size of chunks to extract
+        overlap: Overlap between chunks
+        
+    Returns:
+        Tuple of (best_chunk_idx, best_chunk_text)
+    """
+    source_words = set(word.lower() for word in source_chunk.split())
+    target_chunks = extract_chunks(target_text, chunk_size=chunk_size, overlap=overlap)
+    
+    best_match_idx = 0
+    best_match_score = 0
+    best_match_text = ""
+    
+    for idx, target_chunk in enumerate(target_chunks):
+        if len(target_chunk.split()) < 20:
+            continue
+        
+        target_words = set(word.lower() for word in target_chunk.split())
+        # Calculate Jaccard similarity (intersection over union)
+        intersection = len(source_words & target_words)
+        union = len(source_words | target_words)
+        similarity = intersection / union if union > 0 else 0
+        
+        if similarity > best_match_score:
+            best_match_score = similarity
+            best_match_idx = idx
+            best_match_text = target_chunk
+    
+    return best_match_idx, best_match_text
+
+
 def detect_plagiarism(
     index: BasicInvertedIndex,
     ranker: Ranker,
@@ -192,7 +259,7 @@ def detect_plagiarism(
     logger: Logger,
     similarity_threshold: float = 0.3,
     top_k: int = 10
-) -> Dict[str, List[Tuple[str, float, str]]]:
+) -> Dict[str, List[Tuple[str, int, str, float, int, str]]]:
     """
     Detect plagiarism by querying chunks from each document against the index.
     
@@ -206,7 +273,8 @@ def detect_plagiarism(
         top_k: Number of top results to consider per chunk
         
     Returns:
-        Dictionary mapping document ID to list of (matched_doc_id, score, matched_chunk) tuples
+        Dictionary mapping document ID to list of tuples:
+        (matched_doc_name, source_chunk_idx, source_chunk_text, score, matched_chunk_idx, matched_chunk_text)
     """
     plagiarism_results = defaultdict(list)
     
@@ -241,20 +309,31 @@ def detect_plagiarism(
                     
                     # Filter results: exclude the document itself and low-scoring matches
                     filtered_results = [
-                        (matched_doc_id, score, chunk[:200])  # Store first 200 chars of chunk
+                        (matched_doc_id, score)
                         for matched_doc_id, score in results
                         if matched_doc_id != doc_id and score >= similarity_threshold
                     ][:top_k]
                     
                     if filtered_results:
                         matches_found += len(filtered_results)
-                        for matched_doc_id, score, matched_chunk in filtered_results:
+                        for matched_doc_id, score in filtered_results:
                             matched_doc_name = doc_id_mapping.get(matched_doc_id, str(matched_doc_id))
-                            plagiarism_results[doc_name].append((
-                                matched_doc_name,
-                                score,
-                                matched_chunk
-                            ))
+                            
+                            # Find the best matching chunk in the matched document
+                            matched_text = doc_texts.get(matched_doc_id, "")
+                            if matched_text:
+                                matched_chunk_idx, matched_chunk_text = find_best_matching_chunk(
+                                    chunk, matched_text
+                                )
+                                
+                                plagiarism_results[doc_name].append((
+                                    matched_doc_name,
+                                    chunk_idx,  # Source chunk index from paper A
+                                    chunk,      # Source chunk text from paper A
+                                    score,      # BM25 similarity score
+                                    matched_chunk_idx,  # Matched chunk index from paper B
+                                    matched_chunk_text  # Matched chunk text from paper B
+                                ))
                 except Exception as e:
                     logger.log_error(f"Error querying chunk {chunk_idx} from {doc_name}", e)
                     continue
@@ -269,14 +348,16 @@ def detect_plagiarism(
     return dict(plagiarism_results)
 
 
-def generate_report(plagiarism_results: Dict[str, List[Tuple[str, float, str]]], 
+def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, float, int, str]]], 
                    output_file: str = "plagiarism_report.txt",
                    logger: Logger = None) -> None:
     """
-    Generate a human-readable plagiarism detection report.
+    Generate a human-readable plagiarism detection report with specific chunk pairs.
     
     Args:
         plagiarism_results: Results from detect_plagiarism
+            Each match is a tuple: (matched_doc_name, source_chunk_idx, source_chunk_text, 
+                                   score, matched_chunk_idx, matched_chunk_text)
         output_file: Path to output report file
         logger: Logger instance for output
     """
@@ -310,19 +391,44 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, float, str]]],
             
             # Group matches by matched document
             matches_by_doc = defaultdict(list)
-            for matched_doc, score, chunk in matches:
-                matches_by_doc[matched_doc].append((score, chunk))
+            for matched_doc, source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk in matches:
+                matches_by_doc[matched_doc].append((
+                    source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk
+                ))
             
             for matched_doc, doc_matches in sorted(
                 matches_by_doc.items(),
-                key=lambda x: max(score for score, _ in x[1]),
+                key=lambda x: max(score for _, _, score, _, _ in x[1]),
                 reverse=True
             ):
                 f.write(f"  Matches with: {matched_doc}\n")
                 f.write(f"  Number of similar sections: {len(doc_matches)}\n")
-                f.write(f"  Highest similarity score: {max(score for score, _ in doc_matches):.4f}\n")
-                f.write(f"  Average similarity score: {sum(score for score, _ in doc_matches) / len(doc_matches):.4f}\n")
-                f.write(f"  Sample matched text: {doc_matches[0][1][:150]}...\n\n")
+                f.write(f"  Highest similarity score: {max(score for _, _, score, _, _ in doc_matches):.4f}\n")
+                f.write(f"  Average similarity score: {sum(score for _, _, score, _, _ in doc_matches) / len(doc_matches):.4f}\n")
+                f.write("\n")
+                
+                # Display chunk pairs, sorted by similarity score (highest first)
+                sorted_chunk_matches = sorted(
+                    doc_matches,
+                    key=lambda x: x[2],  # Sort by score
+                    reverse=True
+                )
+                
+                # Limit to top 20 chunk pairs per document pair to keep report manageable
+                for idx, (source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk) in enumerate(sorted_chunk_matches[:20]):
+                    f.write(f"    --- Chunk Pair #{idx + 1} (BM25 Score: {score:.4f}) ---\n")
+                    f.write(f"    Source Document: {doc_name}, Chunk #{source_chunk_idx}\n")
+                    f.write(f"    Matched Document: {matched_doc}, Chunk #{matched_chunk_idx}\n")
+                    f.write(f"\n    Chunk from {doc_name} (Chunk #{source_chunk_idx}):\n")
+                    f.write(f"    {source_chunk[:500]}{'...' if len(source_chunk) > 500 else ''}\n")
+                    f.write(f"\n    Matched chunk from {matched_doc} (Chunk #{matched_chunk_idx}):\n")
+                    f.write(f"    {matched_chunk[:500]}{'...' if len(matched_chunk) > 500 else ''}\n")
+                    f.write("\n")
+                
+                if len(sorted_chunk_matches) > 20:
+                    f.write(f"    ... and {len(sorted_chunk_matches) - 20} more chunk pairs (showing top 20)\n\n")
+                
+                f.write("\n")
         
         f.write("\n" + "=" * 80 + "\n")
         f.write("END OF REPORT\n")
@@ -340,6 +446,7 @@ def main():
     """
     # Configuration
     text_folder = "corpus/text"
+    stopwords_file = "stopwords.txt"
     index_cache_dir = "plagiarism_index_cache"
     log_file = "plagiarism_detection.log"
     similarity_threshold = 0.3  # Adjust based on your needs
@@ -381,21 +488,15 @@ def main():
             raise
         
         # Step 3: Initialize tokenizer and stopwords
-        logger.log("\nStep 3: Initializing tokenizer...")
+        logger.log("\nStep 3: Initializing tokenizer and loading stopwords...")
         try:
             tokenizer = RegexTokenizer(r'\w+', lowercase=True)
             
-            # Simple stopwords set (you can expand this)
-            stopwords = {
-                'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
-                'of', 'with', 'by', 'from', 'as', 'is', 'was', 'are', 'were', 'be',
-                'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will',
-                'would', 'could', 'should', 'may', 'might', 'must', 'can', 'this',
-                'that', 'these', 'those', 'i', 'you', 'he', 'she', 'it', 'we', 'they'
-            }
+            # Load stopwords from file
+            stopwords = load_stopwords(stopwords_file, logger)
             logger.log(f"Initialized tokenizer with {len(stopwords)} stopwords")
         except Exception as e:
-            logger.log_error("Failed to initialize tokenizer", e)
+            logger.log_error("Failed to initialize tokenizer or load stopwords", e)
             raise
         
         # Step 4: Create or load index
