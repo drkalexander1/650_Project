@@ -16,6 +16,16 @@ import argparse
 import xml.etree.ElementTree as ET
 
 try:
+    from text_processing import clean_extracted_text
+except ImportError:
+    # Fallback if text_processing module not available
+    def clean_extracted_text(text: str, remove_references: bool = True) -> str:
+        if not text:
+            return text
+        cleaned = re.sub(r'\n{3,}', '\n\n', text)
+        return cleaned.strip()
+
+try:
     import feedparser
 except ImportError:
     print("Error: feedparser not installed. Run: pip install feedparser")
@@ -240,16 +250,17 @@ def download_arxiv_pdf(arxiv_id: str, version: Optional[int] = None, output_dir:
         return None
 
 
-def extract_text_from_pdf(pdf_file: str) -> str:
+def extract_text_from_pdf(pdf_file: str, remove_references: bool = True) -> str:
     """
     Extract plain text from PDF file.
     Tries pdfplumber first (better quality), falls back to PyPDF2.
     
     Args:
         pdf_file: Path to PDF file
+        remove_references: If True, remove reference sections from extracted text
         
     Returns:
-        Extracted text content
+        Extracted text content (with references removed if requested)
     """
     try:
         text_parts = []
@@ -268,10 +279,9 @@ def extract_text_from_pdf(pdf_file: str) -> str:
             
             if text_parts:
                 combined = "\n\n".join(text_parts)
-                # Remove excessive whitespace
-                import re
-                combined = re.sub(r'\n{3,}', '\n\n', combined)  # Max 2 newlines
-                return combined.strip()
+                # Use text processing utility for cleaning
+                combined = clean_extracted_text(combined, remove_references=remove_references)
+                return combined
         
         except ImportError:
             pass  # Fall back to PyPDF2
@@ -291,10 +301,9 @@ def extract_text_from_pdf(pdf_file: str) -> str:
         
         if text_parts:
             combined = "\n\n".join(text_parts)
-            # Remove excessive whitespace
-            import re
-            combined = re.sub(r'\n{3,}', '\n\n', combined)  # Max 2 newlines
-            return combined.strip()
+            # Use text processing utility for cleaning
+            combined = clean_extracted_text(combined, remove_references=remove_references)
+            return combined
         
         return ""
         
@@ -345,6 +354,8 @@ def main():
                        help="Minimum word count to consider as full-text (default: 500). Papers below this will be skipped")
     parser.add_argument("--save-abstracts", action="store_true",
                        help="Save abstract-only papers in a separate folder instead of skipping them")
+    parser.add_argument("--keep-references", action="store_true",
+                       help="Keep reference sections in extracted text (default: references are removed)")
     
     args = parser.parse_args()
     
@@ -353,6 +364,7 @@ def main():
     test_limit = args.limit
     min_words = args.min_words
     save_abstracts = args.save_abstracts
+    remove_references = not args.keep_references  # Default: remove references
     
     # Create output directories
     pdf_dir = output_base / "pdf"
@@ -428,7 +440,7 @@ def main():
             pdf_file_v1 = download_arxiv_pdf(arxiv_id, version=1, output_dir=pdf_dir)
             
             if pdf_file_v1:
-                text_content_v1 = extract_text_from_pdf(pdf_file_v1)
+                text_content_v1 = extract_text_from_pdf(pdf_file_v1, remove_references=remove_references)
                 
                 if text_content_v1:
                     word_count_v1 = len(text_content_v1.split())
@@ -458,7 +470,7 @@ def main():
             pdf_file_latest = download_arxiv_pdf(arxiv_id, version=latest_version, output_dir=pdf_dir)
             
             if pdf_file_latest:
-                text_content_latest = extract_text_from_pdf(pdf_file_latest)
+                text_content_latest = extract_text_from_pdf(pdf_file_latest, remove_references=remove_references)
                 
                 if text_content_latest:
                     word_count_latest = len(text_content_latest.split())
@@ -487,7 +499,7 @@ def main():
             pdf_file = download_arxiv_pdf(arxiv_id, version=None, output_dir=pdf_dir)
             
             if pdf_file:
-                text_content = extract_text_from_pdf(pdf_file)
+                text_content = extract_text_from_pdf(pdf_file, remove_references=remove_references)
                 
                 if text_content:
                     word_count = len(text_content.split())
