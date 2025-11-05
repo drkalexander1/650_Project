@@ -1,0 +1,91 @@
+SI 650 / EECS 549 Project Proposal
+In-Group Plagiarism Detection for Academic Research Networks
+1. Introduction
+Plagiarism detection tools have traditionally focused on identifying overlap between an author’s manuscript and the broader literature. However, in academic research settings, text reuse often occurs within a lab or advisor–student network - for example, shared methods, boilerplate dataset descriptions, or literature review phrasing. While some reuse is legitimate and expected, journals and conferences increasingly screen for text reuse between co-authors or collaborators to ensure proper attribution and maintain academic integrity. Detecting and attributing these overlaps systematically remains an open challenge.
+
+Our project proposes building an information retrieval system that detects textual overlap and paraphrasing between a new manuscript and the prior works of the author’s labmates, advisors, or co-authors. This system could help authors identify and cite reused material properly before submission, assist editors and reviewers in flagging potential issues more efficiently, and support institutions in enforcing academic integrity guidelines fairly. As a final potential use case, this could help identify if an author is uncredited or unmentioned as the primary author on a paper.
+2. IR Task Definition
+Task: Given a draft manuscript, retrieve and rank semantically or lexically similar passages from a set of documents written by the author, their labmates, and their advisors. We could also add weights to manuscripts written by specific people (i.e. the advisor or labmates) so we can tune our IR system to prioritize certain papers when checking for plagiarism. 
+
+Input: Paragraphs or sentences from a new draft manuscript.
+Document Collection: Publications by (a) the author, (b) their labmates and PhD advisor(s), and (c) optionally, frequently co-authored works.
+Output: Ranked list of matching passages, annotated with the source author and paper metadata.
+
+Example Query:
+“We collected 250 MRI scans following a standardized preprocessing protocol.”
+
+Expected Top Retrievals:
+ 1. “A total of 250 MRI scans were collected using FSL’s pipeline…” — Advisor, 2019
+ 2. “The MRI dataset underwent standard preprocessing as in previous work.” — Labmate, 2021
+ 3. “MRI scans were preprocessed using the FSL default parameters.” — Self, 2020
+
+This approach differs from standard plagiarism checking by integrating author metadata into the retrieval and ranking process, allowing us to distinguish between different types of overlap (self vs. labmate vs. advisor).
+3. Data
+Data Source: Open-access papers from Semantic Scholar, arXiv, ACL Anthology, or PubMed.
+Initial corpus: ~50–100 papers across 5–10 individuals in one lab or academic network.
+
+Collection Plan:
+Identify one seed author and their immediate network (advisor + top co-authors).
+Collect a small set of their publications. 
+Extract text using PDF-to-text and segment into sentences or paragraphs.
+Normalize (lowercasing, tokenization, stopword removal, optional lemmatization).
+Relevance Definition: A retrieved passage is relevant if it exhibits significant lexical or semantic overlap with a query passage, based on manual annotation or similarity thresholds. We may label overlap types (verbatim / lightly paraphrased / conceptual reuse).
+Backup Plan: Our bird secondary proposal idea.
+4. Related Work
+Plagiarism detection and text reuse analysis have been widely studied, but mostly in the context of individual-to-global matching rather than structured research networks. Our approach differs by combining text reuse detection with author metadata, enabling more nuanced retrieval (e.g., self vs. advisor vs. labmate reuse).
+Here’s 4 review/literature review papers which we can pull useful models from to help build our plagiarism detector:
+https://seu.ac.lk/jsc/publication/v2n2/Manuscript%205.pdf
+https://www.academia.edu/download/113474381/ijca2015906113.pdf
+https://dl.acm.org/doi/10.1145/3345317 
+https://pmc.ncbi.nlm.nih.gov/articles/PMC11977957/ 
+kNN approach:
+https://www.academia.edu/download/93695236/Plagiarism-Detection-Using-Artificial-Intelligence-Technique-In-Multiple-Files.pdf 
+Intrinsic Plagiarism approach:
+https://link.springer.com/chapter/10.1007/11735106_66 
+Vector space model & cosine similarity approach: https://www.sciencedirect.com/science/article/pii/S0957417415005084 
+These papers documented various approaches to tackle academic plagiarism on a global scale using processes that involve techniques in machine learning and natural language processing, but none has particularly looked into using an information retrieval-focused approach that specializes on individual or lab-scaled plagiarism detection. Our IR tool aims to create a more nuanced and customizable system that authors can use for plagiarism detection when the plagiarized author is known.
+5. Evaluation and Results
+Metrics:
+ - Precision, Recall, MAP (Mean Average Precision), and possibly F1 at author level.
+ - Optional: separate metrics for different author categories (self / labmate / advisor).
+
+Baselines:
+ - Random retrieval (control).
+ - BM25 lexical retrieval.
+ - Simple TF-IDF cosine similarity.
+
+ Proposed Models:
+ - SBERT or MiniLM embeddings for semantic retrieval.
+ - Hybrid approach combining BM25 + SBERT to capture both exact matches and paraphrases.
+ - Optional metadata weighting (e.g., higher weight for self vs. labmate overlaps).
+
+ Evaluation Plan:
+ We will manually annotate a subset of overlapping passages to create a standard for evaluation.
+ We’ll compare:
+ 1. Self-only retrieval vs. in-group retrieval.
+ 2. Lexical vs. hybrid semantic approaches.
+ 3. Performance by author category.
+6. Work Plan
+Week
+Milestone
+Deliverable
+8-9
+Identify author network + collect papers
+Corpus of 50–100 papers
+10-11
+Build baseline IR system
+BM25 retrieval
+11
+Add embedding-based retrieval
+SBERT + cosine similarity
+12
+Create evaluation set
+Manual annotation of overlaps
+13
+Evaluation and analysis
+Compare models and baselines
+14
+Final report + presentation
+Write-up, slides, and demo
+
+
