@@ -6,6 +6,7 @@ Downloads papers by "Kao CH" and saves them with metadata.
 import os
 import time
 import xml.etree.ElementTree as ET
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Optional
@@ -21,7 +22,31 @@ except ImportError:
 
 
 # Configure Entrez email (required by NCBI)
-Entrez.email = "drkalex@umich.edu"  # Change this to your email
+Entrez.email = "sherrywu@umich.edu"  # Change this to your email
+
+
+def sanitize_author_name_for_directory(author_name: str) -> str:
+    """
+    Sanitize author name for use in directory names.
+    Replaces spaces with underscores and removes/replaces special characters.
+    
+    Args:
+        author_name: Author name (e.g., "Kao CH" or "Smith, John")
+        
+    Returns:
+        Sanitized name safe for directory names (e.g., "Kao_CH")
+    """
+    # Replace spaces with underscores
+    sanitized = author_name.replace(" ", "_")
+    # Remove or replace special characters that aren't safe for directory names
+    sanitized = re.sub(r'[<>:"/\\|?*]', '', sanitized)
+    # Remove commas and periods
+    sanitized = sanitized.replace(",", "").replace(".", "")
+    # Remove multiple consecutive underscores
+    sanitized = re.sub(r'_+', '_', sanitized)
+    # Remove leading/trailing underscores
+    sanitized = sanitized.strip('_')
+    return sanitized
 
 
 def search_pubmed_author(author_name: str, max_results: int = 1000, open_access_only: bool = True) -> List[str]:
@@ -302,10 +327,10 @@ def _extract_text_from_element(elem) -> str:
 def main():
     """Main function to download corpus for author."""
     parser = argparse.ArgumentParser(description="Download papers from PubMed/PMC for a specific author")
-    parser.add_argument("--author", "-a", default="Kao CH", help="Author name (default: 'Kao CH')")
+    parser.add_argument("--author", "-a", default="Atul J. Butte", help="Author name (default: 'Atul J. Butte')")
     parser.add_argument("--limit", "-l", type=int, default=None, 
                        help="Limit number of papers to process (for testing, e.g., -l 5)")
-    parser.add_argument("--output", "-o", default="corpus", help="Output directory (default: 'corpus')")
+    parser.add_argument("--output", "-o", default="corpus", help="Output directory (default: 'corpus_[author_name]' if not specified)")
     parser.add_argument("--all-papers", action="store_true", 
                        help="Include all papers (not just open access). Default: open access only")
     parser.add_argument("--min-words", type=int, default=500,
@@ -316,7 +341,14 @@ def main():
     args = parser.parse_args()
     
     author_name = args.author
-    output_base = Path(args.output)
+    
+    # If using default output directory, use corpus_[author_name] format
+    if args.output == "corpus":
+        sanitized_author = sanitize_author_name_for_directory(author_name)
+        output_base = Path(f"corpus_{sanitized_author}")
+    else:
+        output_base = Path(args.output)
+    
     test_limit = args.limit
     open_access_only = not args.all_papers  # Default to open access only
     min_words = args.min_words
