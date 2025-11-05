@@ -16,6 +16,13 @@ from preprocessing import RegexTokenizer
 from indexing import Indexer, IndexType, BasicInvertedIndex
 from ranker import Ranker, BM25
 
+try:
+    from sbert_ranker import SBERTRanker, extract_sentences, hybrid_rank
+    SBERT_AVAILABLE = True
+except ImportError:
+    SBERT_AVAILABLE = False
+    print("Warning: SBERT ranker not available. Install sentence-transformers for semantic similarity.")
+
 
 class Logger:
     """
@@ -213,7 +220,14 @@ def extract_chunks(text: str, chunk_size: int = 200, overlap: int = 50) -> List[
     return chunks
 
 
-def find_best_matching_chunk(source_chunk: str, target_text: str, chunk_size: int = 200, overlap: int = 50) -> Tuple[int, str]:
+def find_best_matching_chunk(
+    source_chunk: str, 
+    target_text: str, 
+    chunk_size: int = 200, 
+    overlap: int = 50,
+    use_sbert: bool = False,
+    sbert_ranker: Optional[object] = None
+) -> Tuple[int, str, float]:
     """
     Find the chunk in target_text that best matches source_chunk.
     
@@ -222,33 +236,53 @@ def find_best_matching_chunk(source_chunk: str, target_text: str, chunk_size: in
         target_text: The full text of the target document (paper B)
         chunk_size: Size of chunks to extract
         overlap: Overlap between chunks
+        use_sbert: If True, use SBERT for semantic similarity
+        sbert_ranker: SBERTRanker instance (required if use_sbert=True)
         
     Returns:
-        Tuple of (best_chunk_idx, best_chunk_text)
+        Tuple of (best_chunk_idx, best_chunk_text, similarity_score)
     """
-    source_words = set(word.lower() for word in source_chunk.split())
     target_chunks = extract_chunks(target_text, chunk_size=chunk_size, overlap=overlap)
     
-    best_match_idx = 0
-    best_match_score = 0
-    best_match_text = ""
+    # Filter out very short chunks
+    valid_chunks = [(idx, chunk) for idx, chunk in enumerate(target_chunks) 
+                    if len(chunk.split()) >= 20]
     
-    for idx, target_chunk in enumerate(target_chunks):
-        if len(target_chunk.split()) < 20:
-            continue
-        
-        target_words = set(word.lower() for word in target_chunk.split())
-        # Calculate Jaccard similarity (intersection over union)
-        intersection = len(source_words & target_words)
-        union = len(source_words | target_words)
-        similarity = intersection / union if union > 0 else 0
-        
-        if similarity > best_match_score:
-            best_match_score = similarity
-            best_match_idx = idx
-            best_match_text = target_chunk
+    if not valid_chunks:
+        return (0, target_chunks[0] if target_chunks else "", 0.0)
     
-    return best_match_idx, best_match_text
+    if use_sbert and sbert_ranker is not None:
+        # Use SBERT for semantic similarity
+        chunk_indices, chunks = zip(*valid_chunks)
+        best_idx, best_text, best_score = sbert_ranker.find_best_matching_chunk_semantic(
+            source_chunk,
+            list(chunks),
+            similarity_threshold=0.3
+        )
+        # Map back to original index
+        actual_idx = chunk_indices[best_idx]
+        return (actual_idx, best_text, best_score)
+    else:
+        # Use lexical similarity (Jaccard)
+        source_words = set(word.lower() for word in source_chunk.split())
+        
+        best_match_idx = 0
+        best_match_score = 0.0
+        best_match_text = ""
+        
+        for idx, target_chunk in valid_chunks:
+            target_words = set(word.lower() for word in target_chunk.split())
+            # Calculate Jaccard similarity (intersection over union)
+            intersection = len(source_words & target_words)
+            union = len(source_words | target_words)
+            similarity = intersection / union if union > 0 else 0.0
+            
+            if similarity > best_match_score:
+                best_match_score = similarity
+                best_match_idx = idx
+                best_match_text = target_chunk
+        
+        return (best_match_idx, best_match_text, best_match_score)
 
 
 def detect_plagiarism(
@@ -258,8 +292,13 @@ def detect_plagiarism(
     doc_id_mapping: Dict[int, str],
     logger: Logger,
     similarity_threshold: float = 0.3,
-    top_k: int = 10
-) -> Dict[str, List[Tuple[str, int, str, float, int, str]]]:
+    top_k: int = 10,
+    use_sbert: bool = False,
+    sbert_ranker: Optional[object] = None,
+    hybrid_mode: bool = False,
+    bm25_weight: float = 0.5,
+    sbert_weight: float = 0.5
+) -> Dict[str, List[Tuple[str, int, str, float, int, str, float]]]:
     """
     Detect plagiarism by querying chunks from each document against the index.
     
@@ -274,13 +313,23 @@ def detect_plagiarism(
         
     Returns:
         Dictionary mapping document ID to list of tuples:
-        (matched_doc_name, source_chunk_idx, source_chunk_text, score, matched_chunk_idx, matched_chunk_text)
+        (matched_doc_name, source_chunk_idx, source_chunk_text, score, matched_chunk_idx, matched_chunk_text, sbert_score)
     """
     plagiarism_results = defaultdict(list)
     
     total_docs = len(doc_texts)
     logger.log(f"Detecting plagiarism across {total_docs} documents...")
     logger.log(f"Similarity threshold: {similarity_threshold}, Top-K: {top_k}")
+    
+    if use_sbert:
+        if sbert_ranker is None:
+            logger.log("Warning: use_sbert=True but no sbert_ranker provided. Falling back to lexical matching.")
+            use_sbert = False
+        else:
+            logger.log(f"Using SBERT semantic similarity ranking")
+    
+    if hybrid_mode and use_sbert:
+        logger.log(f"Hybrid mode: Combining BM25 (weight={bm25_weight}) and SBERT (weight={sbert_weight})")
     
     doc_idx = 0
     for doc_id, text in doc_texts.items():
@@ -304,15 +353,51 @@ def detect_plagiarism(
                 chunks_processed += 1
                 
                 try:
-                    # Query this chunk
-                    results = ranker.query(chunk)
+                    # Query this chunk using BM25
+                    bm25_results = ranker.query(chunk)
                     
                     # Filter results: exclude the document itself and low-scoring matches
-                    filtered_results = [
+                    bm25_filtered = [
                         (matched_doc_id, score)
-                        for matched_doc_id, score in results
+                        for matched_doc_id, score in bm25_results
                         if matched_doc_id != doc_id and score >= similarity_threshold
                     ][:top_k]
+                    
+                    # If using SBERT, also compute semantic similarity
+                    if use_sbert and sbert_ranker:
+                        # Get candidate documents from BM25 results
+                        candidate_doc_ids = [doc_id for doc_id, _ in bm25_filtered[:top_k * 2]]  # Get more candidates
+                        
+                        # Compute SBERT scores for candidate chunks
+                        sbert_scores = []
+                        for matched_doc_id in candidate_doc_ids:
+                            matched_text = doc_texts.get(matched_doc_id, "")
+                            if matched_text:
+                                # Extract chunks from matched document
+                                matched_chunks = extract_chunks(matched_text, chunk_size=200, overlap=50)
+                                # Find best matching chunk using SBERT
+                                _, _, sbert_score = find_best_matching_chunk(
+                                    chunk, matched_text, use_sbert=True, sbert_ranker=sbert_ranker
+                                )
+                                if sbert_score >= similarity_threshold:
+                                    sbert_scores.append((matched_doc_id, sbert_score))
+                        
+                        # Combine BM25 and SBERT scores
+                        if hybrid_mode:
+                            # Hybrid ranking: combine BM25 and SBERT
+                            combined_results = hybrid_rank(
+                                bm25_filtered,
+                                sbert_scores,
+                                bm25_weight=bm25_weight,
+                                sbert_weight=sbert_weight
+                            )
+                            filtered_results = combined_results[:top_k]
+                        else:
+                            # Use SBERT scores only
+                            filtered_results = sorted(sbert_scores, key=lambda x: x[1], reverse=True)[:top_k]
+                    else:
+                        # Use BM25 only
+                        filtered_results = bm25_filtered
                     
                     if filtered_results:
                         matches_found += len(filtered_results)
@@ -322,17 +407,18 @@ def detect_plagiarism(
                             # Find the best matching chunk in the matched document
                             matched_text = doc_texts.get(matched_doc_id, "")
                             if matched_text:
-                                matched_chunk_idx, matched_chunk_text = find_best_matching_chunk(
-                                    chunk, matched_text
+                                matched_chunk_idx, matched_chunk_text, sbert_score = find_best_matching_chunk(
+                                    chunk, matched_text, use_sbert=use_sbert, sbert_ranker=sbert_ranker
                                 )
                                 
                                 plagiarism_results[doc_name].append((
                                     matched_doc_name,
                                     chunk_idx,  # Source chunk index from paper A
                                     chunk,      # Source chunk text from paper A
-                                    score,      # BM25 similarity score
+                                    score,      # BM25 or combined similarity score
                                     matched_chunk_idx,  # Matched chunk index from paper B
-                                    matched_chunk_text  # Matched chunk text from paper B
+                                    matched_chunk_text,  # Matched chunk text from paper B
+                                    sbert_score  # SBERT semantic similarity score
                                 ))
                 except Exception as e:
                     logger.log_error(f"Error querying chunk {chunk_idx} from {doc_name}", e)
@@ -391,9 +477,9 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, floa
             
             # Group matches by matched document
             matches_by_doc = defaultdict(list)
-            for matched_doc, source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk in matches:
+            for matched_doc, source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, sbert_score in matches:
                 matches_by_doc[matched_doc].append((
-                    source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk
+                    source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, sbert_score
                 ))
             
             for matched_doc, doc_matches in sorted(
@@ -415,8 +501,12 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, floa
                 )
                 
                 # Limit to top 20 chunk pairs per document pair to keep report manageable
-                for idx, (source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk) in enumerate(sorted_chunk_matches[:20]):
-                    f.write(f"    --- Chunk Pair #{idx + 1} (BM25 Score: {score:.4f}) ---\n")
+                for idx, (source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, sbert_score) in enumerate(sorted_chunk_matches[:20]):
+                    score_label = "Combined" if len(doc_matches) > 0 and len(doc_matches[0]) > 5 else "BM25"
+                    f.write(f"    --- Chunk Pair #{idx + 1} ({score_label} Score: {score:.4f}")
+                    if sbert_score > 0:
+                        f.write(f", SBERT Score: {sbert_score:.4f}")
+                    f.write(") ---\n")
                     f.write(f"    Source Document: {doc_name}, Chunk #{source_chunk_idx}\n")
                     f.write(f"    Matched Document: {matched_doc}, Chunk #{matched_chunk_idx}\n")
                     f.write(f"\n    Chunk from {doc_name} (Chunk #{source_chunk_idx}):\n")
@@ -545,9 +635,10 @@ def main():
             logger.log_error("Failed to build/load index", e)
             raise
         
-        # Step 5: Initialize ranker
-        logger.log("\nStep 5: Initializing ranker...")
+        # Step 5: Initialize rankers
+        logger.log("\nStep 5: Initializing rankers...")
         try:
+            # Initialize BM25 ranker
             scorer = BM25(index, parameters={'b': 0.75, 'k1': 1.2, 'k3': 8})
             ranker = Ranker(
                 index=index,
@@ -556,7 +647,23 @@ def main():
                 scorer=scorer,
                 raw_text_dict=doc_texts
             )
-            logger.log("Ranker initialized successfully (BM25)")
+            logger.log("BM25 ranker initialized successfully")
+            
+            # Initialize SBERT ranker if requested
+            sbert_ranker = None
+            if use_sbert and SBERT_AVAILABLE:
+                try:
+                    logger.log(f"Initializing SBERT ranker (model: {sbert_model})...")
+                    sbert_ranker = SBERTRanker(model_name=sbert_model)
+                    logger.log("SBERT ranker initialized successfully")
+                except Exception as e:
+                    logger.log_error(f"Failed to initialize SBERT ranker: {e}")
+                    logger.log("Falling back to BM25 only")
+                    use_sbert = False
+                    sbert_ranker = None
+            elif use_sbert and not SBERT_AVAILABLE:
+                logger.log("SBERT requested but not available. Install sentence-transformers to enable.")
+                use_sbert = False
         except Exception as e:
             logger.log_error("Failed to initialize ranker", e)
             raise
@@ -571,7 +678,12 @@ def main():
                 doc_id_mapping=doc_id_mapping,
                 logger=logger,
                 similarity_threshold=similarity_threshold,
-                top_k=top_k
+                top_k=top_k,
+                use_sbert=use_sbert,
+                sbert_ranker=sbert_ranker,
+                hybrid_mode=hybrid_mode,
+                bm25_weight=bm25_weight,
+                sbert_weight=sbert_weight
             )
         except Exception as e:
             logger.log_error("Failed during plagiarism detection", e)
