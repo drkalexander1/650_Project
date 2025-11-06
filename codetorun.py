@@ -23,6 +23,13 @@ except ImportError:
     SBERT_AVAILABLE = False
     print("Warning: SBERT ranker not available. Install sentence-transformers for semantic similarity.")
 
+try:
+    from jaccard_ranker import JaccardRanker
+    JACCARD_AVAILABLE = True
+except ImportError:
+    JACCARD_AVAILABLE = False
+    print("Warning: Jaccard ranker not available.")
+
 
 class Logger:
     """
@@ -226,7 +233,9 @@ def find_best_matching_chunk(
     chunk_size: int = 200, 
     overlap: int = 50,
     use_sbert: bool = False,
-    sbert_ranker: Optional[object] = None
+    sbert_ranker: Optional[object] = None,
+    use_jaccard: bool = False,
+    jaccard_ranker: Optional[object] = None
 ) -> Tuple[int, str, float]:
     """
     Find the chunk in target_text that best matches source_chunk.
@@ -238,6 +247,8 @@ def find_best_matching_chunk(
         overlap: Overlap between chunks
         use_sbert: If True, use SBERT for semantic similarity
         sbert_ranker: SBERTRanker instance (required if use_sbert=True)
+        use_jaccard: If True, use Jaccard ranker (overrides default Jaccard)
+        jaccard_ranker: JaccardRanker instance (optional, creates default if not provided)
         
     Returns:
         Tuple of (best_chunk_idx, best_chunk_text, similarity_score)
@@ -251,9 +262,10 @@ def find_best_matching_chunk(
     if not valid_chunks:
         return (0, target_chunks[0] if target_chunks else "", 0.0)
     
+    chunk_indices, chunks = zip(*valid_chunks)
+    
     if use_sbert and sbert_ranker is not None:
         # Use SBERT for semantic similarity
-        chunk_indices, chunks = zip(*valid_chunks)
         best_idx, best_text, best_score = sbert_ranker.find_best_matching_chunk_semantic(
             source_chunk,
             list(chunks),
@@ -262,27 +274,41 @@ def find_best_matching_chunk(
         # Map back to original index
         actual_idx = chunk_indices[best_idx]
         return (actual_idx, best_text, best_score)
-    else:
-        # Use lexical similarity (Jaccard)
-        source_words = set(word.lower() for word in source_chunk.split())
+    elif use_jaccard or jaccard_ranker:
+        # Use Jaccard ranker for lexical similarity
+        if jaccard_ranker is None:
+            jaccard_ranker = JaccardRanker() if JACCARD_AVAILABLE else None
         
-        best_match_idx = 0
-        best_match_score = 0.0
-        best_match_text = ""
+        if jaccard_ranker:
+            best_idx, best_text, best_score = jaccard_ranker.find_best_matching_chunk_jaccard(
+                source_chunk,
+                list(chunks),
+                similarity_threshold=0.3
+            )
+            # Map back to original index
+            actual_idx = chunk_indices[best_idx]
+            return (actual_idx, best_text, best_score)
+    
+    # Fallback to simple Jaccard similarity (legacy method)
+    source_words = set(word.lower() for word in source_chunk.split())
+    
+    best_match_idx = 0
+    best_match_score = 0.0
+    best_match_text = ""
+    
+    for idx, target_chunk in valid_chunks:
+        target_words = set(word.lower() for word in target_chunk.split())
+        # Calculate Jaccard similarity (intersection over union)
+        intersection = len(source_words & target_words)
+        union = len(source_words | target_words)
+        similarity = intersection / union if union > 0 else 0.0
         
-        for idx, target_chunk in valid_chunks:
-            target_words = set(word.lower() for word in target_chunk.split())
-            # Calculate Jaccard similarity (intersection over union)
-            intersection = len(source_words & target_words)
-            union = len(source_words | target_words)
-            similarity = intersection / union if union > 0 else 0.0
-            
-            if similarity > best_match_score:
-                best_match_score = similarity
-                best_match_idx = idx
-                best_match_text = target_chunk
-        
-        return (best_match_idx, best_match_text, best_match_score)
+        if similarity > best_match_score:
+            best_match_score = similarity
+            best_match_idx = idx
+            best_match_text = target_chunk
+    
+    return (best_match_idx, best_match_text, best_match_score)
 
 
 def detect_plagiarism(
@@ -295,10 +321,13 @@ def detect_plagiarism(
     top_k: int = 10,
     use_sbert: bool = False,
     sbert_ranker: Optional[object] = None,
+    use_jaccard: bool = False,
+    jaccard_ranker: Optional[object] = None,
     hybrid_mode: bool = False,
     bm25_weight: float = 0.5,
-    sbert_weight: float = 0.5
-) -> Dict[str, List[Tuple[str, int, str, float, int, str, float]]]:
+    sbert_weight: float = 0.5,
+    jaccard_weight: float = 0.0
+) -> Dict[str, List[Tuple[str, int, str, float, int, str, Tuple[float, float]]]]:
     """
     Detect plagiarism by querying chunks from each document against the index.
     
@@ -313,7 +342,7 @@ def detect_plagiarism(
         
     Returns:
         Dictionary mapping document ID to list of tuples:
-        (matched_doc_name, source_chunk_idx, source_chunk_text, score, matched_chunk_idx, matched_chunk_text, sbert_score)
+        (matched_doc_name, source_chunk_idx, source_chunk_text, score, matched_chunk_idx, matched_chunk_text, (sbert_score, jaccard_score))
     """
     plagiarism_results = defaultdict(list)
     
@@ -321,15 +350,37 @@ def detect_plagiarism(
     logger.log(f"Detecting plagiarism across {total_docs} documents...")
     logger.log(f"Similarity threshold: {similarity_threshold}, Top-K: {top_k}")
     
+    # Configure ranking methods
+    ranking_methods = []
     if use_sbert:
         if sbert_ranker is None:
             logger.log("Warning: use_sbert=True but no sbert_ranker provided. Falling back to lexical matching.")
             use_sbert = False
         else:
             logger.log(f"Using SBERT semantic similarity ranking")
+            ranking_methods.append("SBERT")
     
-    if hybrid_mode and use_sbert:
-        logger.log(f"Hybrid mode: Combining BM25 (weight={bm25_weight}) and SBERT (weight={sbert_weight})")
+    if use_jaccard:
+        if jaccard_ranker is None:
+            if JACCARD_AVAILABLE:
+                jaccard_ranker = JaccardRanker()
+                logger.log(f"Initialized default Jaccard ranker")
+            else:
+                logger.log("Warning: use_jaccard=True but Jaccard ranker not available.")
+                use_jaccard = False
+        if use_jaccard:
+            logger.log(f"Using Jaccard lexical similarity ranking")
+            ranking_methods.append("Jaccard")
+    
+    if hybrid_mode and len(ranking_methods) > 0:
+        weights_desc = []
+        if bm25_weight > 0:
+            weights_desc.append(f"BM25={bm25_weight}")
+        if sbert_weight > 0:
+            weights_desc.append(f"SBERT={sbert_weight}")
+        if jaccard_weight > 0:
+            weights_desc.append(f"Jaccard={jaccard_weight}")
+        logger.log(f"Hybrid mode: Combining {' + '.join(weights_desc)}")
     
     doc_idx = 0
     for doc_id, text in doc_texts.items():
@@ -363,38 +414,95 @@ def detect_plagiarism(
                         if matched_doc_id != doc_id and score >= similarity_threshold
                     ][:top_k]
                     
-                    # If using SBERT, also compute semantic similarity
+                    # If using SBERT or Jaccard, also compute additional similarity scores
+                    sbert_scores = []
+                    jaccard_scores = []
+                    
                     if use_sbert and sbert_ranker:
                         # Get candidate documents from BM25 results
                         candidate_doc_ids = [doc_id for doc_id, _ in bm25_filtered[:top_k * 2]]  # Get more candidates
                         
                         # Compute SBERT scores for candidate chunks
-                        sbert_scores = []
                         for matched_doc_id in candidate_doc_ids:
                             matched_text = doc_texts.get(matched_doc_id, "")
                             if matched_text:
-                                # Extract chunks from matched document
-                                matched_chunks = extract_chunks(matched_text, chunk_size=200, overlap=50)
                                 # Find best matching chunk using SBERT
                                 _, _, sbert_score = find_best_matching_chunk(
                                     chunk, matched_text, use_sbert=True, sbert_ranker=sbert_ranker
                                 )
                                 if sbert_score >= similarity_threshold:
                                     sbert_scores.append((matched_doc_id, sbert_score))
+                    
+                    if use_jaccard and jaccard_ranker:
+                        # Get candidate documents from BM25 results
+                        candidate_doc_ids = [doc_id for doc_id, _ in bm25_filtered[:top_k * 2]]  # Get more candidates
                         
-                        # Combine BM25 and SBERT scores
-                        if hybrid_mode:
-                            # Hybrid ranking: combine BM25 and SBERT
-                            combined_results = hybrid_rank(
-                                bm25_filtered,
+                        # Compute Jaccard scores for candidate chunks
+                        for matched_doc_id in candidate_doc_ids:
+                            matched_text = doc_texts.get(matched_doc_id, "")
+                            if matched_text:
+                                # Find best matching chunk using Jaccard
+                                _, _, jaccard_score = find_best_matching_chunk(
+                                    chunk, matched_text, use_jaccard=True, jaccard_ranker=jaccard_ranker
+                                )
+                                if jaccard_score >= similarity_threshold:
+                                    jaccard_scores.append((matched_doc_id, jaccard_score))
+                    
+                    # Determine final results based on mode
+                    if hybrid_mode and (use_sbert or use_jaccard):
+                        # Hybrid ranking: combine multiple methods
+                        from sbert_ranker import hybrid_rank
+                        
+                        # Start with BM25 scores
+                        combined_scores = bm25_filtered
+                        
+                        # Add SBERT scores if available
+                        if sbert_scores:
+                            combined_scores = hybrid_rank(
+                                combined_scores,
                                 sbert_scores,
                                 bm25_weight=bm25_weight,
                                 sbert_weight=sbert_weight
                             )
-                            filtered_results = combined_results[:top_k]
-                        else:
-                            # Use SBERT scores only
-                            filtered_results = sorted(sbert_scores, key=lambda x: x[1], reverse=True)[:top_k]
+                        
+                        # Add Jaccard scores if available (normalize weights)
+                        if jaccard_scores and jaccard_weight > 0:
+                            # Normalize weights: adjust BM25 and SBERT weights, add Jaccard
+                            total_weight = bm25_weight + sbert_weight + jaccard_weight
+                            if total_weight > 0:
+                                # Combine with normalized weights
+                                jaccard_norm = jaccard_weight / total_weight
+                                
+                                # Convert to dicts for easier combination
+                                combined_dict = {doc_id: score for doc_id, score in combined_scores}
+                                jaccard_dict = {doc_id: score for doc_id, score in jaccard_scores}
+                                
+                                # Find max scores for normalization
+                                combined_max = max(combined_dict.values()) if combined_dict else 1.0
+                                jaccard_max = max(jaccard_dict.values()) if jaccard_dict else 1.0
+                                
+                                # Get all doc IDs
+                                all_doc_ids = set(combined_dict.keys()) | set(jaccard_dict.keys())
+                                
+                                # Combine scores
+                                final_scores = []
+                                for doc_id in all_doc_ids:
+                                    combined_score = (combined_dict.get(doc_id, 0.0) / combined_max) if combined_max > 0 else 0.0
+                                    jaccard_score = (jaccard_dict.get(doc_id, 0.0) / jaccard_max) if jaccard_max > 0 else 0.0
+                                    
+                                    # Weighted combination
+                                    final_score = ((1 - jaccard_norm) * combined_score) + (jaccard_norm * jaccard_score)
+                                    final_scores.append((doc_id, final_score))
+                                
+                                combined_scores = sorted(final_scores, key=lambda x: x[1], reverse=True)
+                        
+                        filtered_results = combined_scores[:top_k]
+                    elif use_sbert and sbert_scores:
+                        # Use SBERT scores only
+                        filtered_results = sorted(sbert_scores, key=lambda x: x[1], reverse=True)[:top_k]
+                    elif use_jaccard and jaccard_scores:
+                        # Use Jaccard scores only
+                        filtered_results = sorted(jaccard_scores, key=lambda x: x[1], reverse=True)[:top_k]
                     else:
                         # Use BM25 only
                         filtered_results = bm25_filtered
@@ -407,9 +515,23 @@ def detect_plagiarism(
                             # Find the best matching chunk in the matched document
                             matched_text = doc_texts.get(matched_doc_id, "")
                             if matched_text:
-                                matched_chunk_idx, matched_chunk_text, sbert_score = find_best_matching_chunk(
-                                    chunk, matched_text, use_sbert=use_sbert, sbert_ranker=sbert_ranker
+                                matched_chunk_idx, matched_chunk_text, similarity_score = find_best_matching_chunk(
+                                    chunk, matched_text, 
+                                    use_sbert=use_sbert, sbert_ranker=sbert_ranker,
+                                    use_jaccard=use_jaccard, jaccard_ranker=jaccard_ranker
                                 )
+                                
+                                # Also compute individual scores for reporting
+                                sbert_score = 0.0
+                                jaccard_score = 0.0
+                                if use_sbert and sbert_ranker:
+                                    _, _, sbert_score = find_best_matching_chunk(
+                                        chunk, matched_text, use_sbert=True, sbert_ranker=sbert_ranker
+                                    )
+                                if use_jaccard and jaccard_ranker:
+                                    _, _, jaccard_score = find_best_matching_chunk(
+                                        chunk, matched_text, use_jaccard=True, jaccard_ranker=jaccard_ranker
+                                    )
                                 
                                 plagiarism_results[doc_name].append((
                                     matched_doc_name,
@@ -418,7 +540,7 @@ def detect_plagiarism(
                                     score,      # BM25 or combined similarity score
                                     matched_chunk_idx,  # Matched chunk index from paper B
                                     matched_chunk_text,  # Matched chunk text from paper B
-                                    sbert_score  # SBERT semantic similarity score
+                                    (sbert_score, jaccard_score)  # Tuple of (sbert_score, jaccard_score)
                                 ))
                 except Exception as e:
                     logger.log_error(f"Error querying chunk {chunk_idx} from {doc_name}", e)
@@ -434,7 +556,7 @@ def detect_plagiarism(
     return dict(plagiarism_results)
 
 
-def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, float, int, str]]], 
+def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, float, int, str, Tuple[float, float]]]], 
                    output_file: str = "plagiarism_report.txt",
                    logger: Logger = None) -> None:
     """
@@ -443,7 +565,7 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, floa
     Args:
         plagiarism_results: Results from detect_plagiarism
             Each match is a tuple: (matched_doc_name, source_chunk_idx, source_chunk_text, 
-                                   score, matched_chunk_idx, matched_chunk_text)
+                                   score, matched_chunk_idx, matched_chunk_text, (sbert_score, jaccard_score))
         output_file: Path to output report file
         logger: Logger instance for output
     """
@@ -477,9 +599,9 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, floa
             
             # Group matches by matched document
             matches_by_doc = defaultdict(list)
-            for matched_doc, source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, sbert_score in matches:
+            for matched_doc, source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, similarity_scores in matches:
                 matches_by_doc[matched_doc].append((
-                    source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, sbert_score
+                    source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, similarity_scores
                 ))
             
             for matched_doc, doc_matches in sorted(
@@ -501,11 +623,14 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, floa
                 )
                 
                 # Limit to top 20 chunk pairs per document pair to keep report manageable
-                for idx, (source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, sbert_score) in enumerate(sorted_chunk_matches[:20]):
+                for idx, (source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, similarity_scores) in enumerate(sorted_chunk_matches[:20]):
                     score_label = "Combined" if len(doc_matches) > 0 and len(doc_matches[0]) > 5 else "BM25"
                     f.write(f"    --- Chunk Pair #{idx + 1} ({score_label} Score: {score:.4f}")
+                    sbert_score, jaccard_score = similarity_scores
                     if sbert_score > 0:
                         f.write(f", SBERT Score: {sbert_score:.4f}")
+                    if jaccard_score > 0:
+                        f.write(f", Jaccard Score: {jaccard_score:.4f}")
                     f.write(") ---\n")
                     f.write(f"    Source Document: {doc_name}, Chunk #{source_chunk_idx}\n")
                     f.write(f"    Matched Document: {matched_doc}, Chunk #{matched_chunk_idx}\n")
@@ -664,6 +789,21 @@ def main():
             elif use_sbert and not SBERT_AVAILABLE:
                 logger.log("SBERT requested but not available. Install sentence-transformers to enable.")
                 use_sbert = False
+            
+            # Initialize Jaccard ranker if requested
+            jaccard_ranker = None
+            if use_jaccard:
+                if JACCARD_AVAILABLE:
+                    try:
+                        logger.log("Initializing Jaccard ranker...")
+                        jaccard_ranker = JaccardRanker()
+                        logger.log("Jaccard ranker initialized successfully")
+                    except Exception as e:
+                        logger.log_error(f"Failed to initialize Jaccard ranker: {e}")
+                        use_jaccard = False
+                else:
+                    logger.log("Jaccard ranker not available.")
+                    use_jaccard = False
         except Exception as e:
             logger.log_error("Failed to initialize ranker", e)
             raise
@@ -681,9 +821,12 @@ def main():
                 top_k=top_k,
                 use_sbert=use_sbert,
                 sbert_ranker=sbert_ranker,
+                use_jaccard=use_jaccard,
+                jaccard_ranker=jaccard_ranker,
                 hybrid_mode=hybrid_mode,
                 bm25_weight=bm25_weight,
-                sbert_weight=sbert_weight
+                sbert_weight=sbert_weight,
+                jaccard_weight=jaccard_weight
             )
         except Exception as e:
             logger.log_error("Failed during plagiarism detection", e)
