@@ -12,7 +12,7 @@ from typing import Dict, List, Tuple, Optional
 import re
 from datetime import datetime
 
-from preprocessing import RegexTokenizer
+from preprocessing import RegexTokenizer, load_nltk_stopwords
 from indexing import Indexer, IndexType, BasicInvertedIndex
 from ranker import Ranker, BM25
 
@@ -154,33 +154,63 @@ def create_jsonl_from_documents(doc_texts: Dict[int, str], output_path: str, log
     logger.log(f"JSONL file created successfully with {doc_count} documents")
 
 
-def load_stopwords(stopwords_file: str, logger: Logger) -> set:
+def load_stopwords(stopwords_file: str = None, logger: Logger = None, use_nltk: bool = True, 
+                   language: str = 'english') -> set:
     """
-    Load stopwords from a text file.
+    Load stopwords from a text file or NLTK corpus.
     
     Args:
-        stopwords_file: Path to the stopwords file (space-separated words)
-        logger: Logger instance for output
+        stopwords_file: Path to the stopwords file (space-separated words). 
+                       If None or file doesn't exist, uses NLTK stopwords.
+        logger: Logger instance for output (optional)
+        use_nltk: If True, use NLTK stopwords (default: True). 
+                  If False and file doesn't exist, raises FileNotFoundError.
+        language: Language code for NLTK stopwords (default: 'english')
         
     Returns:
-        Set of stopwords
+        Set of stopwords as lowercase strings
+        
+    Raises:
+        FileNotFoundError: If stopwords_file is provided but doesn't exist and use_nltk=False
+        LookupError: If NLTK stopwords cannot be loaded
     """
-    stopwords_path = Path(stopwords_file)
+    # Try to load from file if provided
+    if stopwords_file:
+        stopwords_path = Path(stopwords_file)
+        
+        if stopwords_path.exists():
+            try:
+                with open(stopwords_path, 'r', encoding='utf-8') as f:
+                    content = f.read().strip()
+                    # Split by whitespace and convert to set
+                    stopwords = set(word.strip().lower() for word in content.split() if word.strip())
+                    if logger:
+                        logger.log(f"Loaded {len(stopwords)} stopwords from {stopwords_file}")
+                    return stopwords
+            except Exception as e:
+                if logger:
+                    logger.log_error(f"Error reading stopwords file {stopwords_file}", e)
+                if not use_nltk:
+                    raise
+                # Fall through to NLTK if file load failed
     
-    if not stopwords_path.exists():
-        logger.log_error(f"Stopwords file not found: {stopwords_file}")
-        raise FileNotFoundError(f"Stopwords file not found: {stopwords_file}")
-    
-    try:
-        with open(stopwords_path, 'r', encoding='utf-8') as f:
-            content = f.read().strip()
-            # Split by whitespace and convert to set
-            stopwords = set(word.strip().lower() for word in content.split() if word.strip())
-            logger.log(f"Loaded {len(stopwords)} stopwords from {stopwords_file}")
+    # Use NLTK stopwords (either as primary choice or fallback)
+    if use_nltk:
+        try:
+            stopwords = load_nltk_stopwords(language=language)
+            if logger:
+                logger.log(f"Loaded {len(stopwords)} stopwords from NLTK ({language})")
             return stopwords
-    except Exception as e:
-        logger.log_error(f"Error reading stopwords file {stopwords_file}", e)
-        raise
+        except LookupError as e:
+            if logger:
+                logger.log_error(f"Failed to load NLTK stopwords: {e}")
+            raise
+    
+    # If we get here, neither file nor NLTK worked
+    if stopwords_file:
+        raise FileNotFoundError(f"Stopwords file not found: {stopwords_file} and NLTK fallback disabled")
+    else:
+        raise ValueError("Either stopwords_file must be provided or use_nltk must be True")
 
 
 def extract_chunks(text: str, chunk_size: int = 200, overlap: int = 50) -> List[str]:
@@ -707,8 +737,8 @@ def main():
         try:
             tokenizer = RegexTokenizer(r'\w+', lowercase=True)
             
-            # Load stopwords from file
-            stopwords = load_stopwords(stopwords_file, logger)
+            # Load stopwords (from file if available, otherwise from NLTK)
+            stopwords = load_stopwords(stopwords_file, logger, use_nltk=True)
             logger.log(f"Initialized tokenizer with {len(stopwords)} stopwords")
         except Exception as e:
             logger.log_error("Failed to initialize tokenizer or load stopwords", e)
