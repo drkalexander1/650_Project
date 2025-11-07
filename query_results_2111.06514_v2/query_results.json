@@ -1,0 +1,140 @@
+{
+  "query_name": "2111.06514_v2",
+  "results": [
+    {
+      "paper_name": "2111.06514_v1",
+      "score": 1.0000001192092896,
+      "bm25_score": -4862.061105464378,
+      "sbert_score": 1.0000001192092896,
+      "jaccard_score": 1.0,
+      "chunks": [
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "the complex spacetime should be one in which more or less any quantum field theory could be defined Recently, with a different motivation, Kontsevich and Segal [6] have made a proposal for what is the class of complex geometries in which a generic quantum field theory can be consistently coupled Their proposal was not directly motivated by quantum gravity; their basic goal was to explore the extent to which traditional axiom sets of quantum field theory can be replaced by the assumption that a t...",
+          "matched_chunk_idx": 5,
+          "matched_chunk_text": "the complex spacetime should be one in which more or less any quantum field theory could be defined Recently, with a different motivation, Kontsevich and Segal [6] have made a proposal for what is the class of complex geometries in which a generic quantum field theory can be consistently coupled Their proposal was not directly motivated by quantum gravity; their basic goal was to explore the extent to which traditional axiom sets of quantum field theory can be replaced by the assumption that a t...",
+          "score": 1.0000001192092896,
+          "sbert_score": 1.0000001192092896,
+          "jaccard_score": 1.0
+        },
+        {
+          "query_chunk_idx": 9,
+          "query_chunk_text": "if r(u) is real, the metric (2.2) just differs from the original flat metric (2.1) by a reparametrization, so it is certainly flat But when one verifies this flatness, one never has to use the fact that r(u) is real, so the metric remains flat even when r(u) is complex-valued If we want a compact manifold without boundary, we should take u to run over a compact interval u ≤ u ≤ u and require r(u ) = r(u ) = 0, as in fig 1(a) Topologically this gives a 0 1 0 1 sphere SD The complex metric on SD t...",
+          "matched_chunk_idx": 9,
+          "matched_chunk_text": "if r(u) is real, the metric (2.2) just differs from the original flat metric (2.1) by a reparametrization, so it is certainly flat But when one verifies this flatness, one never has to use the fact that r(u) is real, so the metric remains flat even when r(u) is complex-valued If we want a compact manifold without boundary, we should take u to run over a compact interval u ≤ u ≤ u and require r(u ) = r(u ) = 0, as in fig 1(a) Topologically this gives a 0 1 0 1 sphere SD The complex metric on SD t...",
+          "score": 1.0000001192092896,
+          "sbert_score": 1.0000001192092896,
+          "jaccard_score": 1.0
+        }
+      ]
+    },
+    {
+      "paper_name": "2006.03494_v1",
+      "score": 0.6153692007064819,
+      "bm25_score": -6651.663915484832,
+      "sbert_score": 0.6153692007064819,
+      "jaccard_score": 0.14864864864864866,
+      "chunks": [
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "]ht-peh[ 2v41560.1112:viXra Contents 1 Introduction 1 2 Some Examples of Complex Solutions of Einstein’s Equations 3 3 Allowable Metrics 8 4 Some Useful Complex Saddles 12 4.1 Topology Change In Lorentz Signature 12 4.2 The Hartle-Hawking Wavefunction 14 4.3 Timefolds 16 4.4 The Double Cone 17 4.5 Rotating Black Holes 18 5 Searching for the Integration Cycle of the Gravitational Path Integral 21 A Pontryagin Classes, Euler Classes, and Volumes 25 1 Introduction In their original paper interpreti...",
+          "matched_chunk_idx": 5,
+          "matched_chunk_text": "classical solutions of these models and the associated thermodynamics Insection3,weanalyzethethermodynamicstabilityoftheseblackholesolutions The main result is to show that if there is a black hole solution at temperature T with negative specific heat, then there is another black hole solution at the same temperature with positive specific heat and lower free energy In section 4, we consider what happens in one of these models as the temperature is increased The energy and entropy always increas...",
+          "score": 0.6153692007064819,
+          "sbert_score": 0.6153692007064819,
+          "jaccard_score": 0.1267605633802817
+        },
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "]ht-peh[ 2v41560.1112:viXra Contents 1 Introduction 1 2 Some Examples of Complex Solutions of Einstein’s Equations 3 3 Allowable Metrics 8 4 Some Useful Complex Saddles 12 4.1 Topology Change In Lorentz Signature 12 4.2 The Hartle-Hawking Wavefunction 14 4.3 Timefolds 16 4.4 The Double Cone 17 4.5 Rotating Black Holes 18 5 Searching for the Integration Cycle of the Gravitational Path Integral 21 A Pontryagin Classes, Euler Classes, and Volumes 25 1 Introduction In their original paper interpreti...",
+          "matched_chunk_idx": 11,
+          "matched_chunk_text": "guess that as in conventional black hole thermodynamics, this will be the first law of thermodynamics dE = TdS, with φ a linear function of the entropy S and b a linear function h of the energy E To confirm this interpretation, we will evaluate the action for the solution This action is interpreted as a classical approximation to −logZ = βF = βE − S, where Z is the partition function and F = E −TS is the free energy To evaluate the action, as in [4], we put a cutoff on r, at some very large valu...",
+          "score": 0.6080251336097717,
+          "sbert_score": 0.6080251336097717,
+          "jaccard_score": 0.10784313725490197
+        }
+      ]
+    },
+    {
+      "paper_name": "2006.03494_v3",
+      "score": 0.5931894183158875,
+      "bm25_score": -6671.543704555898,
+      "sbert_score": 0.5931894183158875,
+      "jaccard_score": 0.1348314606741573,
+      "chunks": [
+        {
+          "query_chunk_idx": 6,
+          "query_chunk_text": "of the cases in which apparently useful statements about quantum gravity have been made usingcomplexsolutionsofEinstein’sequations,andshowthatthemetricsconsideredareallowable This gives at least some support for the idea of restricting to “allowable” metrics as saddle points In section 5, we discuss from this point of view the integration cycle of the gravitational path integral As originally discussed by Gibbons, Hawking, and Perry [2], the action of Euclidean quantum gravity is not bounded bel...",
+          "matched_chunk_idx": 57,
+          "matched_chunk_text": "the last paragraph are supported in a region with W(cid:48)(φ) < 0, they are qualitatively similar to solutions of JT gravity with positive cosmological constant, even though they can arise in a model that has the asymptotically AdS black hole 2 solutions that we have studied in the present paper This is reminiscent of the embedding of a portion of de Sitter space in a world that is asymptotic to AdS in the centaur geometry [14] 2 The centaur geometry actually motivated a previous discussion of ...",
+          "score": 0.5931894183158875,
+          "sbert_score": 0.5931894183158875,
+          "jaccard_score": 0.1111111111111111
+        },
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "]ht-peh[ 2v41560.1112:viXra Contents 1 Introduction 1 2 Some Examples of Complex Solutions of Einstein’s Equations 3 3 Allowable Metrics 8 4 Some Useful Complex Saddles 12 4.1 Topology Change In Lorentz Signature 12 4.2 The Hartle-Hawking Wavefunction 14 4.3 Timefolds 16 4.4 The Double Cone 17 4.5 Rotating Black Holes 18 5 Searching for the Integration Cycle of the Gravitational Path Integral 21 A Pontryagin Classes, Euler Classes, and Volumes 25 1 Introduction In their original paper interpreti...",
+          "matched_chunk_idx": 6,
+          "matched_chunk_text": "standard ideas about black hole thermodynamics; see for example [21] Finally, in section 5, we describe compact smooth Euclidean solutions of models in this class These solutions are de Sitter-like, even though they can arise in models that have black hole solutions that are asymptotic to Anti de Sitter space 2 Classical Solutions and Thermodynamics In Euclidean signature, a general black hole solution of a theory in the class (1.2) can be put in the form1 1 ds2 = A(r)dt2+ dr2, φ = φ(r), (2.1) G...",
+          "score": 0.5907772183418274,
+          "sbert_score": 0.5907772183418274,
+          "jaccard_score": 0.10666666666666667
+        }
+      ]
+    },
+    {
+      "paper_name": "1710.01791_v1",
+      "score": 0.5823622941970825,
+      "bm25_score": -5736.856322825949,
+      "sbert_score": 0.5823622941970825,
+      "jaccard_score": 0.1641025641025641,
+      "chunks": [
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "the complex spacetime should be one in which more or less any quantum field theory could be defined Recently, with a different motivation, Kontsevich and Segal [6] have made a proposal for what is the class of complex geometries in which a generic quantum field theory can be consistently coupled Their proposal was not directly motivated by quantum gravity; their basic goal was to explore the extent to which traditional axiom sets of quantum field theory can be replaced by the assumption that a t...",
+          "matched_chunk_idx": 23,
+          "matched_chunk_text": "String Theory, where we are able to test the matter In String Theory, gauge fields always couple to the full complement of electric and magnetic charges suggested by the low energy description This depends ultimately on a rather subtle calculation [11] Inthecontextofquantumgravity,weactuallydohaveaninterestingandinformativeframework foran“emergent”descriptionofsomethingliketherealworld–oratleastofaworldwithquantum gravity together with other particles and forces This is the gauge/gravity or AdS/...",
+          "score": 0.5823622941970825,
+          "sbert_score": 0.5823622941970825,
+          "jaccard_score": 0.1641025641025641
+        },
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "the complex spacetime should be one in which more or less any quantum field theory could be defined Recently, with a different motivation, Kontsevich and Segal [6] have made a proposal for what is the class of complex geometries in which a generic quantum field theory can be consistently coupled Their proposal was not directly motivated by quantum gravity; their basic goal was to explore the extent to which traditional axiom sets of quantum field theory can be replaced by the assumption that a t...",
+          "matched_chunk_idx": 24,
+          "matched_chunk_text": "CFTisconformalfieldtheory Inthesimplestexamplesofgauge/gravityduality,thequantumgravitypropagatesin an asymptotically AdS spacetime, and the gauge theory is a CFT 7 In gauge/gravity or AdS/CFT duality, one starts with an ordinary theory on a spacetime N of some dimension D −1 The gravitational dual is formulated on D-dimensional spacetimes M that have N for their conformal boundary (This means roughly that N lies at infinity on M.) In general, given N, there is no distinguished M, and one has to...",
+          "score": 0.5588903427124023,
+          "sbert_score": 0.5588903427124023,
+          "jaccard_score": 0.13402061855670103
+        }
+      ]
+    },
+    {
+      "paper_name": "1710.01791_v3",
+      "score": 0.5823172926902771,
+      "bm25_score": -5792.484601072962,
+      "sbert_score": 0.5823172926902771,
+      "jaccard_score": 0.1641025641025641,
+      "chunks": [
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "the complex spacetime should be one in which more or less any quantum field theory could be defined Recently, with a different motivation, Kontsevich and Segal [6] have made a proposal for what is the class of complex geometries in which a generic quantum field theory can be consistently coupled Their proposal was not directly motivated by quantum gravity; their basic goal was to explore the extent to which traditional axiom sets of quantum field theory can be replaced by the assumption that a t...",
+          "matched_chunk_idx": 23,
+          "matched_chunk_text": "String Theory, where we are able to test the matter In String Theory, gauge fields always couple to the full complement of electric and magnetic charges suggested by the low energy description This depends ultimately on a rather subtle calculation [16] Inthecontextofquantumgravity,weactuallydohaveaninterestingandinformativeframework foran“emergent”descriptionofsomethingliketherealworld–oratleastofaworldwithquantum gravity together with other particles and forces This is the gauge/gravity or AdS/...",
+          "score": 0.5823172926902771,
+          "sbert_score": 0.5823172926902771,
+          "jaccard_score": 0.1641025641025641
+        },
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "the complex spacetime should be one in which more or less any quantum field theory could be defined Recently, with a different motivation, Kontsevich and Segal [6] have made a proposal for what is the class of complex geometries in which a generic quantum field theory can be consistently coupled Their proposal was not directly motivated by quantum gravity; their basic goal was to explore the extent to which traditional axiom sets of quantum field theory can be replaced by the assumption that a t...",
+          "matched_chunk_idx": 24,
+          "matched_chunk_text": "CFTisconformalfieldtheory Inthesimplestexamplesofgauge/gravityduality,thequantumgravitypropagatesin an asymptotically AdS spacetime, and the gauge theory is a CFT 7 In gauge/gravity or AdS/CFT duality, one starts with an ordinary theory on a spacetime N of some dimension D −1 The gravitational dual is formulated on D-dimensional spacetimes M that have N for their conformal boundary (This means roughly that N lies at infinity on M.) In general, given N, there is no distinguished M, and one has to...",
+          "score": 0.5588903427124023,
+          "sbert_score": 0.5588903427124023,
+          "jaccard_score": 0.13402061855670103
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "query_name": "0902.0948_v1",
+  "results": [
+    {
+      "paper_name": "0902.0948_v2",
+      "score": 1.0000001192092896,
+      "bm25_score": -6829.764301758666,
+      "sbert_score": 1.0000001192092896,
+      "jaccard_score": 1.0,
+      "chunks": [
+        {
+          "query_chunk_idx": 2,
+          "query_chunk_text": "hyper-Kahler four-manifolds, which can be obtained by a hyper-Kahler resolution of a quotient singularity R4/Γ, where Γ is a finite subgroup of SU(2) Such resolutionscanbenaturallyconstructed[1]asahyper-Kahler quotient ofafinite-dimensional Euclidean space This construction has a natural interpretation in terms of D-branes [2] and has served as an important example in string theory Close cousins of these spaces are the ALF (asymptotically locally flat) hyper-Kahler four- manifolds These are loca...",
+          "matched_chunk_idx": 2,
+          "matched_chunk_text": "hyper-Kahler four-manifolds, which can be obtained by a hyper-Kahler resolution of a quotient singularity R4/Γ, where Γ is a finite subgroup of SU(2) Such resolutionscanbenaturallyconstructed[1]asahyper-Kahler quotient ofafinite-dimensional Euclidean space This construction has a natural interpretation in terms of D-branes [2] and has served as an important example in string theory Close cousins of these spaces are the ALF (asymptotically locally flat) hyper-Kahler four- manifolds These are loca...",
+          "score": 1.0000001192092896,
+          "sbert_score": 1.0000001192092896,
+          "jaccard_score": 1.0
+        },
+        {
+          "query_chunk_idx": 3,
+          "query_chunk_text": "in terms of branes The first goal of the present paper will be, in section 2, 2 to accomplish this For that purpose, we will use the T-duality [5] between an NS5-brane localized at a point on R3×S1, and an ALF space (This T-duality has been further studied in [6] A related statement that symmetry enhancement by k parallel NS5-branes is dual to symmetry enhancement due to an A singularity was first argued in [7].) Probing this T- k−1 duality with a suitable D-brane, we arrive at the desired hyper...",
+          "matched_chunk_idx": 3,
+          "matched_chunk_text": "in terms of branes The first goal of the present paper will be, in section 2, 2 to accomplish this For that purpose, we will use the T-duality [5] between an NS5-brane localized at a point on R3×S1, and an ALF space (This T-duality has been further studied in [6] A related statement that symmetry enhancement by k parallel NS5-branes is dual to symmetry enhancement due to an A singularity was first argued in [7].) Probing this T- k−1 duality with a suitable D-brane, we arrive at the desired hyper...",
+          "score": 1.0000001192092896,
+          "sbert_score": 1.0000001192092896,
+          "jaccard_score": 1.0
+        }
+      ]
+    },
+    {
+      "paper_name": "1404.5346_v1",
+      "score": 0.5444986820220947,
+      "bm25_score": -8415.378397259761,
+      "sbert_score": 0.5444986820220947,
+      "jaccard_score": 0.12631578947368421,
+      "chunks": [
+        {
+          "query_chunk_idx": 7,
+          "query_chunk_text": "starting point Z involves an NS5-branee, which is described by a two-dimensional conformal field theory, but not one which iselementary or known in any explicit form Consequently, thestandard arguments [5] for determining Z are slightly abstract We recall these arguments for completeness The first step is to analyze the symmetries Because the original configuration Z has a conserved winding number esymmetry, Z must have a conserved momentum symmetry, that is a U(1) symmetry that rotates the fibe...",
+          "matched_chunk_idx": 8,
+          "matched_chunk_text": "toconstruct a manifestly supersymmetric model that can be quantized to givethe superstring spectrum, but they facilitatethe construction of the regulator.) The right-moving worldsheet variables are the same as in the RNS formalism and include the fermionic spin-half variables ξr for r = 1 to 32 and the Virasoro ghosts (c,b) The pure spinor formalism can be defined in any consistent supergravity background and the worldsheet action is 1 1 1 S = d2z [ ∂ZM(G (Z)+B (Z))+d Eα(Z)+ (λγ w)Ωab(Z)]∂ZN α′ ...",
+          "score": 0.5444986820220947,
+          "sbert_score": 0.5444986820220947,
+          "jaccard_score": 0.06477732793522267
+        },
+        {
+          "query_chunk_idx": 9,
+          "query_chunk_text": "presence of the NS5-brane 3Theformofthemetric(2.1)impliesthattherecannotbeorbitsleftfixedbyanon-trivialfinitesubgroup of U(1) 4In the full string theory, as opposed to the sigma model, there is a conserved quantity that generalizes the string winding number This is shown in [5] 4 2.2 Explicit Form Of The Taub-NUT Metric The space TN can be described very simply We write X~ for coordinates on R3, and θ for an angular parameter on S1 A four-dimensional hyper-Kahler metric with a triholomorphic U(1...",
+          "matched_chunk_idx": 45,
+          "matched_chunk_text": "of the two handles becoming infinitely thin or by the surface separating into two genus-one surfaces connected by an infinitely thin tube The first type of degenera- tion is harmless for the same reason as in the one-loop amplitude; the momentum flowing through the degenerating handle is an integration variable However, the second type of degeneration needs to be carefully treated and will give a contribution when spacetime supersymmetry is spontaneously broken at one-loop We parametrize the gen...",
+          "score": 0.5341162085533142,
+          "sbert_score": 0.5341162085533142,
+          "jaccard_score": 0.1201923076923077
+        }
+      ]
+    },
+    {
+      "paper_name": "1206.1407_v2",
+      "score": 0.5422365069389343,
+      "bm25_score": -7976.9190575034845,
+      "sbert_score": 0.5422365069389343,
+      "jaccard_score": 0.12,
+      "chunks": [
+        {
+          "query_chunk_idx": 9,
+          "query_chunk_text": "presence of the NS5-brane 3Theformofthemetric(2.1)impliesthattherecannotbeorbitsleftfixedbyanon-trivialfinitesubgroup of U(1) 4In the full string theory, as opposed to the sigma model, there is a conserved quantity that generalizes the string winding number This is shown in [5] 4 2.2 Explicit Form Of The Taub-NUT Metric The space TN can be described very simply We write X~ for coordinates on R3, and θ for an angular parameter on S1 A four-dimensional hyper-Kahler metric with a triholomorphic U(1...",
+          "matched_chunk_idx": 54,
+          "matched_chunk_text": "onlyifnoindex isinthe extradimensi b o c n d Thereforethis windingnumber−1whileθLhaswindingnumber0 Depend- topological term is reduced to ingonthesign ofthephasegradient betweenthetwos-wave superconductors (the position of the vertical path connect- θ −θ ing π/2 and −π/2 relative to the origin), one may also have S = L R d5xǫµνστRα Rβ (44) windingnumber0forθR and1forθL Independentfromthis grav 1536π2 Z βµν αστ choice,thereisalwaysaMajorana-Weylfermionpropagating This action can be straightforwar...",
+          "score": 0.5422365069389343,
+          "sbert_score": 0.5422365069389343,
+          "jaccard_score": 0.0945945945945946
+        },
+        {
+          "query_chunk_idx": 6,
+          "query_chunk_text": "to what we do in section 2 3 configuration Z The T-dual of S1×R3 without the NS5-brane is simply S1×R3 (where S1 is the circle dual to S1, with the radius inverted) However, T-duality converts the charge of the NS5-brane into an “H-monopole” charge that is encoded in the geomeetry As a resulet, the T-dual of Z is a space Z that at infinity looks like a nontrivial S1 bundle over R3 The first Chern class of the S1 bundle is 1 (the original NS5-brane charge) More precisely, the region near infinity...",
+          "matched_chunk_idx": 34,
+          "matched_chunk_text": "ground invariantN isdeterminedbytheChernnumbersC and 1i state spontaneously breaks time-reversal symmetry, al- thegroundstatevalueofθ ,whichisthusdeterminedfor i though we are mainly interested in the situation with a given effective action (24) time-reversal symmetry preserved, with θ = 0 or π for i eachi In that case the topologicalinvariant (7) is given by IV TOPOLOGICAL EFFECTS DESCRIBED BY 1 THE AXION FIELD THEORY N = C 1i eiθi (25) 2 i X One of the main advantages of an effective field the...",
+          "score": 0.5269098281860352,
+          "sbert_score": 0.5269098281860352,
+          "jaccard_score": 0.11737089201877934
+        }
+      ]
+    },
+    {
+      "paper_name": "1401.8048_v1",
+      "score": 0.5391801595687866,
+      "bm25_score": -4479.715838627419,
+      "sbert_score": 0.5391801595687866,
+      "jaccard_score": 0.12690355329949238,
+      "chunks": [
+        {
+          "query_chunk_idx": 2,
+          "query_chunk_text": "hyper-Kahler four-manifolds, which can be obtained by a hyper-Kahler resolution of a quotient singularity R4/Γ, where Γ is a finite subgroup of SU(2) Such resolutionscanbenaturallyconstructed[1]asahyper-Kahler quotient ofafinite-dimensional Euclidean space This construction has a natural interpretation in terms of D-branes [2] and has served as an important example in string theory Close cousins of these spaces are the ALF (asymptotically locally flat) hyper-Kahler four- manifolds These are loca...",
+          "matched_chunk_idx": 12,
+          "matched_chunk_text": "as we know now But it still would have been a memorable milestone, predicting a new field as a result of trying to unify the forces, and introducing questions that physicists attempting to unify the forces still grapple with today – in the moduli problem of string theory, for instance According to a historical survey by Appelquist, Chodos, and Freund (see the introduction to [4]), it was left for Jordan and Thirry, a decade later, to describe the scalar-tensor theory that arises naturally from f...",
+          "score": 0.5391801595687866,
+          "sbert_score": 0.5391801595687866,
+          "jaccard_score": 0.09375
+        },
+        {
+          "query_chunk_idx": 9,
+          "query_chunk_text": "presence of the NS5-brane 3Theformofthemetric(2.1)impliesthattherecannotbeorbitsleftfixedbyanon-trivialfinitesubgroup of U(1) 4In the full string theory, as opposed to the sigma model, there is a conserved quantity that generalizes the string winding number This is shown in [5] 4 2.2 Explicit Form Of The Taub-NUT Metric The space TN can be described very simply We write X~ for coordinates on R3, and θ for an angular parameter on S1 A four-dimensional hyper-Kahler metric with a triholomorphic U(1...",
+          "matched_chunk_idx": 10,
+          "matched_chunk_text": "correspondence with Peter Bergmann (figs 1 and 2) confirms my interpretation He wrote, “The reason for restricting the forms of the metric components g isexplainedinsomedetailonp 275ofmyrelativitytext Brieflytheunderlyingreasonis 5.. that this theory is not a scalar-tensor theory (Brans-Dicke type) but retains macroscopically g = 1.” The text in question is ref [6]; when Bergmann says that the theory “is not” a 55 scalar-tensor theory, I think he means that it is not desired or intended for it t...",
+          "score": 0.5281681418418884,
+          "sbert_score": 0.5281681418418884,
+          "jaccard_score": 0.10232558139534884
+        }
+      ]
+    },
+    {
+      "paper_name": "0812.4512_v3",
+      "score": 0.5281053185462952,
+      "bm25_score": -7805.325306874966,
+      "sbert_score": 0.5281053185462952,
+      "jaccard_score": 0.13793103448275862,
+      "chunks": [
+        {
+          "query_chunk_idx": 7,
+          "query_chunk_text": "starting point Z involves an NS5-branee, which is described by a two-dimensional conformal field theory, but not one which iselementary or known in any explicit form Consequently, thestandard arguments [5] for determining Z are slightly abstract We recall these arguments for completeness The first step is to analyze the symmetries Because the original configuration Z has a conserved winding number esymmetry, Z must have a conserved momentum symmetry, that is a U(1) symmetry that rotates the fibe...",
+          "matched_chunk_idx": 8,
+          "matched_chunk_text": "of its conformal compactification) is SO(2,4), and this is a group of symmetries of the classical theory ForG=U(1),SO(2,4)isrealizedasagroupofsymmetriesofthequantumthe- ory,butthisisactuallynottruefornonabelianG Thequantumtheoryisobtained via a kind of limiting procedure, concerning which I will try to give a few hints This limiting procedure does not preserve the full SO(2,4) symmetry, but only a subgroup The details depend on exactly how one proceeds with quantization A maximal subgroup of SO(...",
+          "score": 0.5281053185462952,
+          "sbert_score": 0.5281053185462952,
+          "jaccard_score": 0.1095890410958904
+        },
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "2.5.3 ALE Limit 23 2.5.4 Other Examples 24 3 Instantons On A Taub-NUT Space 25 3.1 Overview 25 3.1.1 D3-Brane Probe 26 3.2 Line Bundles 28 3.2.1 Determination Of The Line Bundle 30 3.3 First Chern Class Of An Instanton Bundle 33 3.3.1 Overview 33 1 3.3.2 Relative Linking Number 34 3.3.3 Reduction To Gauge Theory 37 3.3.4 The Number Of D3-Branes 40 3.3.5 The First Chern Class: D5-Brane Contribution 41 3.3.6 The D3-Brane Contribution 42 3.3.7 The E0-Brane Charge 45 3.4 The Monodromy At Infinity An...",
+          "matched_chunk_idx": 0,
+          "matched_chunk_text": "9002 naJ 3 ]GD.htam[ 3v2154.2180:viXra THE PROBLEM OF GAUGE THEORY EDWARDWITTEN Abstract Isketchwhatitissupposedtomeantoquantizegaugetheory,and howthiscanbemademoreconcreteinperturbationtheoryandalsobystarting withafinite-dimensionallatticeapproximation Basedonrealexperimentsand computersimulations,quantumgaugetheoryinfourdimensionsisbelievedto have a mass gap This is one of the most fundamental facts that makes the Universethe way itis Thisarticleis the writtenformof alecture presented atthecon...",
+          "score": 0.49742305278778076,
+          "sbert_score": 0.49742305278778076,
+          "jaccard_score": 0.07851239669421488
+        }
+      ]
+    }
+  ]
+}

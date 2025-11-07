@@ -1,0 +1,140 @@
+{
+  "query_name": "1611.00592_v1",
+  "results": [
+    {
+      "paper_name": "0812.4512_v3",
+      "score": 0.6329889297485352,
+      "bm25_score": -4229.542067113179,
+      "sbert_score": 0.6329889297485352,
+      "jaccard_score": 0.15454545454545454,
+      "chunks": [
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "Kruskal, Fadde’ev, Drinfeld, Miwa, Jimbo, and A and Al Zamolodchikov The subject is so multi-faceted that no short summary can do justice to it In today’s lecture, I will be describing a new approach to integrable lattice models of two- dimensional classical statistical mechanics, developed recently by Kevin Costello [1] Costello’s work has offered an essentially new perspective in which these models are understood in terms of four-dimensional gauge theory.1 Arguably this perspective is in line ...",
+          "matched_chunk_idx": 20,
+          "matched_chunk_text": "known approach to understanding the exact theory requires, one way or another, modifying it by introducing a “cut-off” so as to make the number of variables effectively finite, and then taking a limit in which the cutoff is removed TheusualwaytodothisisviaEuclideanlatticegaugetheory,butwewillnotfollow that route because in this lecture we haveavoidedintroducing path integrals (For an introduction to that subject, see for instance [1].) Instead, I will describe the Hamiltonian version of lattice ...",
+          "score": 0.6329889297485352,
+          "sbert_score": 0.6329889297485352,
+          "jaccard_score": 0.11304347826086956
+        },
+        {
+          "query_chunk_idx": 3,
+          "query_chunk_text": "ones, but displaced slightly inwards This will not really affect our discussion In a typical relativistic quantum field theory, there are also particle production processes, which are a large part of what makes quantum field theory interesting An example with two particles going to three is sketched in fig 2 The symmetries of typical relativistic field theories allow such processes and they happen all the time in the real world In a 2 → 3 scattering event, in a massive theory, the incoming and o...",
+          "matched_chunk_idx": 1,
+          "matched_chunk_text": "fields describe things such as electrons, neutrinos, quarks, and possibly Higgs par- ticles Gauge fields mediate “forces” between particles described by matter fields (and between additional particles described by the gauge fields themselves) For simplicity, in this talk, I will omit the matter fields and just describe the gauge fields OnethingIshouldsaybeforegettingtoofaristhat,foralargevarietyofreasons, it is unrealistic, in a talk or a short article, to expect to fully describe the problem of...",
+          "score": 0.5799325704574585,
+          "sbert_score": 0.5799325704574585,
+          "jaccard_score": 0.14035087719298245
+        }
+      ]
+    },
+    {
+      "paper_name": "0812.4512_v1",
+      "score": 0.5884978175163269,
+      "bm25_score": -4224.3147347286895,
+      "sbert_score": 0.5884978175163269,
+      "jaccard_score": 0.14953271028037382,
+      "chunks": [
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "Kruskal, Fadde’ev, Drinfeld, Miwa, Jimbo, and A and Al Zamolodchikov The subject is so multi-faceted that no short summary can do justice to it In today’s lecture, I will be describing a new approach to integrable lattice models of two- dimensional classical statistical mechanics, developed recently by Kevin Costello [1] Costello’s work has offered an essentially new perspective in which these models are understood in terms of four-dimensional gauge theory.1 Arguably this perspective is in line ...",
+          "matched_chunk_idx": 20,
+          "matched_chunk_text": "Riemannian geometry without learning linear algebra 4 Nonperturbative Approach However,tounderstandthe stronginteractions,ornuclearforce,the asymptotic expansionisnotenough Weneedtounderstandsomethingabouttheexacttheory I will therefore conclude by trying to say something about this Any known approach to understanding the exact theory requires, one way or another,modifyingitbyintroducingacut-off”soastomakethenumberofvariables effectively finite, and then taking a limit in whichthe cutoff is remo...",
+          "score": 0.5884978175163269,
+          "sbert_score": 0.5884978175163269,
+          "jaccard_score": 0.10416666666666667
+        },
+        {
+          "query_chunk_idx": 3,
+          "query_chunk_text": "ones, but displaced slightly inwards This will not really affect our discussion In a typical relativistic quantum field theory, there are also particle production processes, which are a large part of what makes quantum field theory interesting An example with two particles going to three is sketched in fig 2 The symmetries of typical relativistic field theories allow such processes and they happen all the time in the real world In a 2 → 3 scattering event, in a massive theory, the incoming and o...",
+          "matched_chunk_idx": 1,
+          "matched_chunk_text": "fields describe things such as electrons, neutrinos, quarks, and possibly Higgs par- ticles Gauge fields mediate “forces” between particles described by matter fields (and between additional particles described by the gauge fields themselves) For simplicity, in this talk, I will omit the matter fields and just describe the gauge fields OnethingIshouldsaybeforegettingtoofaristhat,foralargevarietyofreasons, it is unrealistic, in a talk or a short article, to expect to fully describe the problem of...",
+          "score": 0.5799325704574585,
+          "sbert_score": 0.5799325704574585,
+          "jaccard_score": 0.14035087719298245
+        }
+      ]
+    },
+    {
+      "paper_name": "1610.09758_v1",
+      "score": 0.587915301322937,
+      "bm25_score": -4256.655537509858,
+      "sbert_score": 0.587915301322937,
+      "jaccard_score": 0.15789473684210525,
+      "chunks": [
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "Integrable Lattice Models From Gauge Theory Edward Witten School of Natural Sciences, Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract These notes provide an introduction to recent work by Kevin Costello in which integrable lattice models of classical statistical mechanics in two dimensions are understood in terms of quantum gauge theory in four dimensions This construction will be compared to the more familiar relationship between quantum knot invariants in three di...",
+          "matched_chunk_idx": 7,
+          "matched_chunk_text": "in 0 dimensions Also, we construct a simple model with a relatively large amount of symmetry (which could be gauged) and do not discuss some of the more generic models that have been considered in the literature None of this affects the counting of powers of N in Feynman diagrams As in [2] and many subsequent papers, we use real fermion fields As a result, the index loops we encounter are unoriented and certain two-manifolds that arise may be unorientable We could instead use complex fermion fie...",
+          "score": 0.587915301322937,
+          "sbert_score": 0.587915301322937,
+          "jaccard_score": 0.09170305676855896
+        },
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "Integrable Lattice Models From Gauge Theory Edward Witten School of Natural Sciences, Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract These notes provide an introduction to recent work by Kevin Costello in which integrable lattice models of classical statistical mechanics in two dimensions are understood in terms of quantum gauge theory in four dimensions This construction will be compared to the more familiar relationship between quantum knot invariants in three di...",
+          "matched_chunk_idx": 6,
+          "matched_chunk_text": "their analogs do not have bulk duals in better- understood examples of gauge/gravity duality The tensor models that mimic the SYK model can be chosen, as we will do in section 2, to have a global symmetry group G whose dimension is relatively large, but still much less than N Gauging the G symmetry leaves as gauge-invariant operatorsthesingletoperatorsthatarerelevantinthegravitationaldualdescription,buteliminates the elementary fermion fields themselves But because the dimension of G is much les...",
+          "score": 0.5793310403823853,
+          "sbert_score": 0.5793310403823853,
+          "jaccard_score": 0.10434782608695652
+        }
+      ]
+    },
+    {
+      "paper_name": "1610.09758_v2",
+      "score": 0.587915301322937,
+      "bm25_score": -4269.392537373617,
+      "sbert_score": 0.587915301322937,
+      "jaccard_score": 0.16299559471365638,
+      "chunks": [
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "Integrable Lattice Models From Gauge Theory Edward Witten School of Natural Sciences, Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract These notes provide an introduction to recent work by Kevin Costello in which integrable lattice models of classical statistical mechanics in two dimensions are understood in terms of quantum gauge theory in four dimensions This construction will be compared to the more familiar relationship between quantum knot invariants in three di...",
+          "matched_chunk_idx": 7,
+          "matched_chunk_text": "in 0 dimensions Also, we construct a simple model with a relatively large amount of symmetry (which could be gauged) and do not discuss some of the more generic models that have been considered in the literature None of this affects the counting of powers of N in Feynman diagrams As in [2] and many subsequent papers, we use real fermion fields As a result, the index loops we encounter are unoriented and certain two-manifolds that arise may be unorientable We could instead use complex fermion fie...",
+          "score": 0.587915301322937,
+          "sbert_score": 0.587915301322937,
+          "jaccard_score": 0.09170305676855896
+        },
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "Integrable Lattice Models From Gauge Theory Edward Witten School of Natural Sciences, Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract These notes provide an introduction to recent work by Kevin Costello in which integrable lattice models of classical statistical mechanics in two dimensions are understood in terms of quantum gauge theory in four dimensions This construction will be compared to the more familiar relationship between quantum knot invariants in three di...",
+          "matched_chunk_idx": 6,
+          "matched_chunk_text": "their analogs do not have bulk duals in better- understood examples of gauge/gravity duality The tensor models that mimic the SYK model can be chosen, as we will do in section 2, to have a global symmetry group G whose dimension is relatively large, but still much less than N Gauging the G symmetry leaves as gauge-invariant operatorsthesingletoperatorsthatarerelevantinthegravitationaldualdescription,buteliminates the elementary fermion fields themselves But because the dimension of G is much les...",
+          "score": 0.5793310403823853,
+          "sbert_score": 0.5793310403823853,
+          "jaccard_score": 0.10434782608695652
+        }
+      ]
+    },
+    {
+      "paper_name": "1404.5346_v1",
+      "score": 0.567795991897583,
+      "bm25_score": -4514.335612422693,
+      "sbert_score": 0.567795991897583,
+      "jaccard_score": 0.13692946058091288,
+      "chunks": [
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "Integrable Lattice Models From Gauge Theory Edward Witten School of Natural Sciences, Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract These notes provide an introduction to recent work by Kevin Costello in which integrable lattice models of classical statistical mechanics in two dimensions are understood in terms of quantum gauge theory in four dimensions This construction will be compared to the more familiar relationship between quantum knot invariants in three di...",
+          "matched_chunk_idx": 34,
+          "matched_chunk_text": "spin (as in light-cone Green-Schwarz) so that they become periodic variables on the worldsheet In this case, one needs to absorb eight ψj zero modes, so the RNS vertex operator of (2.14) can have a non-zero one-loop amplitude only if the Calabi-Yau background field-strengths contribute three factors of dzF ψJψK As in the pure spinor computation, the hV i computation JK D R is related to the four gluon computation since zero mode analysis implies that one can ignore the x-dependent terms in (3.23...",
+          "score": 0.567795991897583,
+          "sbert_score": 0.567795991897583,
+          "jaccard_score": 0.1038961038961039
+        },
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "Integrable Lattice Models From Gauge Theory Edward Witten School of Natural Sciences, Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract These notes provide an introduction to recent work by Kevin Costello in which integrable lattice models of classical statistical mechanics in two dimensions are understood in terms of quantum gauge theory in four dimensions This construction will be compared to the more familiar relationship between quantum knot invariants in three di...",
+          "matched_chunk_idx": 13,
+          "matched_chunk_text": ".. involves terms higher-order in θα And the α m BRST transformations of the worldsheet variables are 1 1 1 QxQ = λγQθ, QyJ = (λγaθ)eJ +..., QyJ = (λγaθ)eJ +..., Qθα = λα +.. 2 2 a 2 a (2.7) where .. denotes terms higher-order in θα 4 2.2 Vertex operators In the d = 10 heterotic string, the supergravity and super-Yang-Mills onshell states aredescribed by theBRST-invariant vertexoperatorsofdimension (0,1)andghost-number (1,0): V = ∂xmλαA (x,θ), V = J i λαA (x,θ) (2.8) sugra αm sYM αi where 1 2 A ...",
+          "score": 0.561099648475647,
+          "sbert_score": 0.561099648475647,
+          "jaccard_score": 0.0593607305936073
+        }
+      ]
+    }
+  ]
+}

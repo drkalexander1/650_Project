@@ -245,15 +245,37 @@ def hybrid_rank(
     # Get all unique document IDs
     all_doc_ids = set(bm25_dict.keys()) | set(sbert_dict.keys())
     
-    # Normalize scores to [0, 1] range
-    bm25_max = max(bm25_dict.values()) if bm25_dict else 1.0
-    sbert_max = max(sbert_dict.values()) if sbert_dict else 1.0
+    # Normalize scores to [0, 1] range using min-max normalization
+    # This handles negative BM25 scores correctly
+    bm25_values = list(bm25_dict.values()) if bm25_dict else []
+    if bm25_values:
+        bm25_min = min(bm25_values)
+        bm25_max = max(bm25_values)
+        bm25_range = bm25_max - bm25_min
+    else:
+        bm25_min = 0.0
+        bm25_max = 1.0
+        bm25_range = 1.0
+    
+    sbert_values = list(sbert_dict.values()) if sbert_dict else []
+    if sbert_values:
+        sbert_min = min(sbert_values)
+        sbert_max = max(sbert_values)
+        sbert_range = sbert_max - sbert_min
+    else:
+        sbert_min = 0.0
+        sbert_max = 1.0
+        sbert_range = 1.0
     
     # Combine scores
     combined_scores = []
     for doc_id in all_doc_ids:
-        bm25_score = (bm25_dict.get(doc_id, 0.0) / bm25_max) if bm25_max > 0 else 0.0
-        sbert_score = sbert_dict.get(doc_id, 0.0) / sbert_max if sbert_max > 0 else 0.0
+        # Min-max normalization: (score - min) / (max - min)
+        bm25_raw = bm25_dict.get(doc_id, bm25_min)
+        bm25_score = (bm25_raw - bm25_min) / bm25_range if bm25_range > 0 else 0.0
+        
+        sbert_raw = sbert_dict.get(doc_id, sbert_min)
+        sbert_score = (sbert_raw - sbert_min) / sbert_range if sbert_range > 0 else 0.0
         
         combined_score = (bm25_weight * bm25_score) + (sbert_weight * sbert_score)
         combined_scores.append((doc_id, combined_score))

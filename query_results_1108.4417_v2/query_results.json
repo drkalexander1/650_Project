@@ -1,0 +1,140 @@
+{
+  "query_name": "1108.4417_v2",
+  "results": [
+    {
+      "paper_name": "1108.4417_v1",
+      "score": 1.0000001192092896,
+      "bm25_score": -5406.227672088242,
+      "sbert_score": 1.0000001192092896,
+      "jaccard_score": 1.0,
+      "chunks": [
+        {
+          "query_chunk_idx": 7,
+          "query_chunk_text": "point in the Liouville path integral is simply a real solution of the classical equations of motion −∂ ∂aφ+QR(cid:101) +8πbµe2bφ = 0 (1.2) a Such a solution is a critical point1 of the classical action S Path integrals are most simple if they are dominated by a real saddle point For the Liouville correlation function of three heavy fields on S2, there is a real saddle point that dominates the semiclassical limit of the path integral if and only if the η are real, less than 1/2, and i (cid:80) ob...",
+          "matched_chunk_idx": 7,
+          "matched_chunk_text": "point in the Liouville path integral is simply a real solution of the classical equations of motion −∂ ∂aφ+QR(cid:101) +8πbµe2bφ = 0 (1.2) a Such a solution is a critical point1 of the classical action S Path integrals are most simple if they are dominated by a real saddle point For the Liouville correlation function of three heavy fields on S2, there is a real saddle point that dominates the semiclassical limit of the path integral if and only if the η are real, less than 1/2, and i (cid:80) ob...",
+          "score": 1.0000001192092896,
+          "sbert_score": 1.0000001192092896,
+          "jaccard_score": 1.0
+        },
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "SU-ITP-11/42 Analytic Continuation of Liouville Theory Daniel Harlow,a Jonathan Maltz,a Edward Wittena,b aStanford Institute for Theoretical Physics, Department of Physics, Stanford University, Stanford CA 94305 bSchool of Natural Sciences, Institute for Advanced Study, Princeton NJ 08540 E-mail: dharlow@stanford.edu, jdmaltz@stanford.edu, witten@ias.edu Abstract: Correlation functions in Liouville theory are meromorphic functions of the Liouville momenta, as is shown explicitly by the DOZZ form...",
+          "matched_chunk_idx": 0,
+          "matched_chunk_text": "SU-ITP-11/42 Analytic Continuation of Liouville Theory Daniel Harlow,a Jonathan Maltz,a Edward Wittena,b aStanford Institute for Theoretical Physics, Department of Physics, Stanford University, Stanford CA 94305 bSchool of Natural Sciences, Institute for Advanced Study, Princeton NJ 08540 E-mail: dharlow@stanford.edu, jdmaltz@stanford.edu, witten@ias.edu Abstract: Correlation functions in Liouville theory are meromorphic functions of the Liouville momenta, as is shown explicitly by the DOZZ form...",
+          "score": 1.0,
+          "sbert_score": 1.0,
+          "jaccard_score": 1.0
+        }
+      ]
+    },
+    {
+      "paper_name": "1404.5346_v1",
+      "score": 0.5628535151481628,
+      "bm25_score": -10092.987454941107,
+      "sbert_score": 0.5628535151481628,
+      "jaccard_score": 0.16580310880829016,
+      "chunks": [
+        {
+          "query_chunk_idx": 9,
+          "query_chunk_text": "analytically continue the η to i i arbitrary complex values Similarly, the DOZZ formula is analytic in b2 for b2 > 0 What happens on the right hand side of eqn (1.3) If continued outside the physical region, the function G extends to a multivalued function of complex variables η This multivaluedness takes a very simple form There are branch points at integer i values of the η or of simple sums and differences such as η +η −η The monodromy i 1 2 3 around these branch points takes the form (cid:32...",
+          "matched_chunk_idx": 47,
+          "matched_chunk_text": "µ b)|2i s 1 1 1 1 1 I 1 2 I 2 2 2 2 Z Z Z Z X I where the genus-two surface has been factorized into two genus-one surfaces connected by a thin tube and is a sum over all possible states going through the tube I P It will be assumed that for Imτ → ∞, the original regulator N factorizes as the 3 product of two regulators N N where N = eQΛ1 is inserted on the first genus-one surface 1 2 1 at y , N = eQΛ2 is inserted on the second genus-one surface at y , and Λ has been 1 2 2 1 shifted by δΛ This a...",
+          "score": 0.5628535151481628,
+          "sbert_score": 0.5628535151481628,
+          "jaccard_score": 0.16580310880829016
+        },
+        {
+          "query_chunk_idx": 9,
+          "query_chunk_text": "analytically continue the η to i i arbitrary complex values Similarly, the DOZZ formula is analytic in b2 for b2 > 0 What happens on the right hand side of eqn (1.3) If continued outside the physical region, the function G extends to a multivalued function of complex variables η This multivaluedness takes a very simple form There are branch points at integer i values of the η or of simple sums and differences such as η +η −η The monodromy i 1 2 3 around these branch points takes the form (cid:32...",
+          "matched_chunk_idx": 57,
+          "matched_chunk_text": "zero mode analysis implies that the x-dependent term in (3.22) does not contribute to the F4 term in the one-loop computation But since f(λ+λ + θ+r ) is BRST-trivial, replacing V with a + + D BRST-invariant operator implies that the first term in the last line of (4.10) vanishes So ′ to lowest non-trivial order in α , the last line of (4.10) vanishes So we have shown that 3 d2τ d2τ d2τ h[f(λ+λ )−f ′ (λ+λ )]N (y )N (y ) |( µ b)|2i = 0 1 2 3 + + 1 1 2 2 j Z Z Z Z 1/Imτ3>ǫ jY=1 (4.11) for any funct...",
+          "score": 0.5385621786117554,
+          "sbert_score": 0.5385621786117554,
+          "jaccard_score": 0.1111111111111111
+        }
+      ]
+    },
+    {
+      "paper_name": "1004.0616_v1",
+      "score": 0.5410009622573853,
+      "bm25_score": -8796.460616711916,
+      "sbert_score": 0.5410009622573853,
+      "jaccard_score": 0.13297872340425532,
+      "chunks": [
+        {
+          "query_chunk_idx": 2,
+          "query_chunk_text": "the requisite solutions exist in a more conventional sense We also study the case of “timelike” Liouville theory, where we show that a proposal of Al B Zamolodchikov for the exact three-point function on S2 can be computed by the original Liouville path integral evaluated on a new integration cycle 1102 tcO 7 ]ht-peh[ 2v7144.8011:viXra Contents 1 Introduction 2 1.1 Analytic Continuation 3 1.1.1 The Minisuperspace Approximation 6 1.2 Complex Solutions Of Liouville Theory 7 1.3 Liouville Theory An...",
+          "matched_chunk_idx": 69,
+          "matched_chunk_text": "additional symmetry S (−z¯)= S (z) (cf [9]) π 2 2 Let ϕ be an inner function on S which is continuous on S Viewed as a function on D, π π ϕ has only two possible singularities at 1 and −1; if it is further singular then by eq (13) z+1 z−1 ϕ(z) = exp c −c 1 2 (cid:18) z−1 1+z(cid:19) for some constants c ≥ 0, c ≥ 0 and ϕ is a scattering function iff c =c 2 2 1 2 Corollary A.5 Let ϕ be a one-parameter semigroup of symmetric inner functions on S t ∞ and let f be its generator, i.e ϕ (z) = eitf(z) T...",
+          "score": 0.5410009622573853,
+          "sbert_score": 0.5410009622573853,
+          "jaccard_score": 0.07581227436823104
+        },
+        {
+          "query_chunk_idx": 8,
+          "query_chunk_text": "the physical region, i i were described in [8] and the explicit solution was described and its action computed in [7] The action evaluated at the classical solution is of the form S = G(η ,η ,η )/b2 1 2 3 where the function G can be found in (4.26) In [7], it was shown that, in the physical region, the weak coupling limit of the three-point function of heavy fields is (cid:42) (cid:43) 3 (cid:89) (cid:0) (cid:1) exp(2η φ/b)(z ) ∼ exp(−S) = exp −G(η ,η ,η )/b2 +O(1) , (1.3) i i 1 2 3 i=1 as one w...",
+          "matched_chunk_idx": 48,
+          "matched_chunk_text": "and ϕ is symmetric Note that thRe support ofRℓ is contained in [0,∞) 1 by the Paley-Wiener theorem as ϕ ∈ H(S ) So ℓ − ℓ has zero charge and belongs to ∞ 1 H(0,∞) 13 In the following β is the localized automorphism of A(0) associated with ℓ Denote by L the primitive of ℓ Note that the primitive L−L of ℓ−ℓ belongs to H(0,∞), indeed 1 1 1 1 ∞ ∞ |1−ϕ(p)|2 |p||Lˆ(p)−Lˆ (p)|2dp= |ℓˆ(p)|2dp< ∞ 1 Z Z |p| 0 0 Lemma 3.7 On A(0)(0,∞) we have η·β = Adz·β·η where the unitary z belongs to A(0)(0,∞), indeed z...",
+          "score": 0.5292279124259949,
+          "sbert_score": 0.5292279124259949,
+          "jaccard_score": 0.09004739336492891
+        }
+      ]
+    },
+    {
+      "paper_name": "0812.4512_v3",
+      "score": 0.5261412858963013,
+      "bm25_score": -9216.896257602915,
+      "sbert_score": 0.5261412858963013,
+      "jaccard_score": 0.1414141414141414,
+      "chunks": [
+        {
+          "query_chunk_idx": 8,
+          "query_chunk_text": "the physical region, i i were described in [8] and the explicit solution was described and its action computed in [7] The action evaluated at the classical solution is of the form S = G(η ,η ,η )/b2 1 2 3 where the function G can be found in (4.26) In [7], it was shown that, in the physical region, the weak coupling limit of the three-point function of heavy fields is (cid:42) (cid:43) 3 (cid:89) (cid:0) (cid:1) exp(2η φ/b)(z ) ∼ exp(−S) = exp −G(η ,η ,η )/b2 +O(1) , (1.3) i i 1 2 3 i=1 as one w...",
+          "matched_chunk_idx": 28,
+          "matched_chunk_text": "for “asymptotic freedom,” which is the statement that g must go to zero as a does 5 Breaking Of Conformal Invariance And The Mass Gap For a,g → 0, it is believed that there is a limiting theory that obeys all of theaxiomsofquantumfieldtheory,includinginvarianceunderthe Poincar´egroup However,itisbelievedthatinthelimitonedoesnotrecovertheSO(2,4)conformal symmetry of the classical theory A very basic aspect of the violation of the conformal symmetry is that it is believed that the spectrum has a m...",
+          "score": 0.5261412858963013,
+          "sbert_score": 0.5261412858963013,
+          "jaccard_score": 0.08571428571428572
+        },
+        {
+          "query_chunk_idx": 8,
+          "query_chunk_text": "the physical region, i i were described in [8] and the explicit solution was described and its action computed in [7] The action evaluated at the classical solution is of the form S = G(η ,η ,η )/b2 1 2 3 where the function G can be found in (4.26) In [7], it was shown that, in the physical region, the weak coupling limit of the three-point function of heavy fields is (cid:42) (cid:43) 3 (cid:89) (cid:0) (cid:1) exp(2η φ/b)(z ) ∼ exp(−S) = exp −G(η ,η ,η )/b2 +O(1) , (1.3) i i 1 2 3 i=1 as one w...",
+          "matched_chunk_idx": 27,
+          "matched_chunk_text": "one then multiplies ℓ b ′′ by a constant to get an approximation to H .) b We also want to define lattice approximations to other expressions of classical andquantum gauge theory But I will not go farther; the examples that have been given hopefully suffice to illustrate the idea The problem of defining quantum gauge theory is, in this formulation, to show that when we “remove the cutoff” by refining and enlarging the finite set Γ, the 2 latticeHamiltonianHΓ (andotheroperators)convergetoalimit W...",
+          "score": 0.509265661239624,
+          "sbert_score": 0.509265661239624,
+          "jaccard_score": 0.09259259259259259
+        }
+      ]
+    },
+    {
+      "paper_name": "1710.01791_v1",
+      "score": 0.5136783123016357,
+      "bm25_score": -8417.728731521354,
+      "sbert_score": 0.5136783123016357,
+      "jaccard_score": 0.13636363636363635,
+      "chunks": [
+        {
+          "query_chunk_idx": 4,
+          "query_chunk_text": "Integral Expression for log(Gamma(z)) 113 – 1 – F Integral over the SL(2,C) Moduli of the Saddle Point for Three Light Operators 114 1 Introduction Quantum Liouville theory has been studied extensively since it was first introduced by Polyakov several decades ago in the context of non-critical string theory [1] Since then it has been invoked as a model for higher-dimensional Euclidean gravity, as a non- compact conformal field theory, and as a dilaton background in string theory Among more recen...",
+          "matched_chunk_idx": 24,
+          "matched_chunk_text": "CFTisconformalfieldtheory Inthesimplestexamplesofgauge/gravityduality,thequantumgravitypropagatesin an asymptotically AdS spacetime, and the gauge theory is a CFT 7 In gauge/gravity or AdS/CFT duality, one starts with an ordinary theory on a spacetime N of some dimension D −1 The gravitational dual is formulated on D-dimensional spacetimes M that have N for their conformal boundary (This means roughly that N lies at infinity on M.) In general, given N, there is no distinguished M, and one has to...",
+          "score": 0.5136783123016357,
+          "sbert_score": 0.5136783123016357,
+          "jaccard_score": 0.1339712918660287
+        },
+        {
+          "query_chunk_idx": 4,
+          "query_chunk_text": "Integral Expression for log(Gamma(z)) 113 – 1 – F Integral over the SL(2,C) Moduli of the Saddle Point for Three Light Operators 114 1 Introduction Quantum Liouville theory has been studied extensively since it was first introduced by Polyakov several decades ago in the context of non-critical string theory [1] Since then it has been invoked as a model for higher-dimensional Euclidean gravity, as a non- compact conformal field theory, and as a dilaton background in string theory Among more recen...",
+          "matched_chunk_idx": 23,
+          "matched_chunk_text": "String Theory, where we are able to test the matter In String Theory, gauge fields always couple to the full complement of electric and magnetic charges suggested by the low energy description This depends ultimately on a rather subtle calculation [11] Inthecontextofquantumgravity,weactuallydohaveaninterestingandinformativeframework foran“emergent”descriptionofsomethingliketherealworld–oratleastofaworldwithquantum gravity together with other particles and forces This is the gauge/gravity or AdS/...",
+          "score": 0.5033637285232544,
+          "sbert_score": 0.5033637285232544,
+          "jaccard_score": 0.11926605504587157
+        }
+      ]
+    }
+  ]
+}

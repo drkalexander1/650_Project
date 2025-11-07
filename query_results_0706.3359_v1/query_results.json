@@ -1,0 +1,140 @@
+{
+  "query_name": "0706.3359_v1",
+  "results": [
+    {
+      "paper_name": "1710.01791_v1",
+      "score": 0.7016082406044006,
+      "bm25_score": -7798.910525589102,
+      "sbert_score": 0.7016082406044006,
+      "jaccard_score": 0.16279069767441862,
+      "chunks": [
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "7002 nuJ 22 ]ht-peh[ 1v9533.6070:viXra hep-th/yymmnnn Three-Dimensional Gravity Reconsidered Edward Witten School of Natural Sciences, Institute for Advanced Study Princeton, New Jersey 08540 We consider the problem of identifying the CFT’s that may be dual to pure gravity in three dimensions with negative cosmological constant The c-theorem indicates that three- dimensional pure gravity is consistent only at certain values of the coupling constant, and the relation to Chern-Simons gauge theory ...",
+          "matched_chunk_idx": 24,
+          "matched_chunk_text": "CFTisconformalfieldtheory Inthesimplestexamplesofgauge/gravityduality,thequantumgravitypropagatesin an asymptotically AdS spacetime, and the gauge theory is a CFT 7 In gauge/gravity or AdS/CFT duality, one starts with an ordinary theory on a spacetime N of some dimension D −1 The gravitational dual is formulated on D-dimensional spacetimes M that have N for their conformal boundary (This means roughly that N lies at infinity on M.) In general, given N, there is no distinguished M, and one has to...",
+          "score": 0.7016082406044006,
+          "sbert_score": 0.7016082406044006,
+          "jaccard_score": 0.10784313725490197
+        },
+        {
+          "query_chunk_idx": 8,
+          "query_chunk_text": "may cease to be invertible For example, there is a classical solution with A = ω = e = 0 The viewpoint in [6] was that such non-geometrical configurations must be included to make sense of three-dimensional quantum gravity nonperturbatively But it has has been pointed out (notably by N Seiberg) that when we do know how to make sense of quantum gravity, we take the invertibility of the vierbein seriously For example, in perturbative string theory, understood as a model of quantum gravity in two s...",
+          "matched_chunk_idx": 13,
+          "matched_chunk_text": "can be measured by flux integrals at infinity This suggests that in a model of Nature complete enough to include both quantum mechanics andgravity,theonlytruesymmetriesaregaugesymmetries Confirmationcomesfromthefactthat this turns out to be the situation in String Theory, the only framework we have for a consistent theory with both quantum mechanics and gravity If one looks closely, one always finds that symmetries in String Theory either are not exact symmetries, or else they are gauge symmetri...",
+          "score": 0.6304022073745728,
+          "sbert_score": 0.6304022073745728,
+          "jaccard_score": 0.14795918367346939
+        }
+      ]
+    },
+    {
+      "paper_name": "1710.01791_v3",
+      "score": 0.7016082406044006,
+      "bm25_score": -7851.36957156037,
+      "sbert_score": 0.7016082406044006,
+      "jaccard_score": 0.16279069767441862,
+      "chunks": [
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "7002 nuJ 22 ]ht-peh[ 1v9533.6070:viXra hep-th/yymmnnn Three-Dimensional Gravity Reconsidered Edward Witten School of Natural Sciences, Institute for Advanced Study Princeton, New Jersey 08540 We consider the problem of identifying the CFT’s that may be dual to pure gravity in three dimensions with negative cosmological constant The c-theorem indicates that three- dimensional pure gravity is consistent only at certain values of the coupling constant, and the relation to Chern-Simons gauge theory ...",
+          "matched_chunk_idx": 24,
+          "matched_chunk_text": "CFTisconformalfieldtheory Inthesimplestexamplesofgauge/gravityduality,thequantumgravitypropagatesin an asymptotically AdS spacetime, and the gauge theory is a CFT 7 In gauge/gravity or AdS/CFT duality, one starts with an ordinary theory on a spacetime N of some dimension D −1 The gravitational dual is formulated on D-dimensional spacetimes M that have N for their conformal boundary (This means roughly that N lies at infinity on M.) In general, given N, there is no distinguished M, and one has to...",
+          "score": 0.7016082406044006,
+          "sbert_score": 0.7016082406044006,
+          "jaccard_score": 0.10784313725490197
+        },
+        {
+          "query_chunk_idx": 8,
+          "query_chunk_text": "may cease to be invertible For example, there is a classical solution with A = ω = e = 0 The viewpoint in [6] was that such non-geometrical configurations must be included to make sense of three-dimensional quantum gravity nonperturbatively But it has has been pointed out (notably by N Seiberg) that when we do know how to make sense of quantum gravity, we take the invertibility of the vierbein seriously For example, in perturbative string theory, understood as a model of quantum gravity in two s...",
+          "matched_chunk_idx": 13,
+          "matched_chunk_text": "can be measured by flux integrals at infinity This suggests that in a model of Nature complete enough to include both quantum mechanics andgravity,theonlytruesymmetriesaregaugesymmetries Confirmationcomesfromthefactthat this turns out to be the situation in String Theory, the only framework we have for a consistent theory with both quantum mechanics and gravity If one looks closely, one always finds that symmetries in String Theory either are not exact symmetries, or else they are gauge symmetri...",
+          "score": 0.6304022073745728,
+          "sbert_score": 0.6304022073745728,
+          "jaccard_score": 0.14795918367346939
+        }
+      ]
+    },
+    {
+      "paper_name": "0812.4512_v3",
+      "score": 0.6175650358200073,
+      "bm25_score": -8657.614201639048,
+      "sbert_score": 0.6175650358200073,
+      "jaccard_score": 0.16279069767441862,
+      "chunks": [
+        {
+          "query_chunk_idx": 7,
+          "query_chunk_text": "gauge theory description, it is a structure constant of the gauge group As we have already remarked, the Chern-Simons description of three-dimensional gravity is valid when the vierbein is invertible This is so for a classical solution, so it is true if one is sufficiently close to a classical solution Perturbation theory, starting with a classical solution, will not take us out of the region in which the vierbein is invertible, so the Chern-Simons description of three-dimensional gravity is val...",
+          "matched_chunk_idx": 0,
+          "matched_chunk_text": "9002 naJ 3 ]GD.htam[ 3v2154.2180:viXra THE PROBLEM OF GAUGE THEORY EDWARDWITTEN Abstract Isketchwhatitissupposedtomeantoquantizegaugetheory,and howthiscanbemademoreconcreteinperturbationtheoryandalsobystarting withafinite-dimensionallatticeapproximation Basedonrealexperimentsand computersimulations,quantumgaugetheoryinfourdimensionsisbelievedto have a mass gap This is one of the most fundamental facts that makes the Universethe way itis Thisarticleis the writtenformof alecture presented atthecon...",
+          "score": 0.6175650358200073,
+          "sbert_score": 0.6175650358200073,
+          "jaccard_score": 0.135
+        },
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "similar group if the cosmological constant is zero or positive) We simply combine ω and e to a 4 4 matrix A of one-forms: × ω e/ℓ A = (1.2) e/ℓ 0 (cid:18)− (cid:19) Here ω fills out a 3 3 block, while e occupies the last row and column As long as × e is invertible, the usual transformations of e and ω under infinitesimal local Lorentz transformations and diffeomorphisms combine together into gauge transformations of A This statement actually has a close analog in any spacetime dimension d, with ...",
+          "matched_chunk_idx": 8,
+          "matched_chunk_text": "of its conformal compactification) is SO(2,4), and this is a group of symmetries of the classical theory ForG=U(1),SO(2,4)isrealizedasagroupofsymmetriesofthequantumthe- ory,butthisisactuallynottruefornonabelianG Thequantumtheoryisobtained via a kind of limiting procedure, concerning which I will try to give a few hints This limiting procedure does not preserve the full SO(2,4) symmetry, but only a subgroup The details depend on exactly how one proceeds with quantization A maximal subgroup of SO(...",
+          "score": 0.5995429158210754,
+          "sbert_score": 0.5995429158210754,
+          "jaccard_score": 0.107981220657277
+        }
+      ]
+    },
+    {
+      "paper_name": "0812.4512_v1",
+      "score": 0.6100093126296997,
+      "bm25_score": -8698.195344119506,
+      "sbert_score": 0.6100093126296997,
+      "jaccard_score": 0.1658291457286432,
+      "chunks": [
+        {
+          "query_chunk_idx": 7,
+          "query_chunk_text": "gauge theory description, it is a structure constant of the gauge group As we have already remarked, the Chern-Simons description of three-dimensional gravity is valid when the vierbein is invertible This is so for a classical solution, so it is true if one is sufficiently close to a classical solution Perturbation theory, starting with a classical solution, will not take us out of the region in which the vierbein is invertible, so the Chern-Simons description of three-dimensional gravity is val...",
+          "matched_chunk_idx": 0,
+          "matched_chunk_text": "8002 ceD 42 ]GD.htam[ 1v2154.2180:viXra THE PROBLEM OF GAUGE THEORY EDWARDWITTEN Abstract Isketchwhatitissupposedtomeantoquantizegaugetheory,and howthiscanbemademoreconcreteinperturbationtheoryandalsobystarting withafinite-dimensionallatticeapproximation Basedonrealexperimentsand computersimulations,quantumgaugetheoryinfourdimensionsisbelievedto have a mass gap This is one of the most fundamental facts that makes the Universethe way itis Thisarticleis the writtenformof alecture presented attheco...",
+          "score": 0.6100093126296997,
+          "sbert_score": 0.6100093126296997,
+          "jaccard_score": 0.135
+        },
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "similar group if the cosmological constant is zero or positive) We simply combine ω and e to a 4 4 matrix A of one-forms: × ω e/ℓ A = (1.2) e/ℓ 0 (cid:18)− (cid:19) Here ω fills out a 3 3 block, while e occupies the last row and column As long as × e is invertible, the usual transformations of e and ω under infinitesimal local Lorentz transformations and diffeomorphisms combine together into gauge transformations of A This statement actually has a close analog in any spacetime dimension d, with ...",
+          "matched_chunk_idx": 8,
+          "matched_chunk_text": "flat pseudo-Riemannian metric) The group of conformal motions of M (or more precisely of its conformal compactification) is SO(2,4), and this is a group of symmetries of the classical theory ForG=U(1), SO(2,4)isrealizedasagroupofsymmetriesofthequantumthe- ory,butthisisactuallynottruefornonabelianG Thequantumtheoryisobtained via a kind of limiting procedure, concerning which I will try to give a few hints This limiting procedure does not preserve the full SO(2,4) symmetry, but only a subgroup The...",
+          "score": 0.5942819714546204,
+          "sbert_score": 0.5942819714546204,
+          "jaccard_score": 0.10900473933649289
+        }
+      ]
+    },
+    {
+      "paper_name": "1206.1407_v1",
+      "score": 0.6048041582107544,
+      "bm25_score": -8886.721976983628,
+      "sbert_score": 0.6048041582107544,
+      "jaccard_score": 0.1388888888888889,
+      "chunks": [
+        {
+          "query_chunk_idx": 6,
+          "query_chunk_text": "4π ∧ 3 ∧ ∧ Z (cid:18) (cid:19) 1 Here tr ∗ denotes an invariant quadratic form on the Lie algebra of SO(2,2), defined by ∗ tr ab = tr a⋆b, where tr is the trace in the four-dimensional representation and ⋆ is the Hodge star, (⋆b) = 1ǫ bkl ij 2 ijkl 2 In dimensions other than three, it is not possible to similarly replace the Einstein-Hilbert action with a gauge-invariant action for gauge fields.2 Inthegaugetheorydescription, perturbationtheoryisrenormalizablebypowercount- ing, and is actually fi...",
+          "matched_chunk_idx": 29,
+          "matched_chunk_text": "L µ L µ µ 4 4 1 S = S A˜ = d5xǫabcdeA˜ ∂ A˜ ∂ A˜ Herex a ,a=0,1,2,3,4denotesthe(4+1)-dcoordinates eff CS a 24π2 a b c d e In particular if we make the special choice 1 h i θ Z −θ = d4xǫµνστ L R F F (22) 32π2 2 µν στ 1 Z ϕ(x )=− [θ (L −x )+θ x ] (21) a 2L L 4 4 R 4 Thus we see that the Chern-Simons term on the slab 4 geometry is reduced to the (3 + 1)-d axion term with θ ,θ are canceled by the gaugetransformationand the the U(1) field θ −θ coupled to the gauge field in an L R L R gauge field is t...",
+          "score": 0.6048041582107544,
+          "sbert_score": 0.6048041582107544,
+          "jaccard_score": 0.1346153846153846
+        },
+        {
+          "query_chunk_idx": 6,
+          "query_chunk_text": "4π ∧ 3 ∧ ∧ Z (cid:18) (cid:19) 1 Here tr ∗ denotes an invariant quadratic form on the Lie algebra of SO(2,2), defined by ∗ tr ab = tr a⋆b, where tr is the trace in the four-dimensional representation and ⋆ is the Hodge star, (⋆b) = 1ǫ bkl ij 2 ijkl 2 In dimensions other than three, it is not possible to similarly replace the Einstein-Hilbert action with a gauge-invariant action for gauge fields.2 Inthegaugetheorydescription, perturbationtheoryisrenormalizablebypowercount- ing, and is actually fi...",
+          "matched_chunk_idx": 28,
+          "matched_chunk_text": "the bulk remains a (4+1)-d topological in- sulator coupled with the gauge field A˜ Consequently, a c(x a ) → c(x a )eiϕ(xa) the effective action of the gauge field still contains the A (x ) → A (x )+∂ ϕ theChern-SimonstermgiveninEq (14)withcoefficient a b a b a C =1 Writteninthephysicaldegreesoffreedomθ θ (x ) → θ (x )+2ϕ(x ,x =0) 2 R(L) R µ R µ µ 4 and A , we have µ θ (x ) → θ (x )+2ϕ(x ,x =L ) (20) L µ L µ µ 4 4 1 S = S A˜ = d5xǫabcdeA˜ ∂ A˜ ∂ A˜ Herex a ,a=0,1,2,3,4denotesthe(4+1)-dcoordinate...",
+          "score": 0.5278221368789673,
+          "sbert_score": 0.5278221368789673,
+          "jaccard_score": 0.08333333333333333
+        }
+      ]
+    }
+  ]
+}

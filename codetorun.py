@@ -636,13 +636,13 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, floa
             
             for matched_doc, doc_matches in sorted(
                 matches_by_doc.items(),
-                key=lambda x: max(score for _, _, score, _, _ in x[1]),
+                key=lambda x: max(score for _, _, score, _, _, _ in x[1]),
                 reverse=True
             ):
                 f.write(f"  Matches with: {matched_doc}\n")
                 f.write(f"  Number of similar sections: {len(doc_matches)}\n")
-                f.write(f"  Highest similarity score: {max(score for _, _, score, _, _ in doc_matches):.4f}\n")
-                f.write(f"  Average similarity score: {sum(score for _, _, score, _, _ in doc_matches) / len(doc_matches):.4f}\n")
+                f.write(f"  Highest similarity score: {max(score for _, _, score, _, _, _ in doc_matches):.4f}\n")
+                f.write(f"  Average similarity score: {sum(score for _, _, score, _, _, _ in doc_matches) / len(doc_matches):.4f}\n")
                 f.write("\n")
                 
                 # Display chunk pairs, sorted by similarity score (highest first)
@@ -685,9 +685,328 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, floa
         print(f"\nReport saved to: {output_file}")
 
 
-def main():
+def query_single_paper(
+    query_text: str,
+    query_name: str,
+    index: BasicInvertedIndex,
+    ranker: Ranker,
+    doc_texts: Dict[int, str],
+    doc_id_mapping: Dict[int, str],
+    logger: Logger,
+    top_k_papers: int = 5,
+    top_chunks_per_paper: int = 2,
+    similarity_threshold: float = 0.3,
+    use_sbert: bool = False,
+    sbert_ranker: Optional[object] = None,
+    use_jaccard: bool = False,
+    jaccard_ranker: Optional[object] = None,
+    query_doc_id: int = None  # ID of the query paper in the corpus (to exclude from results)
+) -> Dict[str, List[Dict]]:
+    """
+    Query a single paper against the corpus and return top matches with best chunks.
+    
+    Args:
+        query_text: Full text of the paper to query
+        query_name: Name/identifier for the query paper
+        index: The inverted index
+        ranker: The ranker to use for querying
+        doc_texts: Dictionary mapping doc_id to full text
+        doc_id_mapping: Mapping from numeric doc_id to original filename
+        logger: Logger instance
+        top_k_papers: Number of top papers to return (default: 5)
+        top_chunks_per_paper: Number of top chunks per paper (default: 2)
+        similarity_threshold: Minimum similarity score
+        use_sbert: Whether to use SBERT
+        sbert_ranker: SBERTRanker instance
+        use_jaccard: Whether to use Jaccard
+        jaccard_ranker: JaccardRanker instance
+    
+    Returns:
+        Dictionary with query results: {
+            'query_name': str,
+            'results': [
+                {
+                    'paper_name': str,
+                    'score': float,
+                    'chunks': [
+                        {'chunk_idx': int, 'chunk_text': str, 'score': float, 'sbert_score': float, 'jaccard_score': float}
+                    ]
+                }
+            ]
+        }
+    """
+    logger.log(f"\nQuerying paper: {query_name}")
+    if query_doc_id is not None:
+        logger.log(f"Excluding query paper (doc_id: {query_doc_id}) from results")
+    
+    # Use BM25 to get candidate papers
+    bm25_results = ranker.query(query_text)
+    logger.log(f"BM25 returned {len(bm25_results)} candidate papers")
+    
+    # Get more candidates than needed to ensure we have enough after filtering
+    candidate_count = max(top_k_papers * 3, 20)
+    candidates = []
+    for matched_doc_id, bm25_score in bm25_results[:candidate_count]:
+        # Exclude the query paper itself
+        if query_doc_id is not None and matched_doc_id == query_doc_id:
+            continue
+        matched_text = doc_texts.get(matched_doc_id, "")
+        if matched_text:
+            candidates.append((matched_doc_id, bm25_score, matched_text))
+    
+    logger.log(f"Found {len(candidates)} candidate papers (excluding query paper)")
+    
+    # Extract chunks from query paper
+    query_chunks = extract_chunks(query_text, chunk_size=200, overlap=50)
+    query_chunks = [chunk for chunk in query_chunks if len(chunk.split()) >= 20]
+    logger.log(f"Extracted {len(query_chunks)} query chunks")
+    
+    # For each candidate, calculate similarity scores and find best chunks
+    paper_results = []
+    for matched_doc_id, bm25_score, matched_text in candidates:
+        paper_name = doc_id_mapping.get(matched_doc_id, str(matched_doc_id))
+        matched_chunks = extract_chunks(matched_text, chunk_size=200, overlap=50)
+        matched_chunks = [chunk for chunk in matched_chunks if len(chunk.split()) >= 20]
+        
+        # Find best matching chunks and calculate scores
+        best_chunks = []
+        max_sbert_score = 0.0
+        max_jaccard_score = 0.0
+        seen_matched_chunks = {}  # Track best match for each matched chunk: {matched_chunk_idx: (query_chunk_idx, score, ...)}
+        
+        for query_chunk_idx, query_chunk in enumerate(query_chunks[:10]):  # Check top 10 query chunks
+            for chunk_idx, matched_chunk in enumerate(matched_chunks):
+                # Calculate Jaccard similarity
+                query_words = set(word.lower() for word in query_chunk.split())
+                matched_words = set(word.lower() for word in matched_chunk.split())
+                
+                if len(query_words) == 0 or len(matched_words) == 0:
+                    continue
+                
+                intersection = len(query_words & matched_words)
+                union = len(query_words | matched_words)
+                jaccard_score = intersection / union if union > 0 else 0.0
+                
+                # Calculate SBERT score if available
+                sbert_score = 0.0
+                if use_sbert and sbert_ranker:
+                    try:
+                        _, _, sbert_score = find_best_matching_chunk(
+                            query_chunk, matched_chunk, use_sbert=True, sbert_ranker=sbert_ranker
+                        )
+                    except:
+                        pass
+                
+                # Use the best scoring method for this chunk
+                if use_sbert and sbert_ranker and sbert_score > jaccard_score:
+                    chunk_score = sbert_score
+                else:
+                    chunk_score = jaccard_score
+                
+                # Track the best match for this matched chunk
+                if chunk_idx not in seen_matched_chunks or chunk_score > seen_matched_chunks[chunk_idx][2]:
+                    seen_matched_chunks[chunk_idx] = (
+                        query_chunk_idx,
+                        query_chunk,
+                        chunk_score,
+                        chunk_idx,
+                        matched_chunk,
+                        sbert_score,
+                        jaccard_score
+                    )
+        
+        # Convert to list format
+        for matched_chunk_idx, (query_chunk_idx, query_chunk, chunk_score, _, matched_chunk, sbert_score, jaccard_score) in seen_matched_chunks.items():
+            best_chunks.append({
+                'query_chunk_idx': query_chunk_idx,
+                'query_chunk_text': query_chunk[:500] + '...' if len(query_chunk) > 500 else query_chunk,
+                'matched_chunk_idx': matched_chunk_idx,
+                'matched_chunk_text': matched_chunk[:500] + '...' if len(matched_chunk) > 500 else matched_chunk,
+                'score': chunk_score,
+                'sbert_score': sbert_score,
+                'jaccard_score': jaccard_score
+            })
+            max_sbert_score = max(max_sbert_score, sbert_score)
+            max_jaccard_score = max(max_jaccard_score, jaccard_score)
+        
+        # Sort chunks by score and take top N
+        best_chunks.sort(key=lambda x: x['score'], reverse=True)
+        best_chunks = best_chunks[:top_chunks_per_paper]
+        
+        # Calculate overall paper score (hybrid if enabled, otherwise best similarity)
+        if use_sbert and sbert_ranker:
+            # Use SBERT as primary score
+            paper_score = max_sbert_score if max_sbert_score > 0 else max_jaccard_score
+        else:
+            # Use Jaccard as primary score
+            paper_score = max_jaccard_score
+        
+        # If no chunks found, use BM25 score as fallback
+        if paper_score == 0:
+            paper_score = bm25_score / 100.0  # Normalize BM25 score roughly
+        
+        paper_results.append({
+            'paper_name': paper_name,
+            'score': paper_score,
+            'bm25_score': bm25_score,
+            'sbert_score': max_sbert_score,
+            'jaccard_score': max_jaccard_score,
+            'chunks': best_chunks if best_chunks else [{
+                'query_chunk_idx': 0,
+                'query_chunk_text': query_chunks[0][:500] + '...' if query_chunks and len(query_chunks[0]) > 500 else (query_chunks[0] if query_chunks else 'N/A'),
+                'matched_chunk_idx': 0,
+                'matched_chunk_text': matched_text[:500] + '...' if len(matched_text) > 500 else matched_text,
+                'score': 0.0,
+                'sbert_score': 0.0,
+                'jaccard_score': 0.0
+            }]
+        })
+    
+    # Sort by score and return top K (always return top_k_papers even if scores are low)
+    paper_results.sort(key=lambda x: x['score'], reverse=True)
+    top_results = paper_results[:top_k_papers]
+    
+    logger.log(f"Returning {len(top_results)} papers (top {top_k_papers} by similarity/hybrid score)")
+    for i, result in enumerate(top_results, 1):
+        logger.log(f"  {i}. {result['paper_name']} (score: {result['score']:.4f}, BM25: {result['bm25_score']:.2f}, chunks: {len(result['chunks'])})")
+    
+    return {
+        'query_name': query_name,
+        'results': top_results
+    }
+
+
+def generate_evaluation_queries(
+    query_papers: Dict[str, str],
+    index: BasicInvertedIndex,
+    ranker: Ranker,
+    doc_texts: Dict[int, str],
+    doc_id_mapping: Dict[int, str],
+    logger: Logger,
+    output_file: str = "evaluation_queries.json",
+    top_k_papers: int = 5,
+    top_chunks_per_paper: int = 2,
+    similarity_threshold: float = 0.3,
+    use_sbert: bool = False,
+    sbert_ranker: Optional[object] = None,
+    use_jaccard: bool = False,
+    jaccard_ranker: Optional[object] = None
+) -> None:
+    """
+    Generate evaluation queries for a set of papers.
+    
+    Args:
+        query_papers: Dictionary mapping paper names to their text content
+        index: The inverted index
+        ranker: The ranker to use
+        doc_texts: Dictionary mapping doc_id to full text
+        doc_id_mapping: Mapping from numeric doc_id to original filename
+        logger: Logger instance
+        output_file: Path to save evaluation results (JSON format)
+        top_k_papers: Number of top papers to return per query
+        top_chunks_per_paper: Number of top chunks per paper
+        similarity_threshold: Minimum similarity score
+        use_sbert: Whether to use SBERT
+        sbert_ranker: SBERTRanker instance
+        use_jaccard: Whether to use Jaccard
+        jaccard_ranker: JaccardRanker instance
+    """
+    logger.log("\n" + "=" * 80)
+    logger.log("GENERATING EVALUATION QUERIES")
+    logger.log("=" * 80)
+    logger.log(f"Processing {len(query_papers)} query papers")
+    
+    evaluation_results = []
+    
+    for query_idx, (query_name, query_text) in enumerate(query_papers.items(), 1):
+        logger.log(f"\n[{query_idx}/{len(query_papers)}] Processing query: {query_name}")
+        
+        try:
+            result = query_single_paper(
+                query_text=query_text,
+                query_name=query_name,
+                index=index,
+                ranker=ranker,
+                doc_texts=doc_texts,
+                doc_id_mapping=doc_id_mapping,
+                logger=logger,
+                top_k_papers=top_k_papers,
+                top_chunks_per_paper=top_chunks_per_paper,
+                similarity_threshold=similarity_threshold,
+                use_sbert=use_sbert,
+                sbert_ranker=sbert_ranker,
+                use_jaccard=use_jaccard,
+                jaccard_ranker=jaccard_ranker
+            )
+            evaluation_results.append(result)
+        except Exception as e:
+            logger.log_error(f"Failed to process query {query_name}", e)
+            continue
+    
+    # Save results to JSON file
+    logger.log(f"\nSaving evaluation results to {output_file}...")
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(evaluation_results, f, indent=2, ensure_ascii=False)
+    
+    logger.log(f"Saved {len(evaluation_results)} evaluation queries")
+    
+    # Also generate a human-readable report
+    report_file = output_file.replace('.json', '_report.txt')
+    logger.log(f"Generating human-readable report: {report_file}")
+    
+    with open(report_file, 'w', encoding='utf-8') as f:
+        f.write("=" * 80 + "\n")
+        f.write("EVALUATION QUERIES REPORT\n")
+        f.write("=" * 80 + "\n\n")
+        
+        for query_result in evaluation_results:
+            f.write("-" * 80 + "\n")
+            f.write(f"QUERY PAPER: {query_result['query_name']}\n")
+            f.write("-" * 80 + "\n\n")
+            f.write(f"Top {top_k_papers} Matching Papers:\n\n")
+            
+            for rank, result in enumerate(query_result['results'], 1):
+                f.write(f"{rank}. {result['paper_name']}\n")
+                f.write(f"   Overall Score: {result['score']:.4f}\n")
+                f.write(f"   Top {top_chunks_per_paper} Matching Chunks:\n\n")
+                
+                for chunk_idx, chunk_info in enumerate(result['chunks'], 1):
+                    f.write(f"   Chunk Pair {chunk_idx}:\n")
+                    f.write(f"   - Similarity Score: {chunk_info['score']:.4f}\n")
+                    if chunk_info.get('sbert_score', 0) > 0:
+                        f.write(f"   - SBERT Score: {chunk_info['sbert_score']:.4f}\n")
+                    if chunk_info.get('jaccard_score', 0) > 0:
+                        f.write(f"   - Jaccard Score: {chunk_info['jaccard_score']:.4f}\n")
+                    
+                    # Handle both old and new format
+                    query_chunk_text = chunk_info.get('query_chunk_text') or chunk_info.get('chunk_text', 'N/A')
+                    matched_chunk_text = chunk_info.get('matched_chunk_text') or chunk_info.get('chunk_text', 'N/A')
+                    query_chunk_idx = chunk_info.get('query_chunk_idx', chunk_info.get('chunk_idx', '?'))
+                    matched_chunk_idx = chunk_info.get('matched_chunk_idx', chunk_info.get('chunk_idx', '?'))
+                    
+                    f.write(f"\n   Query Chunk #{query_chunk_idx}:\n")
+                    f.write(f"   {query_chunk_text}\n\n")
+                    f.write(f"   Matched Chunk #{matched_chunk_idx}:\n")
+                    f.write(f"   {matched_chunk_text}\n\n")
+                
+                f.write("\n")
+            
+            f.write("\n")
+    
+    logger.log(f"Evaluation complete. Results saved to {output_file} and {report_file}")
+
+
+def main(mode: str = "detection", query_paper_path: str = None, query_paper_name: str = None, 
+         evaluation_papers: Dict[str, str] = None, auto_query_count: int = 5):
     """
     Main function to run plagiarism detection pipeline.
+    
+    Args:
+        mode: Operation mode - "detection" (default), "query", "evaluation", or "auto_query"
+        query_paper_path: Path to a paper file to query (for query mode)
+        query_paper_name: Name for the query paper (for query mode)
+        evaluation_papers: Dictionary of {paper_name: paper_text} for evaluation mode
+        auto_query_count: Number of papers to automatically query (for auto_query mode)
     """
     # Configuration
     text_folder = "corpus/text"
@@ -696,6 +1015,17 @@ def main():
     log_file = "plagiarism_detection.log"
     similarity_threshold = 0.3  # Adjust based on your needs
     top_k = 5  # Number of top matches to consider per chunk
+    use_sbert = True  # Set to True to enable SBERT semantic similarity
+    use_jaccard = False  # Set to True to enable Jaccard similarity
+    hybrid_mode = False  # Set to True to combine multiple ranking methods
+    sbert_model = "all-MiniLM-L6-v2"  # SBERT model to use
+    bm25_weight = 0.3  # Weight for BM25 scores in hybrid mode
+    sbert_weight = 0.4  # Weight for SBERT scores in hybrid mode
+    jaccard_weight = 0.3  # Weight for Jaccard scores in hybrid mode
+    
+    # Query/Evaluation specific settings
+    top_k_papers = 5  # Number of top papers to return
+    top_chunks_per_paper = 2  # Number of top chunks per paper
     
     # Initialize logger
     logger = Logger(log_file)
@@ -838,37 +1168,274 @@ def main():
             logger.log_error("Failed to initialize ranker", e)
             raise
         
-        # Step 6: Detect plagiarism
-        logger.log("\nStep 6: Running plagiarism detection...")
-        try:
-            plagiarism_results = detect_plagiarism(
-                index=index,
-                ranker=ranker,
-                doc_texts=doc_texts,
-                doc_id_mapping=doc_id_mapping,
-                logger=logger,
-                similarity_threshold=similarity_threshold,
-                top_k=top_k,
-                use_sbert=use_sbert,
-                sbert_ranker=sbert_ranker,
-                use_jaccard=use_jaccard,
-                jaccard_ranker=jaccard_ranker,
-                hybrid_mode=hybrid_mode,
-                bm25_weight=bm25_weight,
-                sbert_weight=sbert_weight,
-                jaccard_weight=jaccard_weight
-            )
-        except Exception as e:
-            logger.log_error("Failed during plagiarism detection", e)
-            raise
-        
-        # Step 7: Generate report
-        logger.log("\nStep 7: Generating report...")
-        try:
-            generate_report(plagiarism_results, "plagiarism_report.txt", logger)
-        except Exception as e:
-            logger.log_error("Failed to generate report", e)
-            raise
+        # Step 6: Run based on mode
+        if mode == "auto_query":
+            # Auto-query mode: Automatically query N papers from the corpus
+            logger.log("\nStep 6: Auto-query mode - Selecting papers to query...")
+            
+            # Select papers evenly distributed across the corpus
+            all_doc_ids = sorted(doc_texts.keys())
+            total_docs = len(all_doc_ids)
+            query_count = min(auto_query_count, total_docs)
+            
+            # Select papers evenly spaced across the corpus
+            if query_count > 0:
+                step = max(1, total_docs // query_count)
+                selected_indices = [i * step for i in range(query_count)]
+                selected_doc_ids = [all_doc_ids[i] for i in selected_indices if i < total_docs]
+                
+                # If we don't have enough, add more from the end
+                while len(selected_doc_ids) < query_count and len(selected_doc_ids) < total_docs:
+                    for doc_id in reversed(all_doc_ids):
+                        if doc_id not in selected_doc_ids:
+                            selected_doc_ids.append(doc_id)
+                            break
+                    if len(selected_doc_ids) >= query_count:
+                        break
+                
+                selected_doc_ids = selected_doc_ids[:query_count]
+                
+                logger.log(f"Selected {len(selected_doc_ids)} papers to query:")
+                for i, doc_id in enumerate(selected_doc_ids, 1):
+                    paper_name = doc_id_mapping.get(doc_id, str(doc_id))
+                    logger.log(f"  {i}. {paper_name}")
+                
+                # Query each selected paper
+                for query_idx, doc_id in enumerate(selected_doc_ids, 1):
+                    query_name = doc_id_mapping.get(doc_id, str(doc_id))
+                    query_text = doc_texts[doc_id]
+                    
+                    logger.log(f"\n[{query_idx}/{len(selected_doc_ids)}] Querying: {query_name}")
+                    
+                    try:
+                        result = query_single_paper(
+                            query_text=query_text,
+                            query_name=query_name,
+                            index=index,
+                            ranker=ranker,
+                            doc_texts=doc_texts,
+                            doc_id_mapping=doc_id_mapping,
+                            logger=logger,
+                            top_k_papers=top_k_papers,
+                            top_chunks_per_paper=top_chunks_per_paper,
+                            similarity_threshold=similarity_threshold,
+                            use_sbert=use_sbert,
+                            sbert_ranker=sbert_ranker,
+                            use_jaccard=use_jaccard,
+                            jaccard_ranker=jaccard_ranker,
+                            query_doc_id=doc_id  # Exclude the query paper itself
+                        )
+                        
+                        # Create output directory named after the query paper
+                        output_dir = Path(f"query_results_{query_name}")
+                        output_dir.mkdir(exist_ok=True)
+                        
+                        # Save results
+                        output_file = output_dir / "query_results.json"
+                        with open(output_file, 'w', encoding='utf-8') as f:
+                            json.dump(result, f, indent=2, ensure_ascii=False)
+                        
+                        # Also save a human-readable report
+                        report_file = output_dir / "query_report.txt"
+                        with open(report_file, 'w', encoding='utf-8') as f:
+                            f.write("=" * 80 + "\n")
+                            f.write(f"QUERY RESULTS: {query_name}\n")
+                            f.write("=" * 80 + "\n\n")
+                            f.write(f"Top {top_k_papers} Matching Papers:\n\n")
+                            
+                            for rank, res in enumerate(result['results'], 1):
+                                f.write(f"{rank}. {res['paper_name']}\n")
+                                f.write(f"   Overall Score: {res['score']:.4f}\n")
+                                f.write(f"   Top {top_chunks_per_paper} Matching Chunks:\n\n")
+                                
+                                for chunk_idx, chunk_info in enumerate(res['chunks'], 1):
+                                    f.write(f"   Chunk {chunk_idx}:\n")
+                                    f.write(f"   - Similarity Score: {chunk_info['score']:.4f}\n")
+                                    if chunk_info.get('sbert_score', 0) > 0:
+                                        f.write(f"   - SBERT Score: {chunk_info['sbert_score']:.4f}\n")
+                                    if chunk_info.get('jaccard_score', 0) > 0:
+                                        f.write(f"   - Jaccard Score: {chunk_info['jaccard_score']:.4f}\n")
+                                    
+                                    # Handle both old and new format
+                                    query_chunk_text = chunk_info.get('query_chunk_text') or chunk_info.get('chunk_text', 'N/A')
+                                    matched_chunk_text = chunk_info.get('matched_chunk_text') or chunk_info.get('chunk_text', 'N/A')
+                                    query_chunk_idx = chunk_info.get('query_chunk_idx', chunk_info.get('chunk_idx', '?'))
+                                    matched_chunk_idx = chunk_info.get('matched_chunk_idx', chunk_info.get('chunk_idx', '?'))
+                                    
+                                    f.write(f"\n   Query Chunk #{query_chunk_idx}:\n")
+                                    f.write(f"   {query_chunk_text}\n\n")
+                                    f.write(f"   Matched Chunk #{matched_chunk_idx}:\n")
+                                    f.write(f"   {matched_chunk_text}\n\n")
+                                
+                                f.write("\n")
+                        
+                        logger.log(f"  Results saved to {output_dir}/")
+                        
+                    except Exception as e:
+                        logger.log_error(f"Failed to query {query_name}", e)
+                        continue
+                
+                logger.log(f"\nAuto-query complete. Processed {len(selected_doc_ids)} papers.")
+            else:
+                logger.log("No papers available to query.")
+                
+        elif mode == "query":
+            # Query mode: Query a single paper
+            if not query_paper_path:
+                logger.log_error("Query mode requires query_paper_path", ValueError("query_paper_path is required for query mode"))
+                raise ValueError("query_paper_path is required for query mode")
+            
+            # Load query paper
+            logger.log(f"\nStep 6: Loading query paper from {query_paper_path}...")
+            try:
+                with open(query_paper_path, 'r', encoding='utf-8') as f:
+                    query_text = f.read()
+                query_name = query_paper_name or Path(query_paper_path).stem
+                logger.log(f"Loaded query paper: {query_name}")
+            except Exception as e:
+                logger.log_error(f"Failed to load query paper from {query_paper_path}", e)
+                raise
+            
+            # Query the paper
+            logger.log("\nStep 7: Querying paper against corpus...")
+            
+            # Find the doc_id if this paper is in the corpus (to exclude it)
+            query_doc_id = None
+            for doc_id, name in doc_id_mapping.items():
+                if name == query_name:
+                    query_doc_id = doc_id
+                    break
+            
+            try:
+                result = query_single_paper(
+                    query_text=query_text,
+                    query_name=query_name,
+                    index=index,
+                    ranker=ranker,
+                    doc_texts=doc_texts,
+                    doc_id_mapping=doc_id_mapping,
+                    logger=logger,
+                    top_k_papers=top_k_papers,
+                    top_chunks_per_paper=top_chunks_per_paper,
+                    similarity_threshold=similarity_threshold,
+                    use_sbert=use_sbert,
+                    sbert_ranker=sbert_ranker,
+                    use_jaccard=use_jaccard,
+                    jaccard_ranker=jaccard_ranker,
+                    query_doc_id=query_doc_id  # Exclude if found in corpus
+                )
+                
+                # Create output directory named after the query paper
+                output_dir = Path(f"query_results_{query_name}")
+                output_dir.mkdir(exist_ok=True)
+                
+                # Save results
+                output_file = output_dir / "query_results.json"
+                with open(output_file, 'w', encoding='utf-8') as f:
+                    json.dump(result, f, indent=2, ensure_ascii=False)
+                logger.log(f"Query results saved to {output_file}")
+                
+                # Also save a human-readable report
+                report_file = output_dir / "query_report.txt"
+                with open(report_file, 'w', encoding='utf-8') as f:
+                    f.write("=" * 80 + "\n")
+                    f.write(f"QUERY RESULTS: {query_name}\n")
+                    f.write("=" * 80 + "\n\n")
+                    f.write(f"Top {top_k_papers} Matching Papers:\n\n")
+                    
+                    for rank, res in enumerate(result['results'], 1):
+                        f.write(f"{rank}. {res['paper_name']}\n")
+                        f.write(f"   Overall Score: {res['score']:.4f}\n")
+                        f.write(f"   Top {top_chunks_per_paper} Matching Chunks:\n\n")
+                        
+                        for chunk_idx, chunk_info in enumerate(res['chunks'], 1):
+                            f.write(f"   Chunk Pair {chunk_idx}:\n")
+                            f.write(f"   - Similarity Score: {chunk_info['score']:.4f}\n")
+                            if chunk_info.get('sbert_score', 0) > 0:
+                                f.write(f"   - SBERT Score: {chunk_info['sbert_score']:.4f}\n")
+                            if chunk_info.get('jaccard_score', 0) > 0:
+                                f.write(f"   - Jaccard Score: {chunk_info['jaccard_score']:.4f}\n")
+                            
+                            # Handle both old and new format
+                            query_chunk_text = chunk_info.get('query_chunk_text') or chunk_info.get('chunk_text', 'N/A')
+                            matched_chunk_text = chunk_info.get('matched_chunk_text') or chunk_info.get('chunk_text', 'N/A')
+                            query_chunk_idx = chunk_info.get('query_chunk_idx', chunk_info.get('chunk_idx', '?'))
+                            matched_chunk_idx = chunk_info.get('matched_chunk_idx', chunk_info.get('chunk_idx', '?'))
+                            
+                            f.write(f"\n   Query Chunk #{query_chunk_idx}:\n")
+                            f.write(f"   {query_chunk_text}\n\n")
+                            f.write(f"   Matched Chunk #{matched_chunk_idx}:\n")
+                            f.write(f"   {matched_chunk_text}\n\n")
+                        
+                        f.write("\n")
+                
+                logger.log(f"Query report saved to {report_file}")
+                logger.log(f"All query results saved to directory: {output_dir}")
+                
+            except Exception as e:
+                logger.log_error("Failed during query", e)
+                raise
+                
+        elif mode == "evaluation":
+            # Evaluation mode: Generate evaluation queries
+            if not evaluation_papers:
+                logger.log_error("Evaluation mode requires evaluation_papers", ValueError("evaluation_papers is required for evaluation mode"))
+                raise ValueError("evaluation_papers is required for evaluation mode")
+            
+            logger.log("\nStep 6: Generating evaluation queries...")
+            try:
+                generate_evaluation_queries(
+                    query_papers=evaluation_papers,
+                    index=index,
+                    ranker=ranker,
+                    doc_texts=doc_texts,
+                    doc_id_mapping=doc_id_mapping,
+                    logger=logger,
+                    output_file="evaluation_queries.json",
+                    top_k_papers=top_k_papers,
+                    top_chunks_per_paper=top_chunks_per_paper,
+                    similarity_threshold=similarity_threshold,
+                    use_sbert=use_sbert,
+                    sbert_ranker=sbert_ranker,
+                    use_jaccard=use_jaccard,
+                    jaccard_ranker=jaccard_ranker
+                )
+            except Exception as e:
+                logger.log_error("Failed during evaluation generation", e)
+                raise
+                
+        else:
+            # Default: Detection mode
+            logger.log("\nStep 6: Running plagiarism detection...")
+            try:
+                plagiarism_results = detect_plagiarism(
+                    index=index,
+                    ranker=ranker,
+                    doc_texts=doc_texts,
+                    doc_id_mapping=doc_id_mapping,
+                    logger=logger,
+                    similarity_threshold=similarity_threshold,
+                    top_k=top_k,
+                    use_sbert=use_sbert,
+                    sbert_ranker=sbert_ranker,
+                    use_jaccard=use_jaccard,
+                    jaccard_ranker=jaccard_ranker,
+                    hybrid_mode=hybrid_mode,
+                    bm25_weight=bm25_weight,
+                    sbert_weight=sbert_weight,
+                    jaccard_weight=jaccard_weight
+                )
+            except Exception as e:
+                logger.log_error("Failed during plagiarism detection", e)
+                raise
+            
+            # Step 7: Generate report
+            logger.log("\nStep 7: Generating report...")
+            try:
+                generate_report(plagiarism_results, "plagiarism_report.txt", logger)
+            except Exception as e:
+                logger.log_error("Failed to generate report", e)
+                raise
         
         # Cleanup temporary file
         if temp_jsonl_path:
@@ -879,18 +1446,33 @@ def main():
                 logger.log_error(f"Failed to cleanup temp file {temp_jsonl_path}", e)
         
         logger.log("\n" + "=" * 80)
-        logger.log("PLAGIARISM DETECTION COMPLETE")
+        if mode == "query":
+            logger.log("QUERY COMPLETE")
+        elif mode == "auto_query":
+            logger.log("AUTO-QUERY COMPLETE")
+        elif mode == "evaluation":
+            logger.log("EVALUATION GENERATION COMPLETE")
+        else:
+            logger.log("PLAGIARISM DETECTION COMPLETE")
         logger.log("=" * 80)
         
         # Print summary statistics
-        total_docs_with_matches = len([d for d, matches in plagiarism_results.items() if matches])
-        total_matches = sum(len(matches) for matches in plagiarism_results.values())
+        if mode == "detection":
+            total_docs_with_matches = len([d for d, matches in plagiarism_results.items() if matches])
+            total_matches = sum(len(matches) for matches in plagiarism_results.values())
+            
+            logger.log(f"\nSummary:")
+            logger.log(f"  Total documents analyzed: {len(doc_texts)}")
+            logger.log(f"  Documents with potential plagiarism: {total_docs_with_matches}")
+            logger.log(f"  Total potential matches found: {total_matches}")
+            logger.log(f"\nDetailed report saved to: plagiarism_report.txt")
+        elif mode == "query":
+            logger.log(f"\nQuery complete. Results saved to query_results_*/ directory")
+        elif mode == "auto_query":
+            logger.log(f"\nAuto-query complete. Results saved to query_results_*/ directories")
+        elif mode == "evaluation":
+            logger.log(f"\nEvaluation complete. Results saved to evaluation_queries.json and evaluation_queries_report.txt")
         
-        logger.log(f"\nSummary:")
-        logger.log(f"  Total documents analyzed: {len(doc_texts)}")
-        logger.log(f"  Documents with potential plagiarism: {total_docs_with_matches}")
-        logger.log(f"  Total potential matches found: {total_matches}")
-        logger.log(f"\nDetailed report saved to: plagiarism_report.txt")
         logger.log(f"Log file saved to: {log_file}")
         
     except Exception as e:
@@ -901,5 +1483,49 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Plagiarism Detection System')
+    parser.add_argument('--mode', type=str, default='detection', 
+                       choices=['detection', 'query', 'evaluation', 'auto_query'],
+                       help='Operation mode: detection (default), query, evaluation, or auto_query')
+    parser.add_argument('--query-paper', type=str, 
+                       help='Path to paper file to query (for query mode)')
+    parser.add_argument('--query-name', type=str,
+                       help='Name for the query paper (optional, uses filename if not provided)')
+    parser.add_argument('--evaluation-papers-dir', type=str,
+                       help='Directory containing papers for evaluation (for evaluation mode)')
+    parser.add_argument('--auto-query-count', type=int, default=5,
+                       help='Number of papers to automatically query (for auto_query mode, default: 5)')
+    
+    args = parser.parse_args()
+    
+    # Handle evaluation mode: load papers from directory
+    evaluation_papers = None
+    if args.mode == "evaluation":
+        if args.evaluation_papers_dir:
+            evaluation_papers = {}
+            eval_dir = Path(args.evaluation_papers_dir)
+            if eval_dir.exists():
+                for txt_file in eval_dir.glob("*.txt"):
+                    try:
+                        with open(txt_file, 'r', encoding='utf-8') as f:
+                            evaluation_papers[txt_file.stem] = f.read()
+                    except Exception as e:
+                        print(f"Warning: Failed to load {txt_file}: {e}")
+                print(f"Loaded {len(evaluation_papers)} papers for evaluation")
+            else:
+                print(f"Error: Evaluation directory not found: {args.evaluation_papers_dir}")
+                exit(1)
+        else:
+            print("Error: --evaluation-papers-dir is required for evaluation mode")
+            exit(1)
+    
+    main(
+        mode=args.mode,
+        query_paper_path=args.query_paper,
+        query_paper_name=args.query_name,
+        evaluation_papers=evaluation_papers,
+        auto_query_count=args.auto_query_count
+    )
 
