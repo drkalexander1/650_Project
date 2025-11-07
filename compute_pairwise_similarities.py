@@ -210,6 +210,16 @@ def compute_pairwise_similarities(
             logger.log(f"\nProcessing paper {i+1}/{n_papers}: {doc_id_mapping[paper1_id]}")
         paper1_text = doc_texts[paper1_id]
         
+        # Query paper1 once and get all results (much more efficient!)
+        bm25_results_dict = {}
+        if use_bm25 and bm25_ranker:
+            try:
+                bm25_results = bm25_ranker.query(paper1_text)
+                # Convert to dictionary for O(1) lookup
+                bm25_results_dict = {doc_id: score for doc_id, score in bm25_results}
+            except Exception as e:
+                logger.log_error(f"Error querying paper {doc_id_mapping[paper1_id]}", e)
+        
         for j, paper2_id in enumerate(papers):
             if i == j:
                 # Self-similarity is 1.0
@@ -217,24 +227,11 @@ def compute_pairwise_similarities(
                     bm25_matrix[i, j] = 1.0
                 continue
             
-            paper2_text = doc_texts[paper2_id]
-            
-            # Compute BM25 similarity
+            # Compute BM25 similarity (now just a dictionary lookup!)
             if use_bm25 and bm25_ranker:
-                try:
-                    # Query paper1 against the index, find paper2's score
-                    bm25_results = bm25_ranker.query(paper1_text)
-                    # Find paper2_id in results
-                    bm25_score = None
-                    for matched_doc_id, score in bm25_results:
-                        if matched_doc_id == paper2_id:
-                            bm25_score = score
-                            break
-                    
-                    if bm25_score is not None:
-                        bm25_matrix[i, j] = bm25_score
-                except Exception as e:
-                    logger.log_error(f"Error computing BM25 similarity for {doc_id_mapping[paper1_id]} vs {doc_id_mapping[paper2_id]}", e)
+                bm25_score = bm25_results_dict.get(paper2_id)
+                if bm25_score is not None:
+                    bm25_matrix[i, j] = bm25_score
             
             pair_count += 1
             if pair_count % 50 == 0:  # Log every 50 pairs instead of 10
