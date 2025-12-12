@@ -11,6 +11,8 @@ from collections import defaultdict
 from typing import Dict, List, Tuple, Optional
 import re
 from datetime import datetime
+import matplotlib.pyplot as plt
+import numpy as np
 
 from preprocessing import RegexTokenizer, load_nltk_stopwords
 from indexing import Indexer, IndexType, BasicInvertedIndex
@@ -75,6 +77,106 @@ class Logger:
         """Close the log file."""
         self.log_handle.write(f"\nLog ended at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         self.log_handle.close()
+
+
+def load_documents_from_metadata(corpus_folder: str, logger: Logger) -> Tuple[Dict[int, str], Dict[int, str]]:
+    """
+    Load all text documents from the corpus folder based on metadata files.
+    This function reads metadata JSON files to find which text files exist and loads them.
+    
+    Args:
+        corpus_folder: Path to the corpus folder (e.g., "corpus_arxiv_Edward_Witten")
+        logger: Logger instance for output
+        
+    Returns:
+        Tuple of (doc_texts, doc_id_mapping) where:
+        - doc_texts: Dictionary mapping numeric doc_id to document text
+        - doc_id_mapping: Dictionary mapping numeric doc_id to original filename
+    """
+    doc_texts = {}
+    doc_id_mapping = {}
+    corpus_path = Path(corpus_folder)
+    metadata_dir = corpus_path / "metadata_arxiv"
+    
+    if not corpus_path.exists():
+        logger.log_error(f"Corpus folder not found: {corpus_folder}")
+        raise FileNotFoundError(f"Corpus folder not found: {corpus_folder}")
+    
+    if not metadata_dir.exists():
+        logger.log_error(f"Metadata directory not found: {metadata_dir}")
+        raise FileNotFoundError(f"Metadata directory not found: {metadata_dir}")
+    
+    # Get all metadata JSON files
+    metadata_files = sorted(metadata_dir.glob("*.json"))
+    logger.log(f"Found {len(metadata_files)} metadata files")
+    
+    # Use sequential IDs starting from 1 for consistency
+    doc_id_counter = 1
+    error_count = 0
+    skipped_count = 0
+    
+    for metadata_file in metadata_files:
+        try:
+            with open(metadata_file, 'r', encoding='utf-8') as f:
+                metadata = json.load(f)
+            
+            # Check if there are downloaded versions
+            if 'versions_downloaded' not in metadata or not metadata['versions_downloaded']:
+                skipped_count += 1
+                continue
+            
+            # Load text from each version (typically we want the latest, but load all available)
+            for version_info in metadata['versions_downloaded']:
+                text_file_path = version_info.get('text_file', '')
+                if not text_file_path:
+                    continue
+                
+                # Handle path resolution - metadata paths are relative to project root
+                text_file = None
+                if Path(text_file_path).is_absolute():
+                    text_file = Path(text_file_path)
+                else:
+                    # Try as-is (relative to current working directory)
+                    text_file = Path(text_file_path)
+                    if not text_file.exists():
+                        # Try relative to corpus folder
+                        text_file = corpus_path / Path(text_file_path).name
+                    if not text_file.exists() and 'text_arxiv' in text_file_path:
+                        # Try constructing path from corpus folder
+                        text_file = corpus_path / "text_arxiv" / Path(text_file_path).name
+                
+                if not text_file or not text_file.exists():
+                    logger.log(f"Warning: Text file not found: {text_file_path}")
+                    continue
+                
+                # Extract document name from filename (e.g., 0706.3359_v1.txt -> 0706.3359_v1)
+                doc_name = text_file.stem
+                
+                try:
+                    with open(text_file, 'r', encoding='utf-8') as tf:
+                        text = tf.read().strip()
+                        if text:  # Only add non-empty documents
+                            doc_texts[doc_id_counter] = text
+                            doc_id_mapping[doc_id_counter] = doc_name
+                            doc_id_counter += 1
+                        else:
+                            logger.log(f"Warning: Skipping empty file {doc_name}")
+                except Exception as e:
+                    error_count += 1
+                    logger.log_error(f"Error reading {text_file}", e)
+                    continue
+                    
+        except Exception as e:
+            error_count += 1
+            logger.log_error(f"Error reading metadata file {metadata_file}", e)
+            continue
+    
+    logger.log(f"Successfully loaded {len(doc_texts)} documents from metadata")
+    if skipped_count > 0:
+        logger.log(f"Skipped {skipped_count} metadata files with no downloaded versions")
+    if error_count > 0:
+        logger.log(f"Warning: Failed to load {error_count} files")
+    return doc_texts, doc_id_mapping
 
 
 def load_documents_from_text_folder(text_folder: str, logger: Logger) -> Tuple[Dict[int, str], Dict[int, str]]:
@@ -257,6 +359,30 @@ def extract_chunks(text: str, chunk_size: int = 200, overlap: int = 50) -> List[
     return chunks
 
 
+def has_sufficient_overlap(chunk1: str, chunk2: str, min_overlap_ratio: float = 0.3) -> bool:
+    """
+    Check if chunks have sufficient word overlap to be considered similar.
+    
+    Args:
+        chunk1: First text chunk
+        chunk2: Second text chunk
+        min_overlap_ratio: Minimum ratio of overlapping words to smallest chunk size
+        
+    Returns:
+        True if chunks have sufficient overlap, False otherwise
+    """
+    words1 = set(word.lower() for word in chunk1.split())
+    words2 = set(word.lower() for word in chunk2.split())
+    
+    if len(words1) == 0 or len(words2) == 0:
+        return False
+    
+    overlap = len(words1 & words2)
+    min_words = min(len(words1), len(words2))
+    
+    return (overlap / min_words) >= min_overlap_ratio
+
+
 def find_best_matching_chunk(
     source_chunk: str, 
     target_text: str, 
@@ -265,7 +391,9 @@ def find_best_matching_chunk(
     use_sbert: bool = False,
     sbert_ranker: Optional[object] = None,
     use_jaccard: bool = False,
-    jaccard_ranker: Optional[object] = None
+    jaccard_ranker: Optional[object] = None,
+    sbert_threshold: float = 0.65,
+    jaccard_threshold: float = 0.4
 ) -> Tuple[int, str, float]:
     """
     Find the chunk in target_text that best matches source_chunk.
@@ -279,6 +407,8 @@ def find_best_matching_chunk(
         sbert_ranker: SBERTRanker instance (required if use_sbert=True)
         use_jaccard: If True, use Jaccard ranker (overrides default Jaccard)
         jaccard_ranker: JaccardRanker instance (optional, creates default if not provided)
+        sbert_threshold: Minimum SBERT similarity threshold (default: 0.65)
+        jaccard_threshold: Minimum Jaccard similarity threshold (default: 0.4)
         
     Returns:
         Tuple of (best_chunk_idx, best_chunk_text, similarity_score)
@@ -295,11 +425,11 @@ def find_best_matching_chunk(
     chunk_indices, chunks = zip(*valid_chunks)
     
     if use_sbert and sbert_ranker is not None:
-        # Use SBERT for semantic similarity
+        # Use SBERT for semantic similarity with stricter threshold
         best_idx, best_text, best_score = sbert_ranker.find_best_matching_chunk_semantic(
             source_chunk,
             list(chunks),
-            similarity_threshold=0.3
+            similarity_threshold=sbert_threshold
         )
         # Map back to original index
         actual_idx = chunk_indices[best_idx]
@@ -313,7 +443,7 @@ def find_best_matching_chunk(
             best_idx, best_text, best_score = jaccard_ranker.find_best_matching_chunk_jaccard(
                 source_chunk,
                 list(chunks),
-                similarity_threshold=0.3
+                similarity_threshold=jaccard_threshold
             )
             # Map back to original index
             actual_idx = chunk_indices[best_idx]
@@ -347,7 +477,7 @@ def detect_plagiarism(
     doc_texts: Dict[int, str],
     doc_id_mapping: Dict[int, str],
     logger: Logger,
-    similarity_threshold: float = 0.3,
+    similarity_threshold: float = 0.5,
     top_k: int = 10,
     use_sbert: bool = False,
     sbert_ranker: Optional[object] = None,
@@ -356,7 +486,10 @@ def detect_plagiarism(
     hybrid_mode: bool = False,
     bm25_weight: float = 0.5,
     sbert_weight: float = 0.5,
-    jaccard_weight: float = 0.0
+    jaccard_weight: float = 0.0,
+    sbert_threshold: float = 0.65,
+    jaccard_threshold: float = 0.4,
+    min_word_overlap_ratio: float = 0.3
 ) -> Dict[str, List[Tuple[str, int, str, float, int, str, Tuple[float, float]]]]:
     """
     Detect plagiarism by querying chunks from each document against the index.
@@ -367,8 +500,11 @@ def detect_plagiarism(
         doc_texts: Dictionary mapping doc_id to full text
         doc_id_mapping: Mapping from numeric doc_id to original filename
         logger: Logger instance for output
-        similarity_threshold: Minimum similarity score to consider as plagiarism
+        similarity_threshold: Minimum BM25 similarity score to consider as plagiarism (default: 0.5)
         top_k: Number of top results to consider per chunk
+        sbert_threshold: Minimum SBERT similarity threshold (default: 0.65)
+        jaccard_threshold: Minimum Jaccard similarity threshold (default: 0.4)
+        min_word_overlap_ratio: Minimum word overlap ratio between chunks (default: 0.3)
         
     Returns:
         Dictionary mapping document ID to list of tuples:
@@ -378,7 +514,8 @@ def detect_plagiarism(
     
     total_docs = len(doc_texts)
     logger.log(f"Detecting plagiarism across {total_docs} documents...")
-    logger.log(f"Similarity threshold: {similarity_threshold}, Top-K: {top_k}")
+    logger.log(f"BM25 threshold: {similarity_threshold}, SBERT threshold: {sbert_threshold}, Jaccard threshold: {jaccard_threshold}, Top-K: {top_k}")
+    logger.log(f"Minimum word overlap ratio: {min_word_overlap_ratio}")
     
     # Configure ranking methods
     ranking_methods = []
@@ -456,11 +593,13 @@ def detect_plagiarism(
                         for matched_doc_id in candidate_doc_ids:
                             matched_text = doc_texts.get(matched_doc_id, "")
                             if matched_text:
-                                # Find best matching chunk using SBERT
+                                # Find best matching chunk using SBERT with stricter threshold
                                 _, _, sbert_score = find_best_matching_chunk(
-                                    chunk, matched_text, use_sbert=True, sbert_ranker=sbert_ranker
+                                    chunk, matched_text, use_sbert=True, sbert_ranker=sbert_ranker,
+                                    sbert_threshold=sbert_threshold
                                 )
-                                if sbert_score >= similarity_threshold:
+                                # Use stricter SBERT threshold
+                                if sbert_score >= sbert_threshold:
                                     sbert_scores.append((matched_doc_id, sbert_score))
                     
                     if use_jaccard and jaccard_ranker:
@@ -471,11 +610,13 @@ def detect_plagiarism(
                         for matched_doc_id in candidate_doc_ids:
                             matched_text = doc_texts.get(matched_doc_id, "")
                             if matched_text:
-                                # Find best matching chunk using Jaccard
+                                # Find best matching chunk using Jaccard with stricter threshold
                                 _, _, jaccard_score = find_best_matching_chunk(
-                                    chunk, matched_text, use_jaccard=True, jaccard_ranker=jaccard_ranker
+                                    chunk, matched_text, use_jaccard=True, jaccard_ranker=jaccard_ranker,
+                                    jaccard_threshold=jaccard_threshold
                                 )
-                                if jaccard_score >= similarity_threshold:
+                                # Use stricter Jaccard threshold
+                                if jaccard_score >= jaccard_threshold:
                                     jaccard_scores.append((matched_doc_id, jaccard_score))
                     
                     # Determine final results based on mode
@@ -548,7 +689,9 @@ def detect_plagiarism(
                                 matched_chunk_idx, matched_chunk_text, similarity_score = find_best_matching_chunk(
                                     chunk, matched_text, 
                                     use_sbert=use_sbert, sbert_ranker=sbert_ranker,
-                                    use_jaccard=use_jaccard, jaccard_ranker=jaccard_ranker
+                                    use_jaccard=use_jaccard, jaccard_ranker=jaccard_ranker,
+                                    sbert_threshold=sbert_threshold,
+                                    jaccard_threshold=jaccard_threshold
                                 )
                                 
                                 # Also compute individual scores for reporting
@@ -556,22 +699,41 @@ def detect_plagiarism(
                                 jaccard_score = 0.0
                                 if use_sbert and sbert_ranker:
                                     _, _, sbert_score = find_best_matching_chunk(
-                                        chunk, matched_text, use_sbert=True, sbert_ranker=sbert_ranker
+                                        chunk, matched_text, use_sbert=True, sbert_ranker=sbert_ranker,
+                                        sbert_threshold=sbert_threshold
                                     )
                                 if use_jaccard and jaccard_ranker:
                                     _, _, jaccard_score = find_best_matching_chunk(
-                                        chunk, matched_text, use_jaccard=True, jaccard_ranker=jaccard_ranker
+                                        chunk, matched_text, use_jaccard=True, jaccard_ranker=jaccard_ranker,
+                                        jaccard_threshold=jaccard_threshold
                                     )
                                 
-                                plagiarism_results[doc_name].append((
-                                    matched_doc_name,
-                                    chunk_idx,  # Source chunk index from paper A
-                                    chunk,      # Source chunk text from paper A
-                                    score,      # BM25 or combined similarity score
-                                    matched_chunk_idx,  # Matched chunk index from paper B
-                                    matched_chunk_text,  # Matched chunk text from paper B
-                                    (sbert_score, jaccard_score)  # Tuple of (sbert_score, jaccard_score)
-                                ))
+                                # Require multiple signals for plagiarism detection
+                                # If using SBERT, require both BM25 and SBERT to exceed thresholds
+                                is_valid_match = True
+                                
+                                if use_sbert and sbert_ranker:
+                                    # Require SBERT score to also exceed threshold
+                                    if sbert_score < sbert_threshold:
+                                        is_valid_match = False
+                                
+                                # Check minimum word overlap
+                                if is_valid_match and not has_sufficient_overlap(chunk, matched_chunk_text, min_word_overlap_ratio):
+                                    is_valid_match = False
+                                
+                                # Only add if all checks pass
+                                if is_valid_match:
+                                    plagiarism_results[doc_name].append((
+                                        matched_doc_name,
+                                        chunk_idx,  # Source chunk index from paper A
+                                        chunk,      # Source chunk text from paper A
+                                        score,      # BM25 or combined similarity score
+                                        matched_chunk_idx,  # Matched chunk index from paper B
+                                        matched_chunk_text,  # Matched chunk text from paper B
+                                        (sbert_score, jaccard_score)  # Tuple of (sbert_score, jaccard_score)
+                                    ))
+                                else:
+                                    matches_found -= 1  # Adjust count since we filtered this out
                 except Exception as e:
                     logger.log_error(f"Error querying chunk {chunk_idx} from {doc_name}", e)
                     continue
@@ -588,9 +750,11 @@ def detect_plagiarism(
 
 def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, float, int, str, Tuple[float, float]]]], 
                    output_file: str = "plagiarism_report.txt",
-                   logger: Logger = None) -> None:
+                   logger: Logger = None,
+                   similarity_threshold: float = 0.3,
+                   all_doc_names: List[str] = None) -> None:
     """
-    Generate a human-readable plagiarism detection report with specific chunk pairs.
+    Generate a human-readable plagiarism detection report with yes/no answers and examples.
     
     Args:
         plagiarism_results: Results from detect_plagiarism
@@ -598,9 +762,18 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, floa
                                    score, matched_chunk_idx, matched_chunk_text, (sbert_score, jaccard_score))
         output_file: Path to output report file
         logger: Logger instance for output
+        similarity_threshold: Threshold used for detection (default: 0.3)
+        all_doc_names: Optional list of all document names to include documents with no matches
     """
     if logger:
         logger.log(f"Generating plagiarism report: {output_file}")
+    
+    # Get all document names (from results or provided list)
+    if all_doc_names is None:
+        all_doc_names = list(plagiarism_results.keys())
+    else:
+        # Include documents from results that might not be in all_doc_names
+        all_doc_names = list(set(all_doc_names) | set(plagiarism_results.keys()))
     
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("=" * 80 + "\n")
@@ -608,23 +781,32 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, floa
         f.write("=" * 80 + "\n\n")
         
         total_matches = sum(len(matches) for matches in plagiarism_results.values())
-        f.write(f"Total documents analyzed: {len(plagiarism_results)}\n")
-        f.write(f"Total potential plagiarism matches: {total_matches}\n\n")
+        total_docs_with_plagiarism = len([d for d, matches in plagiarism_results.items() if matches])
+        f.write(f"Total documents analyzed: {len(all_doc_names)}\n")
+        f.write(f"Documents with plagiarism detected (YES): {total_docs_with_plagiarism}\n")
+        f.write(f"Documents with no plagiarism detected (NO): {len(all_doc_names) - total_docs_with_plagiarism}\n")
+        f.write(f"Total potential plagiarism matches: {total_matches}\n")
+        f.write(f"Threshold: {similarity_threshold} (score > {similarity_threshold} = YES, otherwise NO)\n\n")
         
-        # Sort documents by number of matches (descending)
-        sorted_docs = sorted(
-            plagiarism_results.items(),
+        # Sort documents: first those with matches (by number of matches), then those without
+        docs_with_matches = [(name, matches) for name, matches in plagiarism_results.items() if matches]
+        docs_without_matches = [name for name in all_doc_names if name not in plagiarism_results or not plagiarism_results[name]]
+        
+        sorted_docs_with_matches = sorted(
+            docs_with_matches,
             key=lambda x: len(x[1]),
             reverse=True
         )
         
-        for doc_name, matches in sorted_docs:
-            if not matches:
-                continue
-                
+        # Process documents with matches
+        for doc_name, matches in sorted_docs_with_matches:
             f.write("-" * 80 + "\n")
             f.write(f"Document: {doc_name}\n")
             f.write(f"Number of potential plagiarism matches: {len(matches)}\n")
+            
+            # YES/NO answer based on threshold
+            has_plagiarism = len(matches) > 0
+            f.write(f"PLAGIARISM DETECTED: {'YES' if has_plagiarism else 'NO'}\n")
             f.write("-" * 80 + "\n\n")
             
             # Group matches by matched document
@@ -639,41 +821,56 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, floa
                 key=lambda x: max(score for _, _, score, _, _, _ in x[1]),
                 reverse=True
             ):
+                max_score = max(score for _, _, score, _, _, _ in doc_matches)
+                avg_score = sum(score for _, _, score, _, _, _ in doc_matches) / len(doc_matches)
+                
                 f.write(f"  Matches with: {matched_doc}\n")
+                f.write(f"  PLAGIARISM DETECTED: YES (score: {max_score:.4f} > {similarity_threshold})\n")
                 f.write(f"  Number of similar sections: {len(doc_matches)}\n")
-                f.write(f"  Highest similarity score: {max(score for _, _, score, _, _, _ in doc_matches):.4f}\n")
-                f.write(f"  Average similarity score: {sum(score for _, _, score, _, _, _ in doc_matches) / len(doc_matches):.4f}\n")
+                f.write(f"  Highest similarity score: {max_score:.4f}\n")
+                f.write(f"  Average similarity score: {avg_score:.4f}\n")
                 f.write("\n")
                 
-                # Display chunk pairs, sorted by similarity score (highest first)
+                # Display chunk pairs as examples, sorted by similarity score (highest first)
                 sorted_chunk_matches = sorted(
                     doc_matches,
                     key=lambda x: x[2],  # Sort by score
                     reverse=True
                 )
                 
-                # Limit to top 20 chunk pairs per document pair to keep report manageable
-                for idx, (source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, similarity_scores) in enumerate(sorted_chunk_matches[:20]):
+                f.write(f"  EXAMPLES OF PLAGIARIZED PASSAGES:\n")
+                f.write(f"  {'=' * 76}\n\n")
+                
+                # Limit to top 5 examples per document pair
+                for idx, (source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, similarity_scores) in enumerate(sorted_chunk_matches[:5]):
                     score_label = "Combined" if len(doc_matches) > 0 and len(doc_matches[0]) > 5 else "BM25"
-                    f.write(f"    --- Chunk Pair #{idx + 1} ({score_label} Score: {score:.4f}")
+                    f.write(f"    Example #{idx + 1} ({score_label} Score: {score:.4f}")
                     sbert_score, jaccard_score = similarity_scores
                     if sbert_score > 0:
                         f.write(f", SBERT Score: {sbert_score:.4f}")
                     if jaccard_score > 0:
                         f.write(f", Jaccard Score: {jaccard_score:.4f}")
-                    f.write(") ---\n")
+                    f.write(")\n")
+                    f.write(f"    {'-' * 76}\n")
                     f.write(f"    Source Document: {doc_name}, Chunk #{source_chunk_idx}\n")
-                    f.write(f"    Matched Document: {matched_doc}, Chunk #{matched_chunk_idx}\n")
-                    f.write(f"\n    Chunk from {doc_name} (Chunk #{source_chunk_idx}):\n")
                     f.write(f"    {source_chunk[:500]}{'...' if len(source_chunk) > 500 else ''}\n")
-                    f.write(f"\n    Matched chunk from {matched_doc} (Chunk #{matched_chunk_idx}):\n")
+                    f.write(f"\n    Matched Document: {matched_doc}, Chunk #{matched_chunk_idx}\n")
                     f.write(f"    {matched_chunk[:500]}{'...' if len(matched_chunk) > 500 else ''}\n")
                     f.write("\n")
                 
-                if len(sorted_chunk_matches) > 20:
-                    f.write(f"    ... and {len(sorted_chunk_matches) - 20} more chunk pairs (showing top 20)\n\n")
+                if len(sorted_chunk_matches) > 5:
+                    f.write(f"    ... and {len(sorted_chunk_matches) - 5} more examples (showing top 5)\n\n")
                 
                 f.write("\n")
+        
+        # Process documents without matches
+        if docs_without_matches:
+            f.write("-" * 80 + "\n")
+            f.write("DOCUMENTS WITH NO PLAGIARISM DETECTED\n")
+            f.write("-" * 80 + "\n\n")
+            for doc_name in sorted(docs_without_matches):
+                f.write(f"Document: {doc_name}\n")
+                f.write(f"PLAGIARISM DETECTED: NO\n\n")
         
         f.write("\n" + "=" * 80 + "\n")
         f.write("END OF REPORT\n")
@@ -683,6 +880,277 @@ def generate_report(plagiarism_results: Dict[str, List[Tuple[str, int, str, floa
         logger.log(f"Report saved to: {output_file}")
     else:
         print(f"\nReport saved to: {output_file}")
+
+
+def save_plagiarism_chunks_dict(
+    plagiarism_results: Dict[str, List[Tuple[str, int, str, float, int, str, Tuple[float, float]]]],
+    output_file: str,
+    logger: Logger = None
+) -> Dict[str, List[Dict]]:
+    """
+    Save all plagiarism chunks to a dictionary for statistical analysis.
+    
+    Args:
+        plagiarism_results: Results from detect_plagiarism
+        output_file: Path to output JSON file
+        logger: Logger instance for output
+        
+    Returns:
+        Dictionary mapping document names to list of plagiarism chunk dictionaries
+    """
+    if logger:
+        logger.log(f"Saving plagiarism chunks dictionary to {output_file}...")
+    
+    chunks_dict = {}
+    
+    for doc_name, matches in plagiarism_results.items():
+        chunks_dict[doc_name] = []
+        for matched_doc, source_chunk_idx, source_chunk, score, matched_chunk_idx, matched_chunk, similarity_scores in matches:
+            sbert_score, jaccard_score = similarity_scores
+            chunks_dict[doc_name].append({
+                'matched_doc': matched_doc,
+                'source_chunk_idx': source_chunk_idx,
+                'source_chunk_text': source_chunk,
+                'score': float(score),
+                'matched_chunk_idx': matched_chunk_idx,
+                'matched_chunk_text': matched_chunk,
+                'sbert_score': float(sbert_score),
+                'jaccard_score': float(jaccard_score)
+            })
+    
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(chunks_dict, f, indent=2, ensure_ascii=False)
+    
+    if logger:
+        logger.log(f"Saved {sum(len(chunks) for chunks in chunks_dict.values())} plagiarism chunks to {output_file}")
+    
+    return chunks_dict
+
+
+def calculate_statistics(
+    plagiarism_results: Dict[str, List[Tuple[str, int, str, float, int, str, Tuple[float, float]]]],
+    doc_texts: Dict[int, str],
+    doc_id_mapping: Dict[int, str],
+    logger: Logger
+) -> Dict[str, Dict]:
+    """
+    Calculate statistics about plagiarism detection results.
+    
+    Args:
+        plagiarism_results: Results from detect_plagiarism
+        doc_texts: Dictionary mapping doc_id to text
+        doc_id_mapping: Mapping from doc_id to doc_name
+        logger: Logger instance
+        
+    Returns:
+        Dictionary mapping doc_name to statistics dict
+    """
+    logger.log("Calculating plagiarism statistics...")
+    
+    stats_dict = {}
+    
+    # Create reverse mapping: doc_name -> doc_id
+    name_to_id = {name: doc_id for doc_id, name in doc_id_mapping.items()}
+    
+    for doc_name, matches in plagiarism_results.items():
+        # Get document text
+        doc_id = name_to_id.get(doc_name)
+        if doc_id is None:
+            continue
+        
+        doc_text = doc_texts.get(doc_id, "")
+        if not doc_text:
+            continue
+        
+        # Extract chunks
+        chunks = extract_chunks(doc_text, chunk_size=200, overlap=50)
+        total_chunks = len([c for c in chunks if len(c.split()) >= 20])
+        
+        # Count unique plagiarized chunks
+        plagiarized_chunk_indices = set()
+        scores = []
+        sbert_scores = []
+        jaccard_scores = []
+        
+        for matched_doc, source_chunk_idx, _, score, _, _, similarity_scores in matches:
+            if source_chunk_idx < total_chunks:
+                plagiarized_chunk_indices.add(source_chunk_idx)
+            scores.append(score)
+            sbert_score, jaccard_score = similarity_scores
+            if sbert_score > 0:
+                sbert_scores.append(sbert_score)
+            if jaccard_score > 0:
+                jaccard_scores.append(jaccard_score)
+        
+        plagiarized_chunks = len(plagiarized_chunk_indices)
+        percentage = (plagiarized_chunks / total_chunks * 100) if total_chunks > 0 else 0.0
+        
+        stats_dict[doc_name] = {
+            'total_chunks': total_chunks,
+            'plagiarized_chunks': plagiarized_chunks,
+            'percentage': percentage,
+            'num_matches': len(matches),
+            'avg_score': float(np.mean(scores)) if scores else 0.0,
+            'max_score': float(max(scores)) if scores else 0.0,
+            'avg_sbert_score': float(np.mean(sbert_scores)) if sbert_scores else 0.0,
+            'avg_jaccard_score': float(np.mean(jaccard_scores)) if jaccard_scores else 0.0
+        }
+    
+    # Also process documents with no matches
+    for doc_id, doc_name in doc_id_mapping.items():
+        if doc_name not in stats_dict:
+            doc_text = doc_texts.get(doc_id, "")
+            if doc_text:
+                chunks = extract_chunks(doc_text, chunk_size=200, overlap=50)
+                total_chunks = len([c for c in chunks if len(c.split()) >= 20])
+                stats_dict[doc_name] = {
+                    'total_chunks': total_chunks,
+                    'plagiarized_chunks': 0,
+                    'percentage': 0.0,
+                    'num_matches': 0,
+                    'avg_score': 0.0,
+                    'max_score': 0.0,
+                    'avg_sbert_score': 0.0,
+                    'avg_jaccard_score': 0.0
+                }
+    
+    logger.log(f"Calculated statistics for {len(stats_dict)} documents")
+    return stats_dict
+
+
+def create_visualizations(
+    stats_dict: Dict[str, Dict],
+    output_dir: Path,
+    logger: Logger
+):
+    """
+    Create visualizations of plagiarism statistics.
+    
+    Args:
+        stats_dict: Dictionary mapping doc_name to statistics
+        output_dir: Directory to save visualizations
+        logger: Logger instance
+    """
+    logger.log("Creating visualizations...")
+    
+    percentages = [stats['percentage'] for stats in stats_dict.values()]
+    scores = [stats['avg_score'] for stats in stats_dict.values() if stats['avg_score'] > 0]
+    
+    # 1. Histogram of percentage distribution
+    if percentages:
+        plt.figure(figsize=(12, 6))
+        plt.hist(percentages, bins=20, edgecolor='black', alpha=0.7)
+        plt.xlabel('Percentage of Plagiarized Chunks (%)', fontsize=12)
+        plt.ylabel('Number of Documents', fontsize=12)
+        plt.title('Distribution of Plagiarized Chunk Percentages', fontsize=14)
+        plt.grid(True, alpha=0.3)
+        plt.tight_layout()
+        plt.savefig(output_dir / 'plagiarism_percentage_histogram.png', dpi=300, bbox_inches='tight')
+        plt.close()
+        logger.log("  Saved: plagiarism_percentage_histogram.png")
+    
+    # 2. Histogram of similarity scores
+    if scores:
+        plt.figure(figsize=(12, 6))
+        plt.hist(scores, bins=20, edgecolor='black', alpha=0.7, color='steelblue')
+        plt.xlabel('Average Similarity Score', fontsize=12)
+        plt.ylabel('Number of Documents', fontsize=12)
+        plt.title('Distribution of Average Similarity Scores', fontsize=14)
+        plt.grid(True, alpha=0.3)
+        plt.tight_layout()
+        plt.savefig(output_dir / 'similarity_score_histogram.png', dpi=300, bbox_inches='tight')
+        plt.close()
+        logger.log("  Saved: similarity_score_histogram.png")
+    
+    # 3. Box plot of percentages
+    if percentages:
+        plt.figure(figsize=(8, 6))
+        plt.boxplot(percentages, vert=True, patch_artist=True,
+                    boxprops=dict(facecolor='lightblue', alpha=0.7))
+        plt.ylabel('Percentage of Plagiarized Chunks (%)', fontsize=12)
+        plt.title('Box Plot of Plagiarized Chunk Percentages', fontsize=14)
+        plt.grid(True, alpha=0.3, axis='y')
+        plt.tight_layout()
+        plt.savefig(output_dir / 'plagiarism_percentage_boxplot.png', dpi=300, bbox_inches='tight')
+        plt.close()
+        logger.log("  Saved: plagiarism_percentage_boxplot.png")
+    
+    # 4. Scatter plot: percentage vs number of matches
+    percentages_list = [stats['percentage'] for stats in stats_dict.values()]
+    num_matches_list = [stats['num_matches'] for stats in stats_dict.values()]
+    
+    if percentages_list and num_matches_list:
+        plt.figure(figsize=(10, 6))
+        plt.scatter(num_matches_list, percentages_list, alpha=0.6)
+        plt.xlabel('Number of Matches', fontsize=12)
+        plt.ylabel('Percentage of Plagiarized Chunks (%)', fontsize=12)
+        plt.title('Plagiarized Chunk Percentage vs Number of Matches', fontsize=14)
+        plt.grid(True, alpha=0.3)
+        plt.tight_layout()
+        plt.savefig(output_dir / 'percentage_vs_matches_scatter.png', dpi=300, bbox_inches='tight')
+        plt.close()
+        logger.log("  Saved: percentage_vs_matches_scatter.png")
+    
+    logger.log("All visualizations created successfully")
+
+
+def save_statistics_report(
+    stats_dict: Dict[str, Dict],
+    output_file: str,
+    logger: Logger
+):
+    """
+    Save statistics report to a text file.
+    
+    Args:
+        stats_dict: Dictionary mapping doc_name to statistics
+        output_file: Path to output file
+        logger: Logger instance
+    """
+    logger.log(f"Saving statistics report to {output_file}...")
+    
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write("=" * 80 + "\n")
+        f.write("PLAGIARISM STATISTICS REPORT\n")
+        f.write("=" * 80 + "\n\n")
+        
+        f.write(f"Total documents analyzed: {len(stats_dict)}\n")
+        
+        # Summary statistics
+        percentages = [stats['percentage'] for stats in stats_dict.values()]
+        scores = [stats['avg_score'] for stats in stats_dict.values() if stats['avg_score'] > 0]
+        
+        if percentages:
+            f.write(f"\nSummary Statistics:\n")
+            f.write(f"  Mean percentage of plagiarized chunks: {np.mean(percentages):.2f}%\n")
+            f.write(f"  Median percentage: {np.median(percentages):.2f}%\n")
+            f.write(f"  Standard deviation: {np.std(percentages):.2f}%\n")
+            f.write(f"  Min percentage: {min(percentages):.2f}%\n")
+            f.write(f"  Max percentage: {max(percentages):.2f}%\n")
+        
+        if scores:
+            f.write(f"\nSimilarity Score Statistics:\n")
+            f.write(f"  Mean score: {np.mean(scores):.4f}\n")
+            f.write(f"  Median score: {np.median(scores):.4f}\n")
+            f.write(f"  Standard deviation: {np.std(scores):.4f}\n")
+            f.write(f"  Min score: {min(scores):.4f}\n")
+            f.write(f"  Max score: {max(scores):.4f}\n")
+        
+        f.write(f"\n" + "=" * 80 + "\n")
+        f.write("DETAILED STATISTICS BY DOCUMENT\n")
+        f.write("=" * 80 + "\n\n")
+        
+        # Sort by percentage (descending)
+        sorted_stats = sorted(stats_dict.items(), key=lambda x: x[1]['percentage'], reverse=True)
+        
+        f.write(f"{'Document':<40} {'Total Chunks':<15} {'Plagiarized':<15} {'Percentage':<15} {'Matches':<10} {'Avg Score':<12}\n")
+        f.write("-" * 107 + "\n")
+        
+        for doc_name, stats in sorted_stats:
+            f.write(f"{doc_name:<40} {stats['total_chunks']:<15} {stats['plagiarized_chunks']:<15} "
+                   f"{stats['percentage']:<15.2f} {stats['num_matches']:<10} {stats['avg_score']:<12.4f}\n")
+    
+    logger.log(f"Statistics report saved to {output_file}")
 
 
 def query_single_paper(
@@ -695,12 +1163,14 @@ def query_single_paper(
     logger: Logger,
     top_k_papers: int = 5,
     top_chunks_per_paper: int = 2,
-    similarity_threshold: float = 0.3,
+    similarity_threshold: float = 0.5,
     use_sbert: bool = False,
     sbert_ranker: Optional[object] = None,
     use_jaccard: bool = False,
     jaccard_ranker: Optional[object] = None,
-    query_doc_id: int = None  # ID of the query paper in the corpus (to exclude from results)
+    query_doc_id: int = None,  # ID of the query paper in the corpus (to exclude from results)
+    sbert_threshold: float = 0.65,
+    jaccard_threshold: float = 0.4
 ) -> Dict[str, List[Dict]]:
     """
     Query a single paper against the corpus and return top matches with best chunks.
@@ -792,7 +1262,8 @@ def query_single_paper(
                 if use_sbert and sbert_ranker:
                     try:
                         _, _, sbert_score = find_best_matching_chunk(
-                            query_chunk, matched_chunk, use_sbert=True, sbert_ranker=sbert_ranker
+                            query_chunk, matched_chunk, use_sbert=True, sbert_ranker=sbert_ranker,
+                            sbert_threshold=sbert_threshold
                         )
                     except:
                         pass
@@ -886,11 +1357,13 @@ def generate_evaluation_queries(
     output_file: str = "evaluation_queries.json",
     top_k_papers: int = 5,
     top_chunks_per_paper: int = 2,
-    similarity_threshold: float = 0.3,
+    similarity_threshold: float = 0.5,
     use_sbert: bool = False,
     sbert_ranker: Optional[object] = None,
     use_jaccard: bool = False,
-    jaccard_ranker: Optional[object] = None
+    jaccard_ranker: Optional[object] = None,
+    sbert_threshold: float = 0.65,
+    jaccard_threshold: float = 0.4
 ) -> None:
     """
     Generate evaluation queries for a set of papers.
@@ -936,7 +1409,9 @@ def generate_evaluation_queries(
                 use_sbert=use_sbert,
                 sbert_ranker=sbert_ranker,
                 use_jaccard=use_jaccard,
-                jaccard_ranker=jaccard_ranker
+                jaccard_ranker=jaccard_ranker,
+                sbert_threshold=sbert_threshold,
+                jaccard_threshold=jaccard_threshold
             )
             evaluation_results.append(result)
         except Exception as e:
@@ -1009,11 +1484,14 @@ def main(mode: str = "detection", query_paper_path: str = None, query_paper_name
         auto_query_count: Number of papers to automatically query (for auto_query mode)
     """
     # Configuration
-    text_folder = "corpus/text"
+    corpus_folder = "corpus_arxiv_Edward_Witten"  # Corpus folder with metadata
     stopwords_file = "stopwords.txt"
     index_cache_dir = "plagiarism_index_cache"
     log_file = "plagiarism_detection.log"
-    similarity_threshold = 0.3  # Adjust based on your needs
+    similarity_threshold = 0.5  # BM25 threshold (increased from 0.3 for stricter detection)
+    sbert_threshold = 0.65  # SBERT threshold (stricter for semantic similarity)
+    jaccard_threshold = 0.4  # Jaccard threshold (if using Jaccard)
+    min_word_overlap_ratio = 0.3  # Minimum word overlap ratio between chunks
     top_k = 5  # Number of top matches to consider per chunk
     use_sbert = True  # Set to True to enable SBERT semantic similarity
     use_jaccard = False  # Set to True to enable Jaccard similarity
@@ -1035,10 +1513,11 @@ def main(mode: str = "detection", query_paper_path: str = None, query_paper_name
         logger.log("PLAGIARISM DETECTION SYSTEM")
         logger.log("=" * 80)
         
-        # Step 1: Load documents from text folder
-        logger.log("\nStep 1: Loading documents from text folder...")
+        # Step 1: Load documents from metadata
+        logger.log("\nStep 1: Loading documents from metadata...")
+        logger.log(f"Corpus folder: {corpus_folder}")
         try:
-            doc_texts, doc_id_mapping = load_documents_from_text_folder(text_folder, logger)
+            doc_texts, doc_id_mapping = load_documents_from_metadata(corpus_folder, logger)
         except Exception as e:
             logger.log_error("Failed to load documents", e)
             raise
@@ -1223,7 +1702,9 @@ def main(mode: str = "detection", query_paper_path: str = None, query_paper_name
                             sbert_ranker=sbert_ranker,
                             use_jaccard=use_jaccard,
                             jaccard_ranker=jaccard_ranker,
-                            query_doc_id=doc_id  # Exclude the query paper itself
+                            query_doc_id=doc_id,  # Exclude the query paper itself
+                            sbert_threshold=sbert_threshold,
+                            jaccard_threshold=jaccard_threshold
                         )
                         
                         # Create output directory named after the query paper
@@ -1322,7 +1803,9 @@ def main(mode: str = "detection", query_paper_path: str = None, query_paper_name
                     sbert_ranker=sbert_ranker,
                     use_jaccard=use_jaccard,
                     jaccard_ranker=jaccard_ranker,
-                    query_doc_id=query_doc_id  # Exclude if found in corpus
+                    query_doc_id=query_doc_id,  # Exclude if found in corpus
+                    sbert_threshold=sbert_threshold,
+                    jaccard_threshold=jaccard_threshold
                 )
                 
                 # Create output directory named after the query paper
@@ -1398,7 +1881,9 @@ def main(mode: str = "detection", query_paper_path: str = None, query_paper_name
                     use_sbert=use_sbert,
                     sbert_ranker=sbert_ranker,
                     use_jaccard=use_jaccard,
-                    jaccard_ranker=jaccard_ranker
+                    jaccard_ranker=jaccard_ranker,
+                    sbert_threshold=sbert_threshold,
+                    jaccard_threshold=jaccard_threshold
                 )
             except Exception as e:
                 logger.log_error("Failed during evaluation generation", e)
@@ -1423,16 +1908,68 @@ def main(mode: str = "detection", query_paper_path: str = None, query_paper_name
                     hybrid_mode=hybrid_mode,
                     bm25_weight=bm25_weight,
                     sbert_weight=sbert_weight,
-                    jaccard_weight=jaccard_weight
+                    jaccard_weight=jaccard_weight,
+                    sbert_threshold=sbert_threshold,
+                    jaccard_threshold=jaccard_threshold,
+                    min_word_overlap_ratio=min_word_overlap_ratio
                 )
             except Exception as e:
                 logger.log_error("Failed during plagiarism detection", e)
                 raise
             
-            # Step 7: Generate report
-            logger.log("\nStep 7: Generating report...")
+            # Step 7: Create results directory
+            results_dir = Path("results_edward_witten")
+            results_dir.mkdir(exist_ok=True)
+            logger.log(f"\nStep 7: Saving results to {results_dir}/...")
+            
+            # Step 8: Save plagiarism chunks dictionary
+            logger.log("\nStep 8: Saving plagiarism chunks dictionary...")
             try:
-                generate_report(plagiarism_results, "plagiarism_report.txt", logger)
+                chunks_dict_file = results_dir / "plagiarism_chunks.json"
+                save_plagiarism_chunks_dict(plagiarism_results, str(chunks_dict_file), logger)
+            except Exception as e:
+                logger.log_error("Failed to save plagiarism chunks dictionary", e)
+                # Continue even if this fails
+            
+            # Step 9: Calculate statistics
+            logger.log("\nStep 9: Calculating statistics...")
+            try:
+                stats_dict = calculate_statistics(
+                    plagiarism_results,
+                    doc_texts,
+                    doc_id_mapping,
+                    logger
+                )
+                
+                # Save statistics as JSON
+                stats_json_file = results_dir / "plagiarism_statistics.json"
+                with open(stats_json_file, 'w', encoding='utf-8') as f:
+                    json.dump(stats_dict, f, indent=2, ensure_ascii=False)
+                logger.log(f"Statistics saved to {stats_json_file}")
+                
+                # Save statistics report
+                stats_report_file = results_dir / "plagiarism_statistics_report.txt"
+                save_statistics_report(stats_dict, str(stats_report_file), logger)
+            except Exception as e:
+                logger.log_error("Failed to calculate statistics", e)
+                stats_dict = {}
+            
+            # Step 10: Create visualizations
+            logger.log("\nStep 10: Creating visualizations...")
+            try:
+                if stats_dict:
+                    create_visualizations(stats_dict, results_dir, logger)
+            except Exception as e:
+                logger.log_error("Failed to create visualizations", e)
+                # Continue even if visualizations fail
+            
+            # Step 11: Generate report with yes/no and examples
+            logger.log("\nStep 11: Generating report with yes/no answers and examples...")
+            try:
+                report_file = results_dir / "plagiarism_report.txt"
+                all_doc_names = [doc_id_mapping[doc_id] for doc_id in doc_texts.keys()]
+                generate_report(plagiarism_results, str(report_file), logger, 
+                              similarity_threshold=similarity_threshold, all_doc_names=all_doc_names)
             except Exception as e:
                 logger.log_error("Failed to generate report", e)
                 raise
@@ -1463,9 +2000,15 @@ def main(mode: str = "detection", query_paper_path: str = None, query_paper_name
             
             logger.log(f"\nSummary:")
             logger.log(f"  Total documents analyzed: {len(doc_texts)}")
-            logger.log(f"  Documents with potential plagiarism: {total_docs_with_matches}")
+            logger.log(f"  Documents with plagiarism detected (YES): {total_docs_with_matches}")
+            logger.log(f"  Documents with no plagiarism detected (NO): {len(doc_texts) - total_docs_with_matches}")
             logger.log(f"  Total potential matches found: {total_matches}")
-            logger.log(f"\nDetailed report saved to: plagiarism_report.txt")
+            logger.log(f"  Threshold: {similarity_threshold} (score > {similarity_threshold} = YES, otherwise NO)")
+            logger.log(f"\nAll results saved to: results_edward_witten/")
+            logger.log(f"  - Report: plagiarism_report.txt")
+            logger.log(f"  - Chunks dictionary: plagiarism_chunks.json")
+            logger.log(f"  - Statistics: plagiarism_statistics.json and plagiarism_statistics_report.txt")
+            logger.log(f"  - Visualizations: *.png files")
         elif mode == "query":
             logger.log(f"\nQuery complete. Results saved to query_results_*/ directory")
         elif mode == "auto_query":
@@ -1528,4 +2071,3 @@ if __name__ == "__main__":
         evaluation_papers=evaluation_papers,
         auto_query_count=args.auto_query_count
     )
-
