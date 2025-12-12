@@ -1,0 +1,1801 @@
+{
+  "source_stats": {
+    "source-document01492": {
+      "total_chunks": 195,
+      "plagiarized_chunks": 182,
+      "percentage": 93.33333333333333,
+      "num_matches": 8215
+    },
+    "source-document01458": {
+      "total_chunks": 31,
+      "plagiarized_chunks": 30,
+      "percentage": 96.7741935483871,
+      "num_matches": 1362
+    },
+    "source-document01210": {
+      "total_chunks": 100,
+      "plagiarized_chunks": 99,
+      "percentage": 99.0,
+      "num_matches": 5829
+    },
+    "source-document01296": {
+      "total_chunks": 219,
+      "plagiarized_chunks": 192,
+      "percentage": 87.67123287671232,
+      "num_matches": 9486
+    },
+    "source-document01006": {
+      "total_chunks": 220,
+      "plagiarized_chunks": 179,
+      "percentage": 81.36363636363636,
+      "num_matches": 3460
+    },
+    "source-document01427": {
+      "total_chunks": 52,
+      "plagiarized_chunks": 51,
+      "percentage": 98.07692307692307,
+      "num_matches": 2520
+    },
+    "source-document01497": {
+      "total_chunks": 95,
+      "plagiarized_chunks": 91,
+      "percentage": 95.78947368421052,
+      "num_matches": 5903
+    },
+    "source-document01016": {
+      "total_chunks": 151,
+      "plagiarized_chunks": 140,
+      "percentage": 92.71523178807946,
+      "num_matches": 6021
+    },
+    "source-document01472": {
+      "total_chunks": 26,
+      "plagiarized_chunks": 20,
+      "percentage": 76.92307692307693,
+      "num_matches": 922
+    },
+    "source-document01223": {
+      "total_chunks": 97,
+      "plagiarized_chunks": 88,
+      "percentage": 90.72164948453609,
+      "num_matches": 5268
+    },
+    "source-document01147": {
+      "total_chunks": 167,
+      "plagiarized_chunks": 153,
+      "percentage": 91.61676646706587,
+      "num_matches": 5291
+    },
+    "source-document01430": {
+      "total_chunks": 46,
+      "plagiarized_chunks": 46,
+      "percentage": 100.0,
+      "num_matches": 2345
+    },
+    "source-document01305": {
+      "total_chunks": 50,
+      "plagiarized_chunks": 49,
+      "percentage": 98.0,
+      "num_matches": 1283
+    },
+    "source-document01363": {
+      "total_chunks": 73,
+      "plagiarized_chunks": 69,
+      "percentage": 94.52054794520548,
+      "num_matches": 3782
+    },
+    "source-document01190": {
+      "total_chunks": 97,
+      "plagiarized_chunks": 92,
+      "percentage": 94.84536082474226,
+      "num_matches": 5450
+    },
+    "source-document01185": {
+      "total_chunks": 148,
+      "plagiarized_chunks": 127,
+      "percentage": 85.8108108108108,
+      "num_matches": 6666
+    },
+    "source-document01017": {
+      "total_chunks": 50,
+      "plagiarized_chunks": 47,
+      "percentage": 94.0,
+      "num_matches": 1068
+    },
+    "source-document01286": {
+      "total_chunks": 41,
+      "plagiarized_chunks": 38,
+      "percentage": 92.6829268292683,
+      "num_matches": 711
+    },
+    "source-document01182": {
+      "total_chunks": 63,
+      "plagiarized_chunks": 58,
+      "percentage": 92.06349206349206,
+      "num_matches": 1753
+    },
+    "source-document01031": {
+      "total_chunks": 48,
+      "plagiarized_chunks": 47,
+      "percentage": 97.91666666666666,
+      "num_matches": 1301
+    },
+    "source-document01243": {
+      "total_chunks": 178,
+      "plagiarized_chunks": 165,
+      "percentage": 92.69662921348315,
+      "num_matches": 9431
+    },
+    "source-document01311": {
+      "total_chunks": 25,
+      "plagiarized_chunks": 23,
+      "percentage": 92.0,
+      "num_matches": 546
+    },
+    "source-document01117": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 592
+    },
+    "source-document01250": {
+      "total_chunks": 20,
+      "plagiarized_chunks": 19,
+      "percentage": 95.0,
+      "num_matches": 391
+    },
+    "source-document01376": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 393
+    },
+    "source-document01321": {
+      "total_chunks": 53,
+      "plagiarized_chunks": 39,
+      "percentage": 73.58490566037736,
+      "num_matches": 1177
+    },
+    "source-document01393": {
+      "total_chunks": 36,
+      "plagiarized_chunks": 33,
+      "percentage": 91.66666666666666,
+      "num_matches": 342
+    },
+    "source-document01355": {
+      "total_chunks": 36,
+      "plagiarized_chunks": 33,
+      "percentage": 91.66666666666666,
+      "num_matches": 483
+    },
+    "source-document01142": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 9,
+      "percentage": 100.0,
+      "num_matches": 636
+    },
+    "source-document01168": {
+      "total_chunks": 129,
+      "plagiarized_chunks": 64,
+      "percentage": 49.6124031007752,
+      "num_matches": 1386
+    },
+    "source-document01193": {
+      "total_chunks": 3,
+      "plagiarized_chunks": 3,
+      "percentage": 100.0,
+      "num_matches": 489
+    },
+    "source-document01437": {
+      "total_chunks": 24,
+      "plagiarized_chunks": 22,
+      "percentage": 91.66666666666666,
+      "num_matches": 273
+    },
+    "source-document01241": {
+      "total_chunks": 50,
+      "plagiarized_chunks": 39,
+      "percentage": 78.0,
+      "num_matches": 1281
+    },
+    "source-document01469": {
+      "total_chunks": 113,
+      "plagiarized_chunks": 103,
+      "percentage": 91.1504424778761,
+      "num_matches": 3968
+    },
+    "source-document01126": {
+      "total_chunks": 84,
+      "plagiarized_chunks": 69,
+      "percentage": 82.14285714285714,
+      "num_matches": 4778
+    },
+    "source-document01070": {
+      "total_chunks": 52,
+      "plagiarized_chunks": 49,
+      "percentage": 94.23076923076923,
+      "num_matches": 2380
+    },
+    "source-document01340": {
+      "total_chunks": 146,
+      "plagiarized_chunks": 116,
+      "percentage": 79.45205479452055,
+      "num_matches": 3348
+    },
+    "source-document01094": {
+      "total_chunks": 48,
+      "plagiarized_chunks": 42,
+      "percentage": 87.5,
+      "num_matches": 973
+    },
+    "source-document01263": {
+      "total_chunks": 50,
+      "plagiarized_chunks": 48,
+      "percentage": 96.0,
+      "num_matches": 1851
+    },
+    "source-document01428": {
+      "total_chunks": 42,
+      "plagiarized_chunks": 39,
+      "percentage": 92.85714285714286,
+      "num_matches": 1485
+    },
+    "source-document01362": {
+      "total_chunks": 40,
+      "plagiarized_chunks": 38,
+      "percentage": 95.0,
+      "num_matches": 1838
+    },
+    "source-document01423": {
+      "total_chunks": 47,
+      "plagiarized_chunks": 47,
+      "percentage": 100.0,
+      "num_matches": 1278
+    },
+    "source-document01040": {
+      "total_chunks": 24,
+      "plagiarized_chunks": 22,
+      "percentage": 91.66666666666666,
+      "num_matches": 376
+    },
+    "source-document01081": {
+      "total_chunks": 44,
+      "plagiarized_chunks": 38,
+      "percentage": 86.36363636363636,
+      "num_matches": 1027
+    },
+    "source-document01299": {
+      "total_chunks": 70,
+      "plagiarized_chunks": 52,
+      "percentage": 74.28571428571429,
+      "num_matches": 1754
+    },
+    "source-document01132": {
+      "total_chunks": 40,
+      "plagiarized_chunks": 37,
+      "percentage": 92.5,
+      "num_matches": 946
+    },
+    "source-document01265": {
+      "total_chunks": 196,
+      "plagiarized_chunks": 174,
+      "percentage": 88.77551020408163,
+      "num_matches": 6238
+    },
+    "source-document01480": {
+      "total_chunks": 26,
+      "plagiarized_chunks": 26,
+      "percentage": 100.0,
+      "num_matches": 1144
+    },
+    "source-document01493": {
+      "total_chunks": 180,
+      "plagiarized_chunks": 147,
+      "percentage": 81.66666666666667,
+      "num_matches": 4704
+    },
+    "source-document01261": {
+      "total_chunks": 246,
+      "plagiarized_chunks": 134,
+      "percentage": 54.47154471544715,
+      "num_matches": 1999
+    },
+    "source-document01018": {
+      "total_chunks": 16,
+      "plagiarized_chunks": 16,
+      "percentage": 100.0,
+      "num_matches": 715
+    },
+    "source-document01476": {
+      "total_chunks": 15,
+      "plagiarized_chunks": 13,
+      "percentage": 86.66666666666667,
+      "num_matches": 664
+    },
+    "source-document01097": {
+      "total_chunks": 49,
+      "plagiarized_chunks": 36,
+      "percentage": 73.46938775510205,
+      "num_matches": 1191
+    },
+    "source-document01056": {
+      "total_chunks": 110,
+      "plagiarized_chunks": 83,
+      "percentage": 75.45454545454545,
+      "num_matches": 1757
+    },
+    "source-document01218": {
+      "total_chunks": 40,
+      "plagiarized_chunks": 38,
+      "percentage": 95.0,
+      "num_matches": 1337
+    },
+    "source-document01244": {
+      "total_chunks": 205,
+      "plagiarized_chunks": 134,
+      "percentage": 65.3658536585366,
+      "num_matches": 2273
+    },
+    "source-document01271": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 254
+    },
+    "source-document01461": {
+      "total_chunks": 34,
+      "plagiarized_chunks": 30,
+      "percentage": 88.23529411764706,
+      "num_matches": 596
+    },
+    "source-document01344": {
+      "total_chunks": 40,
+      "plagiarized_chunks": 36,
+      "percentage": 90.0,
+      "num_matches": 1103
+    },
+    "source-document01384": {
+      "total_chunks": 41,
+      "plagiarized_chunks": 39,
+      "percentage": 95.1219512195122,
+      "num_matches": 959
+    },
+    "source-document01345": {
+      "total_chunks": 128,
+      "plagiarized_chunks": 118,
+      "percentage": 92.1875,
+      "num_matches": 3324
+    },
+    "source-document01500": {
+      "total_chunks": 35,
+      "plagiarized_chunks": 29,
+      "percentage": 82.85714285714286,
+      "num_matches": 1029
+    },
+    "source-document01178": {
+      "total_chunks": 34,
+      "plagiarized_chunks": 30,
+      "percentage": 88.23529411764706,
+      "num_matches": 791
+    },
+    "source-document01112": {
+      "total_chunks": 18,
+      "plagiarized_chunks": 8,
+      "percentage": 44.44444444444444,
+      "num_matches": 799
+    },
+    "source-document01008": {
+      "total_chunks": 216,
+      "plagiarized_chunks": 185,
+      "percentage": 85.64814814814815,
+      "num_matches": 5272
+    },
+    "source-document01035": {
+      "total_chunks": 160,
+      "plagiarized_chunks": 57,
+      "percentage": 35.625,
+      "num_matches": 628
+    },
+    "source-document01055": {
+      "total_chunks": 24,
+      "plagiarized_chunks": 21,
+      "percentage": 87.5,
+      "num_matches": 310
+    },
+    "source-document01199": {
+      "total_chunks": 3,
+      "plagiarized_chunks": 3,
+      "percentage": 100.0,
+      "num_matches": 987
+    },
+    "source-document01184": {
+      "total_chunks": 32,
+      "plagiarized_chunks": 28,
+      "percentage": 87.5,
+      "num_matches": 645
+    },
+    "source-document01413": {
+      "total_chunks": 15,
+      "plagiarized_chunks": 15,
+      "percentage": 100.0,
+      "num_matches": 1207
+    },
+    "source-document01187": {
+      "total_chunks": 81,
+      "plagiarized_chunks": 55,
+      "percentage": 67.90123456790124,
+      "num_matches": 452
+    },
+    "source-document01289": {
+      "total_chunks": 96,
+      "plagiarized_chunks": 89,
+      "percentage": 92.70833333333334,
+      "num_matches": 4170
+    },
+    "source-document01446": {
+      "total_chunks": 48,
+      "plagiarized_chunks": 41,
+      "percentage": 85.41666666666666,
+      "num_matches": 1160
+    },
+    "source-document01468": {
+      "total_chunks": 53,
+      "plagiarized_chunks": 44,
+      "percentage": 83.01886792452831,
+      "num_matches": 789
+    },
+    "source-document01043": {
+      "total_chunks": 16,
+      "plagiarized_chunks": 15,
+      "percentage": 93.75,
+      "num_matches": 609
+    },
+    "source-document01157": {
+      "total_chunks": 232,
+      "plagiarized_chunks": 195,
+      "percentage": 84.05172413793103,
+      "num_matches": 3058
+    },
+    "source-document01473": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 10,
+      "percentage": 100.0,
+      "num_matches": 442
+    },
+    "source-document01488": {
+      "total_chunks": 200,
+      "plagiarized_chunks": 178,
+      "percentage": 89.0,
+      "num_matches": 6369
+    },
+    "source-document01214": {
+      "total_chunks": 23,
+      "plagiarized_chunks": 19,
+      "percentage": 82.6086956521739,
+      "num_matches": 476
+    },
+    "source-document01146": {
+      "total_chunks": 80,
+      "plagiarized_chunks": 73,
+      "percentage": 91.25,
+      "num_matches": 1681
+    },
+    "source-document01092": {
+      "total_chunks": 11,
+      "plagiarized_chunks": 11,
+      "percentage": 100.0,
+      "num_matches": 349
+    },
+    "source-document01019": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 106
+    },
+    "source-document01096": {
+      "total_chunks": 165,
+      "plagiarized_chunks": 134,
+      "percentage": 81.21212121212122,
+      "num_matches": 1564
+    },
+    "source-document01242": {
+      "total_chunks": 49,
+      "plagiarized_chunks": 46,
+      "percentage": 93.87755102040816,
+      "num_matches": 682
+    },
+    "source-document01249": {
+      "total_chunks": 43,
+      "plagiarized_chunks": 38,
+      "percentage": 88.37209302325581,
+      "num_matches": 812
+    },
+    "source-document01257": {
+      "total_chunks": 181,
+      "plagiarized_chunks": 166,
+      "percentage": 91.71270718232044,
+      "num_matches": 7468
+    },
+    "source-document01332": {
+      "total_chunks": 189,
+      "plagiarized_chunks": 165,
+      "percentage": 87.3015873015873,
+      "num_matches": 5130
+    },
+    "source-document01121": {
+      "total_chunks": 39,
+      "plagiarized_chunks": 35,
+      "percentage": 89.74358974358975,
+      "num_matches": 1329
+    },
+    "source-document01411": {
+      "total_chunks": 48,
+      "plagiarized_chunks": 40,
+      "percentage": 83.33333333333334,
+      "num_matches": 1584
+    },
+    "source-document01231": {
+      "total_chunks": 33,
+      "plagiarized_chunks": 32,
+      "percentage": 96.96969696969697,
+      "num_matches": 1021
+    },
+    "source-document01111": {
+      "total_chunks": 118,
+      "plagiarized_chunks": 103,
+      "percentage": 87.28813559322035,
+      "num_matches": 3231
+    },
+    "source-document01440": {
+      "total_chunks": 52,
+      "plagiarized_chunks": 39,
+      "percentage": 75.0,
+      "num_matches": 1724
+    },
+    "source-document01069": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 9,
+      "percentage": 100.0,
+      "num_matches": 184
+    },
+    "source-document01353": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 9,
+      "percentage": 100.0,
+      "num_matches": 275
+    },
+    "source-document01196": {
+      "total_chunks": 16,
+      "plagiarized_chunks": 16,
+      "percentage": 100.0,
+      "num_matches": 428
+    },
+    "source-document01065": {
+      "total_chunks": 8,
+      "plagiarized_chunks": 7,
+      "percentage": 87.5,
+      "num_matches": 993
+    },
+    "source-document01075": {
+      "total_chunks": 36,
+      "plagiarized_chunks": 36,
+      "percentage": 100.0,
+      "num_matches": 1018
+    },
+    "source-document01288": {
+      "total_chunks": 90,
+      "plagiarized_chunks": 82,
+      "percentage": 91.11111111111111,
+      "num_matches": 4413
+    },
+    "source-document01451": {
+      "total_chunks": 43,
+      "plagiarized_chunks": 35,
+      "percentage": 81.3953488372093,
+      "num_matches": 802
+    },
+    "source-document01211": {
+      "total_chunks": 45,
+      "plagiarized_chunks": 41,
+      "percentage": 91.11111111111111,
+      "num_matches": 1008
+    },
+    "source-document01475": {
+      "total_chunks": 28,
+      "plagiarized_chunks": 26,
+      "percentage": 92.85714285714286,
+      "num_matches": 420
+    },
+    "source-document01495": {
+      "total_chunks": 51,
+      "plagiarized_chunks": 39,
+      "percentage": 76.47058823529412,
+      "num_matches": 427
+    },
+    "source-document01192": {
+      "total_chunks": 20,
+      "plagiarized_chunks": 18,
+      "percentage": 90.0,
+      "num_matches": 366
+    },
+    "source-document01063": {
+      "total_chunks": 13,
+      "plagiarized_chunks": 10,
+      "percentage": 76.92307692307693,
+      "num_matches": 98
+    },
+    "source-document01491": {
+      "total_chunks": 44,
+      "plagiarized_chunks": 39,
+      "percentage": 88.63636363636364,
+      "num_matches": 1603
+    },
+    "source-document01026": {
+      "total_chunks": 142,
+      "plagiarized_chunks": 127,
+      "percentage": 89.43661971830986,
+      "num_matches": 2694
+    },
+    "source-document01303": {
+      "total_chunks": 30,
+      "plagiarized_chunks": 28,
+      "percentage": 93.33333333333333,
+      "num_matches": 540
+    },
+    "source-document01139": {
+      "total_chunks": 190,
+      "plagiarized_chunks": 169,
+      "percentage": 88.94736842105263,
+      "num_matches": 6000
+    },
+    "source-document01186": {
+      "total_chunks": 49,
+      "plagiarized_chunks": 49,
+      "percentage": 100.0,
+      "num_matches": 2270
+    },
+    "source-document01292": {
+      "total_chunks": 14,
+      "plagiarized_chunks": 10,
+      "percentage": 71.42857142857143,
+      "num_matches": 81
+    },
+    "source-document01374": {
+      "total_chunks": 16,
+      "plagiarized_chunks": 15,
+      "percentage": 93.75,
+      "num_matches": 733
+    },
+    "source-document01277": {
+      "total_chunks": 46,
+      "plagiarized_chunks": 43,
+      "percentage": 93.47826086956522,
+      "num_matches": 1519
+    },
+    "source-document01123": {
+      "total_chunks": 51,
+      "plagiarized_chunks": 46,
+      "percentage": 90.19607843137256,
+      "num_matches": 1096
+    },
+    "source-document01001": {
+      "total_chunks": 54,
+      "plagiarized_chunks": 45,
+      "percentage": 83.33333333333334,
+      "num_matches": 875
+    },
+    "source-document01339": {
+      "total_chunks": 48,
+      "plagiarized_chunks": 46,
+      "percentage": 95.83333333333334,
+      "num_matches": 1670
+    },
+    "source-document01141": {
+      "total_chunks": 150,
+      "plagiarized_chunks": 119,
+      "percentage": 79.33333333333333,
+      "num_matches": 2678
+    },
+    "source-document01095": {
+      "total_chunks": 137,
+      "plagiarized_chunks": 115,
+      "percentage": 83.94160583941606,
+      "num_matches": 1371
+    },
+    "source-document01369": {
+      "total_chunks": 44,
+      "plagiarized_chunks": 41,
+      "percentage": 93.18181818181817,
+      "num_matches": 1211
+    },
+    "source-document01102": {
+      "total_chunks": 52,
+      "plagiarized_chunks": 40,
+      "percentage": 76.92307692307693,
+      "num_matches": 1995
+    },
+    "source-document01370": {
+      "total_chunks": 169,
+      "plagiarized_chunks": 119,
+      "percentage": 70.41420118343196,
+      "num_matches": 3752
+    },
+    "source-document01020": {
+      "total_chunks": 32,
+      "plagiarized_chunks": 27,
+      "percentage": 84.375,
+      "num_matches": 645
+    },
+    "source-document01235": {
+      "total_chunks": 35,
+      "plagiarized_chunks": 33,
+      "percentage": 94.28571428571428,
+      "num_matches": 664
+    },
+    "source-document01432": {
+      "total_chunks": 40,
+      "plagiarized_chunks": 34,
+      "percentage": 85.0,
+      "num_matches": 685
+    },
+    "source-document01343": {
+      "total_chunks": 103,
+      "plagiarized_chunks": 94,
+      "percentage": 91.2621359223301,
+      "num_matches": 2122
+    },
+    "source-document01246": {
+      "total_chunks": 18,
+      "plagiarized_chunks": 15,
+      "percentage": 83.33333333333334,
+      "num_matches": 402
+    },
+    "source-document01206": {
+      "total_chunks": 36,
+      "plagiarized_chunks": 34,
+      "percentage": 94.44444444444444,
+      "num_matches": 621
+    },
+    "source-document01066": {
+      "total_chunks": 13,
+      "plagiarized_chunks": 13,
+      "percentage": 100.0,
+      "num_matches": 228
+    },
+    "source-document01452": {
+      "total_chunks": 46,
+      "plagiarized_chunks": 40,
+      "percentage": 86.95652173913044,
+      "num_matches": 1246
+    },
+    "source-document01383": {
+      "total_chunks": 15,
+      "plagiarized_chunks": 14,
+      "percentage": 93.33333333333333,
+      "num_matches": 231
+    },
+    "source-document01267": {
+      "total_chunks": 26,
+      "plagiarized_chunks": 26,
+      "percentage": 100.0,
+      "num_matches": 909
+    },
+    "source-document01061": {
+      "total_chunks": 42,
+      "plagiarized_chunks": 37,
+      "percentage": 88.09523809523809,
+      "num_matches": 1242
+    },
+    "source-document01058": {
+      "total_chunks": 226,
+      "plagiarized_chunks": 182,
+      "percentage": 80.53097345132744,
+      "num_matches": 3345
+    },
+    "source-document01421": {
+      "total_chunks": 279,
+      "plagiarized_chunks": 174,
+      "percentage": 62.365591397849464,
+      "num_matches": 1610
+    },
+    "source-document01402": {
+      "total_chunks": 49,
+      "plagiarized_chunks": 46,
+      "percentage": 93.87755102040816,
+      "num_matches": 1518
+    },
+    "source-document01085": {
+      "total_chunks": 46,
+      "plagiarized_chunks": 30,
+      "percentage": 65.21739130434783,
+      "num_matches": 1592
+    },
+    "source-document01422": {
+      "total_chunks": 30,
+      "plagiarized_chunks": 28,
+      "percentage": 93.33333333333333,
+      "num_matches": 738
+    },
+    "source-document01349": {
+      "total_chunks": 48,
+      "plagiarized_chunks": 46,
+      "percentage": 95.83333333333334,
+      "num_matches": 1820
+    },
+    "source-document01011": {
+      "total_chunks": 44,
+      "plagiarized_chunks": 37,
+      "percentage": 84.0909090909091,
+      "num_matches": 429
+    },
+    "source-document01093": {
+      "total_chunks": 20,
+      "plagiarized_chunks": 20,
+      "percentage": 100.0,
+      "num_matches": 695
+    },
+    "source-document01484": {
+      "total_chunks": 11,
+      "plagiarized_chunks": 10,
+      "percentage": 90.9090909090909,
+      "num_matches": 62
+    },
+    "source-document01329": {
+      "total_chunks": 30,
+      "plagiarized_chunks": 27,
+      "percentage": 90.0,
+      "num_matches": 471
+    },
+    "source-document01162": {
+      "total_chunks": 53,
+      "plagiarized_chunks": 48,
+      "percentage": 90.56603773584906,
+      "num_matches": 748
+    },
+    "source-document01083": {
+      "total_chunks": 37,
+      "plagiarized_chunks": 36,
+      "percentage": 97.2972972972973,
+      "num_matches": 666
+    },
+    "source-document01109": {
+      "total_chunks": 80,
+      "plagiarized_chunks": 76,
+      "percentage": 95.0,
+      "num_matches": 3753
+    },
+    "source-document01119": {
+      "total_chunks": 50,
+      "plagiarized_chunks": 48,
+      "percentage": 96.0,
+      "num_matches": 904
+    },
+    "source-document01449": {
+      "total_chunks": 20,
+      "plagiarized_chunks": 15,
+      "percentage": 75.0,
+      "num_matches": 104
+    },
+    "source-document01318": {
+      "total_chunks": 18,
+      "plagiarized_chunks": 17,
+      "percentage": 94.44444444444444,
+      "num_matches": 272
+    },
+    "source-document01148": {
+      "total_chunks": 8,
+      "plagiarized_chunks": 8,
+      "percentage": 100.0,
+      "num_matches": 777
+    },
+    "source-document01014": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 10,
+      "percentage": 100.0,
+      "num_matches": 291
+    },
+    "source-document01107": {
+      "total_chunks": 20,
+      "plagiarized_chunks": 18,
+      "percentage": 90.0,
+      "num_matches": 110
+    },
+    "source-document01086": {
+      "total_chunks": 37,
+      "plagiarized_chunks": 33,
+      "percentage": 89.1891891891892,
+      "num_matches": 631
+    },
+    "source-document01143": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 7,
+      "percentage": 77.77777777777779,
+      "num_matches": 135
+    },
+    "source-document01429": {
+      "total_chunks": 11,
+      "plagiarized_chunks": 10,
+      "percentage": 90.9090909090909,
+      "num_matches": 326
+    },
+    "source-document01174": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 175
+    },
+    "source-document01385": {
+      "total_chunks": 40,
+      "plagiarized_chunks": 35,
+      "percentage": 87.5,
+      "num_matches": 662
+    },
+    "source-document01227": {
+      "total_chunks": 43,
+      "plagiarized_chunks": 36,
+      "percentage": 83.72093023255815,
+      "num_matches": 443
+    },
+    "source-document01287": {
+      "total_chunks": 65,
+      "plagiarized_chunks": 45,
+      "percentage": 69.23076923076923,
+      "num_matches": 855
+    },
+    "source-document01454": {
+      "total_chunks": 6,
+      "plagiarized_chunks": 6,
+      "percentage": 100.0,
+      "num_matches": 278
+    },
+    "source-document01416": {
+      "total_chunks": 39,
+      "plagiarized_chunks": 38,
+      "percentage": 97.43589743589743,
+      "num_matches": 1376
+    },
+    "source-document01110": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 61
+    },
+    "source-document01209": {
+      "total_chunks": 48,
+      "plagiarized_chunks": 43,
+      "percentage": 89.58333333333334,
+      "num_matches": 1109
+    },
+    "source-document01456": {
+      "total_chunks": 33,
+      "plagiarized_chunks": 30,
+      "percentage": 90.9090909090909,
+      "num_matches": 791
+    },
+    "source-document01401": {
+      "total_chunks": 39,
+      "plagiarized_chunks": 39,
+      "percentage": 100.0,
+      "num_matches": 1353
+    },
+    "source-document01465": {
+      "total_chunks": 21,
+      "plagiarized_chunks": 20,
+      "percentage": 95.23809523809523,
+      "num_matches": 252
+    },
+    "source-document01173": {
+      "total_chunks": 54,
+      "plagiarized_chunks": 45,
+      "percentage": 83.33333333333334,
+      "num_matches": 348
+    },
+    "source-document01194": {
+      "total_chunks": 27,
+      "plagiarized_chunks": 19,
+      "percentage": 70.37037037037037,
+      "num_matches": 149
+    },
+    "source-document01203": {
+      "total_chunks": 40,
+      "plagiarized_chunks": 34,
+      "percentage": 85.0,
+      "num_matches": 1149
+    },
+    "source-document01133": {
+      "total_chunks": 100,
+      "plagiarized_chunks": 74,
+      "percentage": 74.0,
+      "num_matches": 637
+    },
+    "source-document01204": {
+      "total_chunks": 24,
+      "plagiarized_chunks": 19,
+      "percentage": 79.16666666666666,
+      "num_matches": 396
+    },
+    "source-document01150": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 36
+    },
+    "source-document01226": {
+      "total_chunks": 25,
+      "plagiarized_chunks": 17,
+      "percentage": 68.0,
+      "num_matches": 217
+    },
+    "source-document01208": {
+      "total_chunks": 41,
+      "plagiarized_chunks": 39,
+      "percentage": 95.1219512195122,
+      "num_matches": 389
+    },
+    "source-document01202": {
+      "total_chunks": 50,
+      "plagiarized_chunks": 40,
+      "percentage": 80.0,
+      "num_matches": 449
+    },
+    "source-document01010": {
+      "total_chunks": 47,
+      "plagiarized_chunks": 47,
+      "percentage": 100.0,
+      "num_matches": 1603
+    },
+    "source-document01419": {
+      "total_chunks": 29,
+      "plagiarized_chunks": 27,
+      "percentage": 93.10344827586206,
+      "num_matches": 886
+    },
+    "source-document01130": {
+      "total_chunks": 34,
+      "plagiarized_chunks": 30,
+      "percentage": 88.23529411764706,
+      "num_matches": 674
+    },
+    "source-document01101": {
+      "total_chunks": 16,
+      "plagiarized_chunks": 14,
+      "percentage": 87.5,
+      "num_matches": 66
+    },
+    "source-document01176": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 320
+    },
+    "source-document01029": {
+      "total_chunks": 7,
+      "plagiarized_chunks": 7,
+      "percentage": 100.0,
+      "num_matches": 206
+    },
+    "source-document01060": {
+      "total_chunks": 47,
+      "plagiarized_chunks": 42,
+      "percentage": 89.36170212765957,
+      "num_matches": 759
+    },
+    "source-document01151": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 9,
+      "percentage": 90.0,
+      "num_matches": 220
+    },
+    "source-document01302": {
+      "total_chunks": 48,
+      "plagiarized_chunks": 26,
+      "percentage": 54.166666666666664,
+      "num_matches": 868
+    },
+    "source-document01012": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 8,
+      "percentage": 80.0,
+      "num_matches": 217
+    },
+    "source-document01078": {
+      "total_chunks": 46,
+      "plagiarized_chunks": 42,
+      "percentage": 91.30434782608695,
+      "num_matches": 1834
+    },
+    "source-document01091": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 9,
+      "percentage": 100.0,
+      "num_matches": 72
+    },
+    "source-document01364": {
+      "total_chunks": 8,
+      "plagiarized_chunks": 8,
+      "percentage": 100.0,
+      "num_matches": 163
+    },
+    "source-document01256": {
+      "total_chunks": 58,
+      "plagiarized_chunks": 50,
+      "percentage": 86.20689655172413,
+      "num_matches": 885
+    },
+    "source-document01341": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 749
+    },
+    "source-document01463": {
+      "total_chunks": 48,
+      "plagiarized_chunks": 42,
+      "percentage": 87.5,
+      "num_matches": 872
+    },
+    "source-document01181": {
+      "total_chunks": 31,
+      "plagiarized_chunks": 30,
+      "percentage": 96.7741935483871,
+      "num_matches": 295
+    },
+    "source-document01051": {
+      "total_chunks": 46,
+      "plagiarized_chunks": 41,
+      "percentage": 89.13043478260869,
+      "num_matches": 899
+    },
+    "source-document01002": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 4,
+      "percentage": 80.0,
+      "num_matches": 102
+    },
+    "source-document01415": {
+      "total_chunks": 24,
+      "plagiarized_chunks": 21,
+      "percentage": 87.5,
+      "num_matches": 284
+    },
+    "source-document01072": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 5,
+      "percentage": 55.55555555555556,
+      "num_matches": 148
+    },
+    "source-document01114": {
+      "total_chunks": 23,
+      "plagiarized_chunks": 20,
+      "percentage": 86.95652173913044,
+      "num_matches": 305
+    },
+    "source-document01144": {
+      "total_chunks": 15,
+      "plagiarized_chunks": 13,
+      "percentage": 86.66666666666667,
+      "num_matches": 274
+    },
+    "source-document01379": {
+      "total_chunks": 25,
+      "plagiarized_chunks": 24,
+      "percentage": 96.0,
+      "num_matches": 353
+    },
+    "source-document01089": {
+      "total_chunks": 31,
+      "plagiarized_chunks": 26,
+      "percentage": 83.87096774193549,
+      "num_matches": 534
+    },
+    "source-document01392": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 7,
+      "percentage": 77.77777777777779,
+      "num_matches": 66
+    },
+    "source-document01331": {
+      "total_chunks": 14,
+      "plagiarized_chunks": 14,
+      "percentage": 100.0,
+      "num_matches": 256
+    },
+    "source-document01027": {
+      "total_chunks": 21,
+      "plagiarized_chunks": 19,
+      "percentage": 90.47619047619048,
+      "num_matches": 148
+    },
+    "source-document01310": {
+      "total_chunks": 49,
+      "plagiarized_chunks": 43,
+      "percentage": 87.75510204081633,
+      "num_matches": 988
+    },
+    "source-document01224": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 26
+    },
+    "source-document01154": {
+      "total_chunks": 13,
+      "plagiarized_chunks": 11,
+      "percentage": 84.61538461538461,
+      "num_matches": 120
+    },
+    "source-document01230": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 148
+    },
+    "source-document01022": {
+      "total_chunks": 7,
+      "plagiarized_chunks": 7,
+      "percentage": 100.0,
+      "num_matches": 167
+    },
+    "source-document01100": {
+      "total_chunks": 15,
+      "plagiarized_chunks": 13,
+      "percentage": 86.66666666666667,
+      "num_matches": 59
+    },
+    "source-document01357": {
+      "total_chunks": 39,
+      "plagiarized_chunks": 15,
+      "percentage": 38.46153846153847,
+      "num_matches": 118
+    },
+    "source-document01104": {
+      "total_chunks": 45,
+      "plagiarized_chunks": 40,
+      "percentage": 88.88888888888889,
+      "num_matches": 939
+    },
+    "source-document01279": {
+      "total_chunks": 22,
+      "plagiarized_chunks": 20,
+      "percentage": 90.9090909090909,
+      "num_matches": 173
+    },
+    "source-document01400": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 3,
+      "percentage": 60.0,
+      "num_matches": 26
+    },
+    "source-document01161": {
+      "total_chunks": 48,
+      "plagiarized_chunks": 42,
+      "percentage": 87.5,
+      "num_matches": 443
+    },
+    "source-document01359": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 101
+    },
+    "source-document01219": {
+      "total_chunks": 29,
+      "plagiarized_chunks": 27,
+      "percentage": 93.10344827586206,
+      "num_matches": 757
+    },
+    "source-document01291": {
+      "total_chunks": 20,
+      "plagiarized_chunks": 12,
+      "percentage": 60.0,
+      "num_matches": 341
+    },
+    "source-document01396": {
+      "total_chunks": 12,
+      "plagiarized_chunks": 9,
+      "percentage": 75.0,
+      "num_matches": 235
+    },
+    "source-document01293": {
+      "total_chunks": 47,
+      "plagiarized_chunks": 45,
+      "percentage": 95.74468085106383,
+      "num_matches": 668
+    },
+    "source-document01145": {
+      "total_chunks": 8,
+      "plagiarized_chunks": 6,
+      "percentage": 75.0,
+      "num_matches": 96
+    },
+    "source-document01188": {
+      "total_chunks": 21,
+      "plagiarized_chunks": 20,
+      "percentage": 95.23809523809523,
+      "num_matches": 150
+    },
+    "source-document01464": {
+      "total_chunks": 28,
+      "plagiarized_chunks": 23,
+      "percentage": 82.14285714285714,
+      "num_matches": 321
+    },
+    "source-document01050": {
+      "total_chunks": 34,
+      "plagiarized_chunks": 25,
+      "percentage": 73.52941176470588,
+      "num_matches": 514
+    },
+    "source-document01375": {
+      "total_chunks": 8,
+      "plagiarized_chunks": 6,
+      "percentage": 75.0,
+      "num_matches": 27
+    },
+    "source-document01334": {
+      "total_chunks": 11,
+      "plagiarized_chunks": 9,
+      "percentage": 81.81818181818183,
+      "num_matches": 35
+    },
+    "source-document01324": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 10,
+      "percentage": 100.0,
+      "num_matches": 86
+    },
+    "source-document01478": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 24
+    },
+    "source-document01453": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 174
+    },
+    "source-document01215": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 206
+    },
+    "source-document01033": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 35
+    },
+    "source-document01149": {
+      "total_chunks": 23,
+      "plagiarized_chunks": 22,
+      "percentage": 95.65217391304348,
+      "num_matches": 649
+    },
+    "source-document01045": {
+      "total_chunks": 15,
+      "plagiarized_chunks": 15,
+      "percentage": 100.0,
+      "num_matches": 253
+    },
+    "source-document01418": {
+      "total_chunks": 29,
+      "plagiarized_chunks": 26,
+      "percentage": 89.65517241379311,
+      "num_matches": 949
+    },
+    "source-document01297": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 8,
+      "percentage": 80.0,
+      "num_matches": 63
+    },
+    "source-document01337": {
+      "total_chunks": 19,
+      "plagiarized_chunks": 15,
+      "percentage": 78.94736842105263,
+      "num_matches": 137
+    },
+    "source-document01179": {
+      "total_chunks": 38,
+      "plagiarized_chunks": 19,
+      "percentage": 50.0,
+      "num_matches": 132
+    },
+    "source-document01394": {
+      "total_chunks": 26,
+      "plagiarized_chunks": 26,
+      "percentage": 100.0,
+      "num_matches": 375
+    },
+    "source-document01237": {
+      "total_chunks": 15,
+      "plagiarized_chunks": 14,
+      "percentage": 93.33333333333333,
+      "num_matches": 152
+    },
+    "source-document01273": {
+      "total_chunks": 16,
+      "plagiarized_chunks": 15,
+      "percentage": 93.75,
+      "num_matches": 188
+    },
+    "source-document01073": {
+      "total_chunks": 22,
+      "plagiarized_chunks": 17,
+      "percentage": 77.27272727272727,
+      "num_matches": 116
+    },
+    "source-document01108": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 10,
+      "percentage": 100.0,
+      "num_matches": 69
+    },
+    "source-document01499": {
+      "total_chunks": 3,
+      "plagiarized_chunks": 3,
+      "percentage": 100.0,
+      "num_matches": 107
+    },
+    "source-document01494": {
+      "total_chunks": 13,
+      "plagiarized_chunks": 10,
+      "percentage": 76.92307692307693,
+      "num_matches": 85
+    },
+    "source-document01003": {
+      "total_chunks": 148,
+      "plagiarized_chunks": 60,
+      "percentage": 40.54054054054054,
+      "num_matches": 251
+    },
+    "source-document01004": {
+      "total_chunks": 45,
+      "plagiarized_chunks": 24,
+      "percentage": 53.333333333333336,
+      "num_matches": 115
+    },
+    "source-document01252": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 10,
+      "percentage": 100.0,
+      "num_matches": 63
+    },
+    "source-document01486": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 10,
+      "percentage": 100.0,
+      "num_matches": 141
+    },
+    "source-document01009": {
+      "total_chunks": 31,
+      "plagiarized_chunks": 28,
+      "percentage": 90.32258064516128,
+      "num_matches": 532
+    },
+    "source-document01134": {
+      "total_chunks": 7,
+      "plagiarized_chunks": 7,
+      "percentage": 100.0,
+      "num_matches": 66
+    },
+    "source-document01228": {
+      "total_chunks": 15,
+      "plagiarized_chunks": 13,
+      "percentage": 86.66666666666667,
+      "num_matches": 58
+    },
+    "source-document01172": {
+      "total_chunks": 12,
+      "plagiarized_chunks": 10,
+      "percentage": 83.33333333333334,
+      "num_matches": 159
+    },
+    "source-document01351": {
+      "total_chunks": 24,
+      "plagiarized_chunks": 21,
+      "percentage": 87.5,
+      "num_matches": 481
+    },
+    "source-document01481": {
+      "total_chunks": 33,
+      "plagiarized_chunks": 29,
+      "percentage": 87.87878787878788,
+      "num_matches": 548
+    },
+    "source-document01439": {
+      "total_chunks": 15,
+      "plagiarized_chunks": 14,
+      "percentage": 93.33333333333333,
+      "num_matches": 137
+    },
+    "source-document01490": {
+      "total_chunks": 17,
+      "plagiarized_chunks": 14,
+      "percentage": 82.35294117647058,
+      "num_matches": 131
+    },
+    "source-document01047": {
+      "total_chunks": 34,
+      "plagiarized_chunks": 32,
+      "percentage": 94.11764705882352,
+      "num_matches": 777
+    },
+    "source-document01140": {
+      "total_chunks": 42,
+      "plagiarized_chunks": 40,
+      "percentage": 95.23809523809523,
+      "num_matches": 717
+    },
+    "source-document01406": {
+      "total_chunks": 14,
+      "plagiarized_chunks": 13,
+      "percentage": 92.85714285714286,
+      "num_matches": 403
+    },
+    "source-document01467": {
+      "total_chunks": 15,
+      "plagiarized_chunks": 12,
+      "percentage": 80.0,
+      "num_matches": 48
+    },
+    "source-document01388": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 34
+    },
+    "source-document01361": {
+      "total_chunks": 13,
+      "plagiarized_chunks": 9,
+      "percentage": 69.23076923076923,
+      "num_matches": 45
+    },
+    "source-document01407": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 10,
+      "percentage": 100.0,
+      "num_matches": 197
+    },
+    "source-document01281": {
+      "total_chunks": 8,
+      "plagiarized_chunks": 8,
+      "percentage": 100.0,
+      "num_matches": 167
+    },
+    "source-document01200": {
+      "total_chunks": 31,
+      "plagiarized_chunks": 29,
+      "percentage": 93.54838709677419,
+      "num_matches": 863
+    },
+    "source-document01371": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 10,
+      "percentage": 100.0,
+      "num_matches": 168
+    },
+    "source-document01399": {
+      "total_chunks": 55,
+      "plagiarized_chunks": 33,
+      "percentage": 60.0,
+      "num_matches": 168
+    },
+    "source-document01240": {
+      "total_chunks": 41,
+      "plagiarized_chunks": 29,
+      "percentage": 70.73170731707317,
+      "num_matches": 115
+    },
+    "source-document01404": {
+      "total_chunks": 25,
+      "plagiarized_chunks": 21,
+      "percentage": 84.0,
+      "num_matches": 160
+    },
+    "source-document01448": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 85
+    },
+    "source-document01443": {
+      "total_chunks": 13,
+      "plagiarized_chunks": 11,
+      "percentage": 84.61538461538461,
+      "num_matches": 112
+    },
+    "source-document01460": {
+      "total_chunks": 8,
+      "plagiarized_chunks": 8,
+      "percentage": 100.0,
+      "num_matches": 51
+    },
+    "source-document01042": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 9,
+      "percentage": 90.0,
+      "num_matches": 258
+    },
+    "source-document01041": {
+      "total_chunks": 15,
+      "plagiarized_chunks": 11,
+      "percentage": 73.33333333333333,
+      "num_matches": 70
+    },
+    "source-document01189": {
+      "total_chunks": 20,
+      "plagiarized_chunks": 17,
+      "percentage": 85.0,
+      "num_matches": 149
+    },
+    "source-document01455": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 10,
+      "percentage": 100.0,
+      "num_matches": 234
+    },
+    "source-document01171": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 9,
+      "percentage": 90.0,
+      "num_matches": 72
+    },
+    "source-document01356": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 7,
+      "percentage": 77.77777777777779,
+      "num_matches": 18
+    },
+    "source-document01068": {
+      "total_chunks": 13,
+      "plagiarized_chunks": 10,
+      "percentage": 76.92307692307693,
+      "num_matches": 76
+    },
+    "source-document01216": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 9,
+      "percentage": 100.0,
+      "num_matches": 166
+    },
+    "source-document01335": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 116
+    },
+    "source-document01438": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 137
+    },
+    "source-document01052": {
+      "total_chunks": 48,
+      "plagiarized_chunks": 22,
+      "percentage": 45.83333333333333,
+      "num_matches": 202
+    },
+    "source-document01191": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 129
+    },
+    "source-document01268": {
+      "total_chunks": 11,
+      "plagiarized_chunks": 10,
+      "percentage": 90.9090909090909,
+      "num_matches": 88
+    },
+    "source-document01270": {
+      "total_chunks": 6,
+      "plagiarized_chunks": 5,
+      "percentage": 83.33333333333334,
+      "num_matches": 38
+    },
+    "source-document01485": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 9,
+      "percentage": 100.0,
+      "num_matches": 112
+    },
+    "source-document01122": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 9,
+      "percentage": 100.0,
+      "num_matches": 81
+    },
+    "source-document01064": {
+      "total_chunks": 11,
+      "plagiarized_chunks": 7,
+      "percentage": 63.63636363636363,
+      "num_matches": 83
+    },
+    "source-document01124": {
+      "total_chunks": 11,
+      "plagiarized_chunks": 10,
+      "percentage": 90.9090909090909,
+      "num_matches": 41
+    },
+    "source-document01262": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 197
+    },
+    "source-document01076": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 37
+    },
+    "source-document01313": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 6,
+      "percentage": 60.0,
+      "num_matches": 42
+    },
+    "source-document01272": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 96
+    },
+    "source-document01090": {
+      "total_chunks": 5,
+      "plagiarized_chunks": 5,
+      "percentage": 100.0,
+      "num_matches": 27
+    },
+    "source-document01044": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 20
+    },
+    "source-document01304": {
+      "total_chunks": 9,
+      "plagiarized_chunks": 7,
+      "percentage": 77.77777777777779,
+      "num_matches": 52
+    },
+    "source-document01156": {
+      "total_chunks": 10,
+      "plagiarized_chunks": 8,
+      "percentage": 80.0,
+      "num_matches": 58
+    },
+    "source-document01165": {
+      "total_chunks": 4,
+      "plagiarized_chunks": 4,
+      "percentage": 100.0,
+      "num_matches": 115
+    },
+    "source-document01067": {
+      "total_chunks": 13,
+      "plagiarized_chunks": 8,
+      "percentage": 61.53846153846154,
+      "num_matches": 52
+    }
+  },
+  "distribution": {
+    "90-100%": 162,
+    "80-90%": 79,
+    "70-80%": 32,
+    "40-50%": 4,
+    "50-60%": 5,
+    "60-70%": 13,
+    "30-40%": 2
+  },
+  "summary": {
+    "total_source_docs": 297,
+    "mean_percentage": 87.94191862667907,
+    "median_percentage": 90.9090909090909,
+    "std_percentage": 12.413811382759476
+  }
+}
