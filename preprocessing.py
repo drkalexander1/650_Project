@@ -4,9 +4,6 @@ You will be testing some tokenization techniques.
 """
 from nltk.tokenize import RegexpTokenizer
 import nltk
-import spacy
-import torch
-from transformers import T5Tokenizer, T5ForConditionalGeneration
 
 # Download NLTK stopwords data if not already present
 try:
