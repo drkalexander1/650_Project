@@ -1,0 +1,140 @@
+{
+  "query_name": "1506.04293_v3",
+  "results": [
+    {
+      "paper_name": "1506.04293_v1",
+      "score": 1.0000001192092896,
+      "bm25_score": -6738.048170774416,
+      "sbert_score": 1.0000001192092896,
+      "jaccard_score": 1.0,
+      "chunks": [
+        {
+          "query_chunk_idx": 6,
+          "query_chunk_text": "plest cases, that is for those gauge groups and ’t Hooft operators for which this is most straightforward 2 Compactification And Hitchin’s Moduli Space 2.1 Preliminaries The basic reason that it is natural to derive the geometric Langlands corresponence from gauge theory in four dimensions is that 2+2 = 4 As usually formulated mathematically, the geometric Langlands correspondence relates categories associated respectively to rep- resentations of the fundamental group or to holomorphic vector bu...",
+          "matched_chunk_idx": 6,
+          "matched_chunk_text": "plest cases, that is for those gauge groups and ’t Hooft operators for which this is most straightforward 2 Compactification And Hitchin’s Moduli Space 2.1 Preliminaries The basic reason that it is natural to derive the geometric Langlands corresponence from gauge theory in four dimensions is that 2+2 = 4 As usually formulated mathematically, the geometric Langlands correspondence relates categories associated respectively to rep- resentations of the fundamental group or to holomorphic vector bu...",
+          "score": 1.0000001192092896,
+          "sbert_score": 1.0000001192092896,
+          "jaccard_score": 1.0
+        },
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "1 Introduction 1 2 Compactification And Hitchin’s Moduli Space 2 2.1 Preliminaries 2 2.2 Hitchin’s Equations 4 2.3 M and the Cotangent Bundle 7 H 2.4 The Hitchin Fibration 7 2.5 Complete Integrability 8 2.6 The Spectral Curve 10 2.6.1 Basics 10 2.6.2 Abelianization 13 2.6.3 Which Line Bundles Appear 14 2.6.4 Relation To K-Theory 16 2.6.5 The Unitary Group 17 2.6.6 The Group PSU(N) 18 2.6.7 Spectral Covers For Other Gauge Groups 20 2.7 The Distinguished Section 20 2.7.1 The Case Of SU(N) 20 2.7.2...",
+          "matched_chunk_idx": 1,
+          "matched_chunk_text": "1 Introduction 1 2 Compactification And Hitchin’s Moduli Space 2 2.1 Preliminaries 2 2.2 Hitchin’s Equations 4 2.3 M and the Cotangent Bundle 7 H 2.4 The Hitchin Fibration 7 2.5 Complete Integrability 8 2.6 The Spectral Curve 10 2.6.1 Basics 10 2.6.2 Abelianization 13 2.6.3 Which Line Bundles Appear 14 2.6.4 Relation To K-Theory 16 2.6.5 The Unitary Group 17 2.6.6 The Group PSU(N) 18 2.6.7 Spectral Covers For Other Gauge Groups 20 2.7 The Distinguished Section 20 2.7.1 The Case Of SU(N) 20 2.7.2...",
+          "score": 1.0,
+          "sbert_score": 1.0,
+          "jaccard_score": 0.9315068493150684
+        }
+      ]
+    },
+    {
+      "paper_name": "1710.01791_v1",
+      "score": 0.6209335327148438,
+      "bm25_score": -7785.897386908387,
+      "sbert_score": 0.6209335327148438,
+      "jaccard_score": 0.1686046511627907,
+      "chunks": [
+        {
+          "query_chunk_idx": 8,
+          "query_chunk_text": "– 2 – examples are probably the categories of A-branes and B-branes in topologically twisted σ-models in two dimensions.) If, therefore, we want a quantum field theory to associate a category to an arbitrary two-manifold C, we have to start with a quantum field theory in 2+2 = 4 dimensions If, moreover, the category is supposed to be associated to gauge fields on C, then we should start with gauge fields in four dimensions Finally, if we are hoping to find a duality between a category associated...",
+          "matched_chunk_idx": 23,
+          "matched_chunk_text": "String Theory, where we are able to test the matter In String Theory, gauge fields always couple to the full complement of electric and magnetic charges suggested by the low energy description This depends ultimately on a rather subtle calculation [11] Inthecontextofquantumgravity,weactuallydohaveaninterestingandinformativeframework foran“emergent”descriptionofsomethingliketherealworld–oratleastofaworldwithquantum gravity together with other particles and forces This is the gauge/gravity or AdS/...",
+          "score": 0.6209335327148438,
+          "sbert_score": 0.6209335327148438,
+          "jaccard_score": 0.1595744680851064
+        },
+        {
+          "query_chunk_idx": 9,
+          "query_chunk_text": "the application to geometric Langlands, the = 4 theory is topologically twisted N so as to produce, formally, a topological field theory in four dimensions.1 For details of this twisting, and now it produces a pair of topological field theories, the A-model and the B-model, exchanged by S-duality, see [1] A Riemann surface C is introduced simply by considering compactification on C from four to two dimensions Thus we consider the four-dimensional = 4 theory on the four- N manifold R2 C, or moreg...",
+          "matched_chunk_idx": 24,
+          "matched_chunk_text": "CFTisconformalfieldtheory Inthesimplestexamplesofgauge/gravityduality,thequantumgravitypropagatesin an asymptotically AdS spacetime, and the gauge theory is a CFT 7 In gauge/gravity or AdS/CFT duality, one starts with an ordinary theory on a spacetime N of some dimension D −1 The gravitational dual is formulated on D-dimensional spacetimes M that have N for their conformal boundary (This means roughly that N lies at infinity on M.) In general, given N, there is no distinguished M, and one has to...",
+          "score": 0.566411018371582,
+          "sbert_score": 0.566411018371582,
+          "jaccard_score": 0.09947643979057591
+        }
+      ]
+    },
+    {
+      "paper_name": "1710.01791_v3",
+      "score": 0.6207409501075745,
+      "bm25_score": -7851.01094953578,
+      "sbert_score": 0.6207409501075745,
+      "jaccard_score": 0.1686046511627907,
+      "chunks": [
+        {
+          "query_chunk_idx": 8,
+          "query_chunk_text": "– 2 – examples are probably the categories of A-branes and B-branes in topologically twisted σ-models in two dimensions.) If, therefore, we want a quantum field theory to associate a category to an arbitrary two-manifold C, we have to start with a quantum field theory in 2+2 = 4 dimensions If, moreover, the category is supposed to be associated to gauge fields on C, then we should start with gauge fields in four dimensions Finally, if we are hoping to find a duality between a category associated...",
+          "matched_chunk_idx": 23,
+          "matched_chunk_text": "String Theory, where we are able to test the matter In String Theory, gauge fields always couple to the full complement of electric and magnetic charges suggested by the low energy description This depends ultimately on a rather subtle calculation [16] Inthecontextofquantumgravity,weactuallydohaveaninterestingandinformativeframework foran“emergent”descriptionofsomethingliketherealworld–oratleastofaworldwithquantum gravity together with other particles and forces This is the gauge/gravity or AdS/...",
+          "score": 0.6207409501075745,
+          "sbert_score": 0.6207409501075745,
+          "jaccard_score": 0.1595744680851064
+        },
+        {
+          "query_chunk_idx": 9,
+          "query_chunk_text": "the application to geometric Langlands, the = 4 theory is topologically twisted N so as to produce, formally, a topological field theory in four dimensions.1 For details of this twisting, and now it produces a pair of topological field theories, the A-model and the B-model, exchanged by S-duality, see [1] A Riemann surface C is introduced simply by considering compactification on C from four to two dimensions Thus we consider the four-dimensional = 4 theory on the four- N manifold R2 C, or moreg...",
+          "matched_chunk_idx": 24,
+          "matched_chunk_text": "CFTisconformalfieldtheory Inthesimplestexamplesofgauge/gravityduality,thequantumgravitypropagatesin an asymptotically AdS spacetime, and the gauge theory is a CFT 7 In gauge/gravity or AdS/CFT duality, one starts with an ordinary theory on a spacetime N of some dimension D −1 The gravitational dual is formulated on D-dimensional spacetimes M that have N for their conformal boundary (This means roughly that N lies at infinity on M.) In general, given N, there is no distinguished M, and one has to...",
+          "score": 0.566411018371582,
+          "sbert_score": 0.566411018371582,
+          "jaccard_score": 0.09947643979057591
+        }
+      ]
+    },
+    {
+      "paper_name": "0812.4512_v1",
+      "score": 0.6101366877555847,
+      "bm25_score": -8757.003850644373,
+      "sbert_score": 0.6101366877555847,
+      "jaccard_score": 0.1507537688442211,
+      "chunks": [
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "compact Lie group G (in some of the above-cited papers, the dual group is denoted as G∨) As a preliminary, we review in sections 2 and 3 some basic facts about Higgs bundles and the Hitchin fibration None of this material is new, but some may be relatively inac- cessible (In these sections, we explain a few useful details that are not strictly needed for our application.) In section 4, following [1], we describe the concept of an “eigenbrane,” describe the electric eigenbranes on M (LG), and des...",
+          "matched_chunk_idx": 6,
+          "matched_chunk_text": "I = TrF ∧⋆F 4g2 Z M HereTris aninvariantquadraticformonthe LiealgebraofG, andg is aconstant, known as the gauge coupling constant Ingeneral,startingwithanyaction,the spaceofclassicalsolutionsofthe Euler- Lagrangeequations,modulo the relevantgauge equivalence,is alwaysa symplectic manifold Quantization has to do with quantizing this symplectic manifold Actually, W is a cotangent bundle This can be established as follows Pick an initial value surface S ⊂M, and let Y be the space of allgauge fields...",
+          "score": 0.6101366877555847,
+          "sbert_score": 0.6101366877555847,
+          "jaccard_score": 0.11848341232227488
+        },
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "compact Lie group G (in some of the above-cited papers, the dual group is denoted as G∨) As a preliminary, we review in sections 2 and 3 some basic facts about Higgs bundles and the Hitchin fibration None of this material is new, but some may be relatively inac- cessible (In these sections, we explain a few useful details that are not strictly needed for our application.) In section 4, following [1], we describe the concept of an “eigenbrane,” describe the electric eigenbranes on M (LG), and des...",
+          "matched_chunk_idx": 0,
+          "matched_chunk_text": "8002 ceD 42 ]GD.htam[ 1v2154.2180:viXra THE PROBLEM OF GAUGE THEORY EDWARDWITTEN Abstract Isketchwhatitissupposedtomeantoquantizegaugetheory,and howthiscanbemademoreconcreteinperturbationtheoryandalsobystarting withafinite-dimensionallatticeapproximation Basedonrealexperimentsand computersimulations,quantumgaugetheoryinfourdimensionsisbelievedto have a mass gap This is one of the most fundamental facts that makes the Universethe way itis Thisarticleis the writtenformof alecture presented attheco...",
+          "score": 0.5839135646820068,
+          "sbert_score": 0.5839135646820068,
+          "jaccard_score": 0.11574074074074074
+        }
+      ]
+    },
+    {
+      "paper_name": "0812.4512_v3",
+      "score": 0.6041131019592285,
+      "bm25_score": -8744.142740788113,
+      "sbert_score": 0.6041131019592285,
+      "jaccard_score": 0.13679245283018868,
+      "chunks": [
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "compact Lie group G (in some of the above-cited papers, the dual group is denoted as G∨) As a preliminary, we review in sections 2 and 3 some basic facts about Higgs bundles and the Hitchin fibration None of this material is new, but some may be relatively inac- cessible (In these sections, we explain a few useful details that are not strictly needed for our application.) In section 4, following [1], we describe the concept of an “eigenbrane,” describe the electric eigenbranes on M (LG), and des...",
+          "matched_chunk_idx": 6,
+          "matched_chunk_text": "I = TrF ∧⋆F 4g2 Z M HereTris aninvariantquadraticformonthe LiealgebraofG, andg is aconstant, known as the gauge coupling constant Ingeneral,startingwithanyaction,the spaceofclassicalsolutionsofthe Euler- Lagrangeequations,modulo the relevantgauge equivalence,is alwaysa symplectic manifold Quantization has to do with quantizing this symplectic manifold Actually, W is a cotangent bundle This can be established as follows Pick an initial value surfaceS ⊂M, and let Y be the space of allgauge fields ...",
+          "score": 0.6041131019592285,
+          "sbert_score": 0.6041131019592285,
+          "jaccard_score": 0.11848341232227488
+        },
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "compact Lie group G (in some of the above-cited papers, the dual group is denoted as G∨) As a preliminary, we review in sections 2 and 3 some basic facts about Higgs bundles and the Hitchin fibration None of this material is new, but some may be relatively inac- cessible (In these sections, we explain a few useful details that are not strictly needed for our application.) In section 4, following [1], we describe the concept of an “eigenbrane,” describe the electric eigenbranes on M (LG), and des...",
+          "matched_chunk_idx": 0,
+          "matched_chunk_text": "9002 naJ 3 ]GD.htam[ 3v2154.2180:viXra THE PROBLEM OF GAUGE THEORY EDWARDWITTEN Abstract Isketchwhatitissupposedtomeantoquantizegaugetheory,and howthiscanbemademoreconcreteinperturbationtheoryandalsobystarting withafinite-dimensionallatticeapproximation Basedonrealexperimentsand computersimulations,quantumgaugetheoryinfourdimensionsisbelievedto have a mass gap This is one of the most fundamental facts that makes the Universethe way itis Thisarticleis the writtenformof alecture presented atthecon...",
+          "score": 0.579973578453064,
+          "sbert_score": 0.579973578453064,
+          "jaccard_score": 0.12093023255813953
+        }
+      ]
+    }
+  ]
+}

@@ -3,9 +3,16 @@ This is the template for implementing the tokenizer for your search engine.
 You will be testing some tokenization techniques.
 """
 from nltk.tokenize import RegexpTokenizer
+import nltk
 import spacy
 import torch
 from transformers import T5Tokenizer, T5ForConditionalGeneration
+
+# Download NLTK stopwords data if not already present
+try:
+    nltk.download('stopwords', quiet=True)
+except Exception:
+    pass  # If download fails, will handle it when loading stopwords
 
 
 class Tokenizer:
@@ -123,3 +130,36 @@ class RegexTokenizer(Tokenizer):
 
         # Apply postprocessing (lowercasing and multi-word expressions)
         return self.postprocess(tokens)
+
+
+def load_nltk_stopwords(language: str = 'english') -> set[str]:
+    """
+    Load stopwords from NLTK's stopwords corpus.
+    
+    Args:
+        language: Language code for stopwords (default: 'english')
+                  Options include: 'english', 'spanish', 'french', 'german', etc.
+    
+    Returns:
+        Set of stopwords as lowercase strings
+    
+    Raises:
+        LookupError: If the stopwords corpus is not available and cannot be downloaded
+    """
+    try:
+        from nltk.corpus import stopwords
+        stopwords_set = set(stopwords.words(language))
+        return stopwords_set
+    except LookupError:
+        # Try to download the stopwords corpus
+        try:
+            nltk.download('stopwords', quiet=True)
+            from nltk.corpus import stopwords
+            stopwords_set = set(stopwords.words(language))
+            return stopwords_set
+        except Exception as e:
+            raise LookupError(
+                f"Failed to load NLTK stopwords for language '{language}'. "
+                f"Please ensure NLTK is installed and the stopwords corpus is available. "
+                f"Error: {e}"
+            )

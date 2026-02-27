@@ -1,0 +1,140 @@
+{
+  "query_name": "2004.14192_v2",
+  "results": [
+    {
+      "paper_name": "2004.14192_v1",
+      "score": 1.0,
+      "bm25_score": -158.97303213244405,
+      "sbert_score": 1.0,
+      "jaccard_score": 1.0,
+      "chunks": [
+        {
+          "query_chunk_idx": 8,
+          "query_chunk_text": "smaller v0, but one does not want v0 significantly less than 10−3 c because the mission will take too long (At .001 c, one reaches 500 AU in about eight years.) For −1 reasonable values of t, the function sinh (v0t/ρ) will be of order 1, as we discuss momentarily So we see the basic parameters required to search for Planet 9 via perturbations of the orbits of miniature spacecraft The spacecraft must be able to return time signals that are accurate at least to 10−5 seconds, keeping under control ...",
+          "matched_chunk_idx": 8,
+          "matched_chunk_text": "smaller v0, but one does not want v0 significantly less than 10−3 c because the mission will take too long (At .001 c, one reaches 500 AU in about eight years.) For −1 reasonable values of t, the function sinh (v0t/ρ) will be of order 1, as we discuss momentarily So we see the basic parameters required to search for Planet 9 via perturbations of the orbits of miniature spacecraft The spacecraft must be able to return time signals that are accurate at least to 10−5 seconds, keeping under control ...",
+          "score": 1.0,
+          "sbert_score": 1.0,
+          "jaccard_score": 1.0
+        },
+        {
+          "query_chunk_idx": 9,
+          "query_chunk_text": "Earth, which is a good approximation for a spacecraft launched from Earth with a velocity of hundredsof kilometers per second 2 System) Sufficiently accurate timekeeping in a miniature spacecraft may be the biggest obstacle to this project, though there are numerous other challenges What is an appropriate value of ρ Suppose that by studies of the Kuiper belt, Planet 9 is known to be located in a fraction ε of the sky, so that a solid angle 4πε must be searched Suppose as well that it is practica...",
+          "matched_chunk_idx": 9,
+          "matched_chunk_text": "Earth, which is a good approximation for a spacecraft launched from Earth with a velocity of hundredsof kilometers per second 2 System) Sufficiently accurate timekeeping in a miniature spacecraft may be the biggest obstacle to this project, though there are numerous other challenges What is an appropriate value of ρ Suppose that by studies of the Kuiper belt, Planet 9 is known to be located in a fraction ε of the sky, so that a solid angle 4πε must be searched Suppose as well that it is practica...",
+          "score": 1.0,
+          "sbert_score": 1.0,
+          "jaccard_score": 1.0
+        }
+      ]
+    },
+    {
+      "paper_name": "2005.12336_v2",
+      "score": 0.6925771236419678,
+      "bm25_score": -707.8565601869016,
+      "sbert_score": 0.6925771236419678,
+      "jaccard_score": 0.16080402010050251,
+      "chunks": [
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "0202 yaM 2 ]PE.hp-ortsa[ 2v29141.4002:viXra Searching for a Black Hole in the Outer Solar System Edward Witten Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract There are hints of a novel object (“Planet 9”) with a mass 5−10 M⊕ in the outer Solar System, at a distance of order 500 AU If it is a relatively conventional planet, it can be found intelescopicsearches Alternatively,ithasbeensuggestedthatthisbodymightbeaprimordial black hole (PBH) In that case, conventional ...",
+          "matched_chunk_idx": 37,
+          "matched_chunk_text": "day We could make the first precise measurements of the EBL at optical and near-infrared wave- lengths, especially at those corresponding to the peaks of emitted stellar radiation The data on the low zodiacal foreground brightness observed from the outer solar system can be processed together with multiband spectral information Imaging data at arcsecond resolution can be used to remove the galactic and zodiacal foregrounds that have limited previous EBL measurements from Earth’s orbit at 1 AU fr...",
+          "score": 0.6925771236419678,
+          "sbert_score": 0.6925771236419678,
+          "jaccard_score": 0.14798206278026907
+        },
+        {
+          "query_chunk_idx": 4,
+          "query_chunk_text": "hundreds of spacecraft (at least) in different directions so that some would come within dozens of AU of Planet 9, rather than hundreds of AU These conditions are well out of reach for conventional space missions, but they might be achievable by something along the lines of Breakthrough Starshot [9] This project aims to use powerful lasers to accelerate miniature (gram scale) spacecraft to mildly relativistic velocities (∼ .2c) so as to reach nearby stars in a couple of decades A useful descript...",
+          "matched_chunk_idx": 2,
+          "matched_chunk_text": "way for two of NASA interplanetary missions, NEA-Scout5 and Solar Cruiser6, which are planned for the near future Japan is now developing OKEANOS7 as a follow-up to IKAROS for outer planet missions A related concept is the laser sail, in which a higher intensity photon beam is generated on Earth One such mission concept is the Breakthrough Starshot Initiative8 led since 2016 by S Pete Worden and Avi Loeb (who are co-authors on this proposal) and supported by Yuri Milner, Mark Zuckerberg and the ...",
+          "score": 0.6535828709602356,
+          "sbert_score": 0.6535828709602356,
+          "jaccard_score": 0.125
+        }
+      ]
+    },
+    {
+      "paper_name": "2005.12336_v1",
+      "score": 0.6873215436935425,
+      "bm25_score": -706.830858320381,
+      "sbert_score": 0.6873215436935425,
+      "jaccard_score": 0.16080402010050251,
+      "chunks": [
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "0202 yaM 2 ]PE.hp-ortsa[ 2v29141.4002:viXra Searching for a Black Hole in the Outer Solar System Edward Witten Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract There are hints of a novel object (“Planet 9”) with a mass 5−10 M⊕ in the outer Solar System, at a distance of order 500 AU If it is a relatively conventional planet, it can be found intelescopicsearches Alternatively,ithasbeensuggestedthatthisbodymightbeaprimordial black hole (PBH) In that case, conventional ...",
+          "matched_chunk_idx": 37,
+          "matched_chunk_text": "day We could make the first precise measurements of the EBL at optical and near-infrared wave- lengths, especially at those corresponding to the peaks of emitted stellar radiation The data on the low zodiacal foreground brightness observed from the outer solar system can be processed together with multiband spectral information Imaging data at arcsecond resolution can be used to remove the galactic and zodiacal foregrounds that have limited previous EBL measurements from Earth’s orbit at 1 AU fr...",
+          "score": 0.6873215436935425,
+          "sbert_score": 0.6873215436935425,
+          "jaccard_score": 0.14798206278026907
+        },
+        {
+          "query_chunk_idx": 4,
+          "query_chunk_text": "hundreds of spacecraft (at least) in different directions so that some would come within dozens of AU of Planet 9, rather than hundreds of AU These conditions are well out of reach for conventional space missions, but they might be achievable by something along the lines of Breakthrough Starshot [9] This project aims to use powerful lasers to accelerate miniature (gram scale) spacecraft to mildly relativistic velocities (∼ .2c) so as to reach nearby stars in a couple of decades A useful descript...",
+          "matched_chunk_idx": 2,
+          "matched_chunk_text": "way for two of NASA interplanetary missions, NEA-Scout5 and Solar Cruiser6, which are planned for the near future Japan is now developing OKEANOS7 as a follow-up to IKAROS for outer planet missions A related concept is the laser sail, in which a higher intensity photon beam is generated on Earth One such mission concept is the Breakthrough Starshot Initiative8 led since 2016 by S Pete Worden and Avi Loeb (who are co-authors on this proposal) and supported by Yuri Milner, Mark Zuckerberg and the ...",
+          "score": 0.6535828709602356,
+          "sbert_score": 0.6535828709602356,
+          "jaccard_score": 0.125
+        }
+      ]
+    },
+    {
+      "paper_name": "1610.08297_v2",
+      "score": 0.6485387086868286,
+      "bm25_score": -1473.353866049199,
+      "sbert_score": 0.6485387086868286,
+      "jaccard_score": 0.16019417475728157,
+      "chunks": [
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "with a mass of roughly 5−10 M⊕ and a distance from the Sun of order 500 AU [1–3] Searches for this object are in progress On the other hand, it has been suggested [4] that Planet 9 might really be a primordial black hole (PBH) or other exotic compact object As noted in [4], gravitational microlensing observations have bounded the cosmic abundance of objects in this mass range, finding a few events which might be due to free-floating planets or to PBH’s with masses of roughly a few M⊕ [5,6] If Pl...",
+          "matched_chunk_idx": 81,
+          "matched_chunk_text": "already have been detected, but interpreted as super- massive black holes The nearest moderately rich cluster is the Virgo cluster The luminous galaxy M87 is located near the center of the cluster and contains a central dark object of mass (6.6±0.4)×109M as determined by (cid:12) observations of stellar kinematics [156] The resolution of these observations is about 0.2–0.3 arcsec or 17–25 pc and the upper limit to the size of the central object is probably twice as large For comparison, the soli...",
+          "score": 0.6485387086868286,
+          "sbert_score": 0.6485387086868286,
+          "jaccard_score": 0.1358695652173913
+        },
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "with a mass of roughly 5−10 M⊕ and a distance from the Sun of order 500 AU [1–3] Searches for this object are in progress On the other hand, it has been suggested [4] that Planet 9 might really be a primordial black hole (PBH) or other exotic compact object As noted in [4], gravitational microlensing observations have bounded the cosmic abundance of objects in this mass range, finding a few events which might be due to free-floating planets or to PBH’s with masses of roughly a few M⊕ [5,6] If Pl...",
+          "matched_chunk_idx": 110,
+          "matched_chunk_text": "Planck [163] There is a substantial reduction in the number of halos expected in the local universe as compared to CDM for halos below a few times 109(m/10−22eV)−4/3M but a sufficient number remain to provide for the local dwarf galaxies, which (cid:12) have estimated halo masses of roughly 3×109M [86] Thus the “too big to fail” and “missing satellite” problems (cid:12) are addressed directly by FDM, but until our understanding of baryonic physics and feedback is more complete we will not know w...",
+          "score": 0.6144841909408569,
+          "sbert_score": 0.6144841909408569,
+          "jaccard_score": 0.14146341463414633
+        }
+      ]
+    },
+    {
+      "paper_name": "1610.08297_v1",
+      "score": 0.6034092307090759,
+      "bm25_score": -1474.409525617889,
+      "sbert_score": 0.6034092307090759,
+      "jaccard_score": 0.16019417475728157,
+      "chunks": [
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "with a mass of roughly 5−10 M⊕ and a distance from the Sun of order 500 AU [1–3] Searches for this object are in progress On the other hand, it has been suggested [4] that Planet 9 might really be a primordial black hole (PBH) or other exotic compact object As noted in [4], gravitational microlensing observations have bounded the cosmic abundance of objects in this mass range, finding a few events which might be due to free-floating planets or to PBH’s with masses of roughly a few M⊕ [5,6] If Pl...",
+          "matched_chunk_idx": 101,
+          "matched_chunk_text": "Planck [153] There is a substantial reduction in the number of halos expected in the local universe as compared to CDM for halos below a few times 109(m/10−22eV)−4/3M but a sufficient number remain to provide for the local dwarf galaxies, which (cid:12) have estimated halo masses of roughly 3×109M [83] Thus the “too big to fail” and “missing satellite” problems (cid:12) are addressed directly by FDM, but until our understanding of baryonic physics and feedback is more complete we will not know w...",
+          "score": 0.6034092307090759,
+          "sbert_score": 0.6034092307090759,
+          "jaccard_score": 0.14146341463414633
+        },
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "with a mass of roughly 5−10 M⊕ and a distance from the Sun of order 500 AU [1–3] Searches for this object are in progress On the other hand, it has been suggested [4] that Planet 9 might really be a primordial black hole (PBH) or other exotic compact object As noted in [4], gravitational microlensing observations have bounded the cosmic abundance of objects in this mass range, finding a few events which might be due to free-floating planets or to PBH’s with masses of roughly a few M⊕ [5,6] If Pl...",
+          "matched_chunk_idx": 94,
+          "matched_chunk_text": "wide variety of observations with remarkable precision To date, experimental searchesfortheparticleorparticlescomprisingCDMhavebeenunsuccessfulorcontroversial,but“absenceofevidence is not evidence of absence” and many ongoing experiments offer the hope of future success A larger concern is that few if any of the predictions of the CDM scenario on scales smaller than ∼ 10kpc have been successful While all large-scalepredictionsofΛCDMappeartobevalid,thesimple-mindedpredictionsofthismodelareinconsi...",
+          "score": 0.5921596884727478,
+          "sbert_score": 0.5921596884727478,
+          "jaccard_score": 0.13
+        }
+      ]
+    }
+  ]
+}

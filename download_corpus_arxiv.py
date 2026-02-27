@@ -346,7 +346,7 @@ def extract_metadata(paper: Dict) -> Dict:
 def main():
     """Main function to download corpus for author."""
     parser = argparse.ArgumentParser(description="Download papers from arXiv for a specific author")
-    parser.add_argument("--author", "-a", default="Kao CH", help="Author name (default: 'Kao CH')")
+    parser.add_argument("--author", "-a", default="Edward Witten", help="Author name (default: 'Edward Witten')")
     parser.add_argument("--limit", "-l", type=int, default=None, 
                        help="Limit number of papers to process (for testing, e.g., -l 5)")
     parser.add_argument("--output", "-o", default="corpus", help="Output directory (default: 'corpus')")

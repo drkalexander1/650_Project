@@ -1,0 +1,1772 @@
+{
+  "0710.5939_v1": {
+    "total_chunks": 423,
+    "plagiarized_chunks": 2,
+    "percentage": 0.4728132387706856,
+    "num_matches": 2,
+    "avg_score": 21.04679022113712,
+    "max_score": 35.0461420483624,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0710.5939_v3": {
+    "total_chunks": 434,
+    "plagiarized_chunks": 3,
+    "percentage": 0.6912442396313364,
+    "num_matches": 3,
+    "avg_score": 14.93774389366034,
+    "max_score": 32.623773766032976,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0712.0155_v1": {
+    "total_chunks": 165,
+    "plagiarized_chunks": 2,
+    "percentage": 1.2121212121212122,
+    "num_matches": 2,
+    "avg_score": 7.01571069995114,
+    "max_score": 13.475649647016999,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0712.0157_v1": {
+    "total_chunks": 41,
+    "plagiarized_chunks": 8,
+    "percentage": 19.51219512195122,
+    "num_matches": 8,
+    "avg_score": 30.369341033086258,
+    "max_score": 48.87120470173219,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0802.0999_v1": {
+    "total_chunks": 57,
+    "plagiarized_chunks": 1,
+    "percentage": 1.7543859649122806,
+    "num_matches": 1,
+    "avg_score": 28.64396157447604,
+    "max_score": 28.64396157447604,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0804.1561_v1": {
+    "total_chunks": 214,
+    "plagiarized_chunks": 2,
+    "percentage": 0.9345794392523363,
+    "num_matches": 2,
+    "avg_score": 27.815758431039324,
+    "max_score": 48.99604800378637,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0804.2902_v2": {
+    "total_chunks": 223,
+    "plagiarized_chunks": 1,
+    "percentage": 0.4484304932735426,
+    "num_matches": 1,
+    "avg_score": 5.500552082625744,
+    "max_score": 5.500552082625744,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0807.3720_v1": {
+    "total_chunks": 449,
+    "plagiarized_chunks": 3,
+    "percentage": 0.6681514476614699,
+    "num_matches": 3,
+    "avg_score": 14.49385891745996,
+    "max_score": 20.078815038940434,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0809.0305_v1": {
+    "total_chunks": 180,
+    "plagiarized_chunks": 1,
+    "percentage": 0.5555555555555556,
+    "num_matches": 1,
+    "avg_score": 17.714343747358633,
+    "max_score": 17.714343747358633,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0809.0305_v2": {
+    "total_chunks": 189,
+    "plagiarized_chunks": 2,
+    "percentage": 1.0582010582010581,
+    "num_matches": 2,
+    "avg_score": 49.09685904733885,
+    "max_score": 67.58621183688714,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0812.4512_v1": {
+    "total_chunks": 35,
+    "plagiarized_chunks": 1,
+    "percentage": 2.857142857142857,
+    "num_matches": 1,
+    "avg_score": 3.8709966949768715,
+    "max_score": 3.8709966949768715,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0812.4512_v3": {
+    "total_chunks": 39,
+    "plagiarized_chunks": 2,
+    "percentage": 5.128205128205128,
+    "num_matches": 3,
+    "avg_score": 17.02506912686655,
+    "max_score": 24.004727651024105,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0902.0948_v1": {
+    "total_chunks": 170,
+    "plagiarized_chunks": 2,
+    "percentage": 1.1764705882352942,
+    "num_matches": 2,
+    "avg_score": 10.240627098306184,
+    "max_score": 12.986052514097533,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0902.0948_v2": {
+    "total_chunks": 175,
+    "plagiarized_chunks": 3,
+    "percentage": 1.7142857142857144,
+    "num_matches": 5,
+    "avg_score": 9.604348803097311,
+    "max_score": 28.573812468472276,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0905.2720_v1": {
+    "total_chunks": 116,
+    "plagiarized_chunks": 1,
+    "percentage": 0.8620689655172413,
+    "num_matches": 1,
+    "avg_score": 9.456645017446176,
+    "max_score": 9.456645017446176,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0905.4795_v1": {
+    "total_chunks": 130,
+    "plagiarized_chunks": 1,
+    "percentage": 0.7692307692307693,
+    "num_matches": 1,
+    "avg_score": 9.507051775197116,
+    "max_score": 9.507051775197116,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1001.2933_v1": {
+    "total_chunks": 328,
+    "plagiarized_chunks": 6,
+    "percentage": 1.8292682926829267,
+    "num_matches": 7,
+    "avg_score": 33.362341041270255,
+    "max_score": 49.89262354598384,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1001.2933_v4": {
+    "total_chunks": 344,
+    "plagiarized_chunks": 5,
+    "percentage": 1.4534883720930232,
+    "num_matches": 6,
+    "avg_score": 34.48069400707863,
+    "max_score": 49.89262354598384,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1002.0888_v1": {
+    "total_chunks": 249,
+    "plagiarized_chunks": 4,
+    "percentage": 1.6064257028112447,
+    "num_matches": 4,
+    "avg_score": 4.345616961052745,
+    "max_score": 8.60551982832766,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1002.0888_v2": {
+    "total_chunks": 249,
+    "plagiarized_chunks": 4,
+    "percentage": 1.6064257028112447,
+    "num_matches": 4,
+    "avg_score": 4.345616961052745,
+    "max_score": 8.60551982832766,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1009.6032_v1": {
+    "total_chunks": 214,
+    "plagiarized_chunks": 2,
+    "percentage": 0.9345794392523363,
+    "num_matches": 4,
+    "avg_score": 19.394195670817226,
+    "max_score": 30.810743299549706,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1101.3216_v1": {
+    "total_chunks": 412,
+    "plagiarized_chunks": 6,
+    "percentage": 1.4563106796116505,
+    "num_matches": 6,
+    "avg_score": 10.599338593465422,
+    "max_score": 14.352508488756984,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1101.3216_v2": {
+    "total_chunks": 420,
+    "plagiarized_chunks": 5,
+    "percentage": 1.1904761904761905,
+    "num_matches": 5,
+    "avg_score": 19.19391920397284,
+    "max_score": 37.58927166698827,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1106.4789_v1": {
+    "total_chunks": 366,
+    "plagiarized_chunks": 1,
+    "percentage": 0.273224043715847,
+    "num_matches": 1,
+    "avg_score": 9.181334362494132,
+    "max_score": 9.181334362494132,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1108.3103_v1": {
+    "total_chunks": 43,
+    "plagiarized_chunks": 2,
+    "percentage": 4.651162790697675,
+    "num_matches": 3,
+    "avg_score": 10.60772767059193,
+    "max_score": 13.728576397040154,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1108.3103_v2": {
+    "total_chunks": 43,
+    "plagiarized_chunks": 2,
+    "percentage": 4.651162790697675,
+    "num_matches": 2,
+    "avg_score": 8.254231793501486,
+    "max_score": 13.728576397040154,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1108.4417_v1": {
+    "total_chunks": 309,
+    "plagiarized_chunks": 6,
+    "percentage": 1.9417475728155338,
+    "num_matches": 8,
+    "avg_score": 17.77290678599993,
+    "max_score": 53.98658981748235,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1108.4417_v2": {
+    "total_chunks": 312,
+    "plagiarized_chunks": 4,
+    "percentage": 1.282051282051282,
+    "num_matches": 5,
+    "avg_score": 16.49705603132696,
+    "max_score": 53.98658981748235,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1209.2199_v1": {
+    "total_chunks": 135,
+    "plagiarized_chunks": 8,
+    "percentage": 5.9259259259259265,
+    "num_matches": 8,
+    "avg_score": 24.61071001050983,
+    "max_score": 53.93992894888281,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1209.2199_v3": {
+    "total_chunks": 137,
+    "plagiarized_chunks": 7,
+    "percentage": 5.109489051094891,
+    "num_matches": 8,
+    "avg_score": 27.005786428120622,
+    "max_score": 43.48916147168658,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1209.2459_v1": {
+    "total_chunks": 385,
+    "plagiarized_chunks": 18,
+    "percentage": 4.675324675324675,
+    "num_matches": 22,
+    "avg_score": 28.354041881602097,
+    "max_score": 58.25136785577187,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1209.2459_v5": {
+    "total_chunks": 400,
+    "plagiarized_chunks": 24,
+    "percentage": 6.0,
+    "num_matches": 27,
+    "avg_score": 19.468103165254636,
+    "max_score": 46.21806558805997,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1209.5461_v1": {
+    "total_chunks": 751,
+    "plagiarized_chunks": 33,
+    "percentage": 4.394141145139813,
+    "num_matches": 38,
+    "avg_score": 19.262112910604355,
+    "max_score": 57.51077291110211,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1209.5461_v4": {
+    "total_chunks": 757,
+    "plagiarized_chunks": 30,
+    "percentage": 3.963011889035667,
+    "num_matches": 36,
+    "avg_score": 20.193279873575534,
+    "max_score": 49.23783142428522,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1304.2832_v1": {
+    "total_chunks": 230,
+    "plagiarized_chunks": 7,
+    "percentage": 3.0434782608695654,
+    "num_matches": 7,
+    "avg_score": 20.072941177286612,
+    "max_score": 57.91974810622812,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1304.2832_v4": {
+    "total_chunks": 241,
+    "plagiarized_chunks": 9,
+    "percentage": 3.7344398340248963,
+    "num_matches": 10,
+    "avg_score": 14.216186323058906,
+    "max_score": 30.720364636094725,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1304.7798_v1": {
+    "total_chunks": 156,
+    "plagiarized_chunks": 9,
+    "percentage": 5.769230769230769,
+    "num_matches": 10,
+    "avg_score": 18.291920466272128,
+    "max_score": 50.53777969187436,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1304.7798_v2": {
+    "total_chunks": 168,
+    "plagiarized_chunks": 1,
+    "percentage": 0.5952380952380952,
+    "num_matches": 1,
+    "avg_score": 2.147929472187127,
+    "max_score": 2.147929472187127,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1306.3621_v1": {
+    "total_chunks": 189,
+    "plagiarized_chunks": 5,
+    "percentage": 2.6455026455026456,
+    "num_matches": 5,
+    "avg_score": 18.0019641692742,
+    "max_score": 40.278760722297775,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1306.3621_v2": {
+    "total_chunks": 190,
+    "plagiarized_chunks": 5,
+    "percentage": 2.631578947368421,
+    "num_matches": 5,
+    "avg_score": 17.918702815828095,
+    "max_score": 40.278760722297775,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1307.5124_v1": {
+    "total_chunks": 76,
+    "plagiarized_chunks": 5,
+    "percentage": 6.578947368421052,
+    "num_matches": 6,
+    "avg_score": 19.771636573900228,
+    "max_score": 46.02370831735385,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1311.3167_v1": {
+    "total_chunks": 199,
+    "plagiarized_chunks": 1,
+    "percentage": 0.5025125628140703,
+    "num_matches": 1,
+    "avg_score": 2.532371907456013,
+    "max_score": 2.532371907456013,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1311.3167_v2": {
+    "total_chunks": 199,
+    "plagiarized_chunks": 1,
+    "percentage": 0.5025125628140703,
+    "num_matches": 1,
+    "avg_score": 13.549613981218767,
+    "max_score": 13.549613981218767,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1401.6996_v1": {
+    "total_chunks": 75,
+    "plagiarized_chunks": 1,
+    "percentage": 1.3333333333333335,
+    "num_matches": 1,
+    "avg_score": 46.51945078405227,
+    "max_score": 46.51945078405227,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1404.2460_v1": {
+    "total_chunks": 95,
+    "plagiarized_chunks": 1,
+    "percentage": 1.0526315789473684,
+    "num_matches": 1,
+    "avg_score": 6.876858981600412,
+    "max_score": 6.876858981600412,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1404.6257_v1": {
+    "total_chunks": 95,
+    "plagiarized_chunks": 2,
+    "percentage": 2.1052631578947367,
+    "num_matches": 2,
+    "avg_score": 25.40402382969063,
+    "max_score": 33.28124252127919,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1410.1175_v1": {
+    "total_chunks": 471,
+    "plagiarized_chunks": 7,
+    "percentage": 1.48619957537155,
+    "num_matches": 8,
+    "avg_score": 18.133429946074838,
+    "max_score": 38.640900527840316,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1410.1175_v2": {
+    "total_chunks": 472,
+    "plagiarized_chunks": 7,
+    "percentage": 1.4830508474576272,
+    "num_matches": 8,
+    "avg_score": 18.539773941676792,
+    "max_score": 38.640900527840316,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1411.7108_v1": {
+    "total_chunks": 328,
+    "plagiarized_chunks": 18,
+    "percentage": 5.487804878048781,
+    "num_matches": 20,
+    "avg_score": 24.36798411526135,
+    "max_score": 46.909164737357884,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1411.7108_v2": {
+    "total_chunks": 328,
+    "plagiarized_chunks": 7,
+    "percentage": 2.1341463414634148,
+    "num_matches": 9,
+    "avg_score": 24.43324203820633,
+    "max_score": 46.909164737357884,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1501.02499_v1": {
+    "total_chunks": 172,
+    "plagiarized_chunks": 4,
+    "percentage": 2.3255813953488373,
+    "num_matches": 4,
+    "avg_score": 20.031918533691037,
+    "max_score": 33.632264407744984,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1504.00609_v1": {
+    "total_chunks": 111,
+    "plagiarized_chunks": 4,
+    "percentage": 3.6036036036036037,
+    "num_matches": 5,
+    "avg_score": 31.852215488471067,
+    "max_score": 65.58154177945124,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1504.00609_v2": {
+    "total_chunks": 111,
+    "plagiarized_chunks": 4,
+    "percentage": 3.6036036036036037,
+    "num_matches": 5,
+    "avg_score": 34.319744610008236,
+    "max_score": 65.58154177945124,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1506.04086_v1": {
+    "total_chunks": 93,
+    "plagiarized_chunks": 1,
+    "percentage": 1.0752688172043012,
+    "num_matches": 1,
+    "avg_score": 31.00797087261991,
+    "max_score": 31.00797087261991,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1506.04087_v1": {
+    "total_chunks": 1211,
+    "plagiarized_chunks": 24,
+    "percentage": 1.981833195706028,
+    "num_matches": 24,
+    "avg_score": 22.92699424637739,
+    "max_score": 54.095924694720864,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1506.04293_v1": {
+    "total_chunks": 251,
+    "plagiarized_chunks": 3,
+    "percentage": 1.1952191235059761,
+    "num_matches": 4,
+    "avg_score": 20.370270071244228,
+    "max_score": 31.444269917056573,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1508.04715_v1": {
+    "total_chunks": 248,
+    "plagiarized_chunks": 2,
+    "percentage": 0.8064516129032258,
+    "num_matches": 2,
+    "avg_score": 17.148900549369284,
+    "max_score": 31.884368074843987,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1508.04715_v2": {
+    "total_chunks": 260,
+    "plagiarized_chunks": 6,
+    "percentage": 2.307692307692308,
+    "num_matches": 7,
+    "avg_score": 26.526790126795955,
+    "max_score": 62.20826766318273,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1510.07698_v1": {
+    "total_chunks": 154,
+    "plagiarized_chunks": 2,
+    "percentage": 1.2987012987012987,
+    "num_matches": 2,
+    "avg_score": 31.446155158925023,
+    "max_score": 45.257284037608734,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1510.07698_v2": {
+    "total_chunks": 154,
+    "plagiarized_chunks": 2,
+    "percentage": 1.2987012987012987,
+    "num_matches": 2,
+    "avg_score": 31.446155158925023,
+    "max_score": 45.257284037608734,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1602.04251_v1": {
+    "total_chunks": 277,
+    "plagiarized_chunks": 3,
+    "percentage": 1.083032490974729,
+    "num_matches": 3,
+    "avg_score": 22.905885503768094,
+    "max_score": 30.9616957418868,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1602.04251_v3": {
+    "total_chunks": 278,
+    "plagiarized_chunks": 3,
+    "percentage": 1.079136690647482,
+    "num_matches": 3,
+    "avg_score": 19.043356457345283,
+    "max_score": 30.9616957418868,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1603.03854_v1": {
+    "total_chunks": 67,
+    "plagiarized_chunks": 2,
+    "percentage": 2.9850746268656714,
+    "num_matches": 2,
+    "avg_score": 30.195106856751018,
+    "max_score": 57.42571265947422,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1603.03854_v2": {
+    "total_chunks": 69,
+    "plagiarized_chunks": 1,
+    "percentage": 1.4492753623188406,
+    "num_matches": 1,
+    "avg_score": 2.9645010540278163,
+    "max_score": 2.9645010540278163,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1605.02391_v1": {
+    "total_chunks": 193,
+    "plagiarized_chunks": 3,
+    "percentage": 1.5544041450777202,
+    "num_matches": 3,
+    "avg_score": 21.433808192074988,
+    "max_score": 35.231313529304074,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1605.02391_v3": {
+    "total_chunks": 197,
+    "plagiarized_chunks": 1,
+    "percentage": 0.5076142131979695,
+    "num_matches": 1,
+    "avg_score": 8.4423056484296,
+    "max_score": 8.4423056484296,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1610.08297_v1": {
+    "total_chunks": 173,
+    "plagiarized_chunks": 1,
+    "percentage": 0.5780346820809248,
+    "num_matches": 1,
+    "avg_score": 16.746133437520033,
+    "max_score": 16.746133437520033,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1611.00592_v1": {
+    "total_chunks": 47,
+    "plagiarized_chunks": 3,
+    "percentage": 6.382978723404255,
+    "num_matches": 4,
+    "avg_score": 13.15451340563647,
+    "max_score": 43.125161616317016,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1705.06728_v1": {
+    "total_chunks": 400,
+    "plagiarized_chunks": 3,
+    "percentage": 0.75,
+    "num_matches": 3,
+    "avg_score": 39.35510595566652,
+    "max_score": 61.946336603077754,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1705.06728_v3": {
+    "total_chunks": 413,
+    "plagiarized_chunks": 3,
+    "percentage": 0.7263922518159807,
+    "num_matches": 4,
+    "avg_score": 28.76167430409531,
+    "max_score": 56.702077008569475,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1706.05362_v1": {
+    "total_chunks": 283,
+    "plagiarized_chunks": 2,
+    "percentage": 0.7067137809187279,
+    "num_matches": 3,
+    "avg_score": 25.54037415193226,
+    "max_score": 34.45783678708675,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1709.09993_v1": {
+    "total_chunks": 352,
+    "plagiarized_chunks": 13,
+    "percentage": 3.6931818181818183,
+    "num_matches": 15,
+    "avg_score": 23.055453845829128,
+    "max_score": 45.763020307612095,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1709.09993_v2": {
+    "total_chunks": 352,
+    "plagiarized_chunks": 13,
+    "percentage": 3.6931818181818183,
+    "num_matches": 16,
+    "avg_score": 24.605076633395253,
+    "max_score": 45.763020307612095,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1710.01791_v1": {
+    "total_chunks": 32,
+    "plagiarized_chunks": 1,
+    "percentage": 3.125,
+    "num_matches": 1,
+    "avg_score": 43.315565218950525,
+    "max_score": 43.315565218950525,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1710.01791_v3": {
+    "total_chunks": 32,
+    "plagiarized_chunks": 1,
+    "percentage": 3.125,
+    "num_matches": 1,
+    "avg_score": 43.315565218950525,
+    "max_score": 43.315565218950525,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1711.03816_v1": {
+    "total_chunks": 111,
+    "plagiarized_chunks": 2,
+    "percentage": 1.8018018018018018,
+    "num_matches": 3,
+    "avg_score": 6.52525061219163,
+    "max_score": 17.477205233970448,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1712.00835_v1": {
+    "total_chunks": 160,
+    "plagiarized_chunks": 1,
+    "percentage": 0.625,
+    "num_matches": 1,
+    "avg_score": 14.958306331952663,
+    "max_score": 14.958306331952663,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1712.00835_v2": {
+    "total_chunks": 160,
+    "plagiarized_chunks": 1,
+    "percentage": 0.625,
+    "num_matches": 1,
+    "avg_score": 14.958306331952663,
+    "max_score": 14.958306331952663,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1802.01579_v1": {
+    "total_chunks": 132,
+    "plagiarized_chunks": 1,
+    "percentage": 0.7575757575757576,
+    "num_matches": 1,
+    "avg_score": 3.2109558772374047,
+    "max_score": 3.2109558772374047,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1803.04993_v1": {
+    "total_chunks": 216,
+    "plagiarized_chunks": 10,
+    "percentage": 4.62962962962963,
+    "num_matches": 10,
+    "avg_score": 25.668194517694246,
+    "max_score": 75.47420787530959,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1803.04993_v6": {
+    "total_chunks": 227,
+    "plagiarized_chunks": 8,
+    "percentage": 3.524229074889868,
+    "num_matches": 8,
+    "avg_score": 38.81377179272422,
+    "max_score": 77.4856841175652,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1804.03275_v1": {
+    "total_chunks": 195,
+    "plagiarized_chunks": 8,
+    "percentage": 4.102564102564102,
+    "num_matches": 11,
+    "avg_score": 23.86567696335849,
+    "max_score": 55.20546420601963,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1804.03275_v3": {
+    "total_chunks": 197,
+    "plagiarized_chunks": 8,
+    "percentage": 4.060913705583756,
+    "num_matches": 12,
+    "avg_score": 28.623985125566236,
+    "max_score": 79.81815098496152,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1805.11965_v1": {
+    "total_chunks": 89,
+    "plagiarized_chunks": 1,
+    "percentage": 1.1235955056179776,
+    "num_matches": 1,
+    "avg_score": 18.854683172450667,
+    "max_score": 18.854683172450667,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1810.00844_v1": {
+    "total_chunks": 146,
+    "plagiarized_chunks": 1,
+    "percentage": 0.684931506849315,
+    "num_matches": 1,
+    "avg_score": 55.191487159800715,
+    "max_score": 55.191487159800715,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1810.00844_v4": {
+    "total_chunks": 148,
+    "plagiarized_chunks": 2,
+    "percentage": 1.3513513513513513,
+    "num_matches": 2,
+    "avg_score": 28.315794475396054,
+    "max_score": 55.191487159800715,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1901.03928_v1": {
+    "total_chunks": 275,
+    "plagiarized_chunks": 4,
+    "percentage": 1.4545454545454546,
+    "num_matches": 8,
+    "avg_score": 46.72143510761592,
+    "max_score": 61.686725889852994,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1901.03928_v6": {
+    "total_chunks": 312,
+    "plagiarized_chunks": 6,
+    "percentage": 1.9230769230769231,
+    "num_matches": 8,
+    "avg_score": 30.298317121784834,
+    "max_score": 47.80443875572868,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1907.03363_v1": {
+    "total_chunks": 486,
+    "plagiarized_chunks": 11,
+    "percentage": 2.263374485596708,
+    "num_matches": 14,
+    "avg_score": 27.251954851001596,
+    "max_score": 70.50782670682389,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1907.03363_v5": {
+    "total_chunks": 513,
+    "plagiarized_chunks": 12,
+    "percentage": 2.3391812865497075,
+    "num_matches": 18,
+    "avg_score": 28.69129677676811,
+    "max_score": 68.59987282078555,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2004.14387_v1": {
+    "total_chunks": 136,
+    "plagiarized_chunks": 2,
+    "percentage": 1.4705882352941175,
+    "num_matches": 2,
+    "avg_score": 9.816199358410616,
+    "max_score": 15.810241357846,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2004.14387_v3": {
+    "total_chunks": 141,
+    "plagiarized_chunks": 3,
+    "percentage": 2.127659574468085,
+    "num_matches": 3,
+    "avg_score": 23.713733704767225,
+    "max_score": 36.14059372770136,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2006.03494_v1": {
+    "total_chunks": 49,
+    "plagiarized_chunks": 1,
+    "percentage": 2.0408163265306123,
+    "num_matches": 1,
+    "avg_score": 31.033872138796905,
+    "max_score": 31.033872138796905,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2006.03494_v3": {
+    "total_chunks": 50,
+    "plagiarized_chunks": 1,
+    "percentage": 2.0,
+    "num_matches": 1,
+    "avg_score": 31.033872138796905,
+    "max_score": 31.033872138796905,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2006.04855_v1": {
+    "total_chunks": 149,
+    "plagiarized_chunks": 3,
+    "percentage": 2.013422818791946,
+    "num_matches": 3,
+    "avg_score": 16.716187468587034,
+    "max_score": 23.309666784074206,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2006.04855_v2": {
+    "total_chunks": 151,
+    "plagiarized_chunks": 6,
+    "percentage": 3.9735099337748347,
+    "num_matches": 6,
+    "avg_score": 14.681586544029338,
+    "max_score": 33.98023972247452,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2006.13414_v1": {
+    "total_chunks": 107,
+    "plagiarized_chunks": 2,
+    "percentage": 1.8691588785046727,
+    "num_matches": 2,
+    "avg_score": 26.93606731415882,
+    "max_score": 31.25873556740644,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2107.01732_v1": {
+    "total_chunks": 353,
+    "plagiarized_chunks": 10,
+    "percentage": 2.8328611898017,
+    "num_matches": 11,
+    "avg_score": 34.9308609553679,
+    "max_score": 51.55719354007608,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2107.01732_v4": {
+    "total_chunks": 369,
+    "plagiarized_chunks": 12,
+    "percentage": 3.2520325203252036,
+    "num_matches": 14,
+    "avg_score": 23.85350840610361,
+    "max_score": 67.4143426925537,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2107.12251_v1": {
+    "total_chunks": 353,
+    "plagiarized_chunks": 18,
+    "percentage": 5.099150141643059,
+    "num_matches": 20,
+    "avg_score": 25.64528690977208,
+    "max_score": 51.46798050142695,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2107.12251_v2": {
+    "total_chunks": 356,
+    "plagiarized_chunks": 10,
+    "percentage": 2.8089887640449436,
+    "num_matches": 12,
+    "avg_score": 29.150802991320948,
+    "max_score": 48.88708126858594,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2109.08563_v1": {
+    "total_chunks": 183,
+    "plagiarized_chunks": 4,
+    "percentage": 2.185792349726776,
+    "num_matches": 4,
+    "avg_score": 26.764397384764365,
+    "max_score": 44.14862197424974,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2109.08563_v3": {
+    "total_chunks": 197,
+    "plagiarized_chunks": 7,
+    "percentage": 3.5532994923857872,
+    "num_matches": 7,
+    "avg_score": 28.33426961917906,
+    "max_score": 48.140294942682964,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2111.06514_v1": {
+    "total_chunks": 100,
+    "plagiarized_chunks": 8,
+    "percentage": 8.0,
+    "num_matches": 9,
+    "avg_score": 31.979276773357817,
+    "max_score": 77.13392806523672,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2111.06514_v2": {
+    "total_chunks": 101,
+    "plagiarized_chunks": 11,
+    "percentage": 10.891089108910892,
+    "num_matches": 12,
+    "avg_score": 28.524645500521135,
+    "max_score": 83.04546265030928,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2112.11614_v1": {
+    "total_chunks": 152,
+    "plagiarized_chunks": 9,
+    "percentage": 5.921052631578947,
+    "num_matches": 11,
+    "avg_score": 33.65421567889303,
+    "max_score": 56.728889394188066,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2112.11614_v5": {
+    "total_chunks": 154,
+    "plagiarized_chunks": 12,
+    "percentage": 7.792207792207792,
+    "num_matches": 16,
+    "avg_score": 30.584516526694923,
+    "max_score": 56.728889394188066,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2112.12828_v1": {
+    "total_chunks": 90,
+    "plagiarized_chunks": 1,
+    "percentage": 1.1111111111111112,
+    "num_matches": 1,
+    "avg_score": 0.5824127458811634,
+    "max_score": 0.5824127458811634,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2112.12828_v5": {
+    "total_chunks": 92,
+    "plagiarized_chunks": 1,
+    "percentage": 1.0869565217391304,
+    "num_matches": 1,
+    "avg_score": 5.914779687919487,
+    "max_score": 5.914779687919487,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2202.01372_v1": {
+    "total_chunks": 139,
+    "plagiarized_chunks": 5,
+    "percentage": 3.597122302158273,
+    "num_matches": 10,
+    "avg_score": 37.4924190442047,
+    "max_score": 56.737901910538376,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2202.01372_v3": {
+    "total_chunks": 162,
+    "plagiarized_chunks": 8,
+    "percentage": 4.938271604938271,
+    "num_matches": 12,
+    "avg_score": 38.004490365001566,
+    "max_score": 74.88125392235338,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2206.10780_v1": {
+    "total_chunks": 187,
+    "plagiarized_chunks": 9,
+    "percentage": 4.81283422459893,
+    "num_matches": 10,
+    "avg_score": 21.445200685713946,
+    "max_score": 54.692011326849425,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2206.10780_v5": {
+    "total_chunks": 186,
+    "plagiarized_chunks": 3,
+    "percentage": 1.6129032258064515,
+    "num_matches": 4,
+    "avg_score": 17.106316362098053,
+    "max_score": 34.2123600027292,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2209.10454_v1": {
+    "total_chunks": 203,
+    "plagiarized_chunks": 1,
+    "percentage": 0.49261083743842365,
+    "num_matches": 1,
+    "avg_score": 28.721415230555124,
+    "max_score": 28.721415230555124,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2212.08270_v1": {
+    "total_chunks": 178,
+    "plagiarized_chunks": 5,
+    "percentage": 2.8089887640449436,
+    "num_matches": 6,
+    "avg_score": 15.089997467459414,
+    "max_score": 31.618626677666327,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2212.08270_v2": {
+    "total_chunks": 174,
+    "plagiarized_chunks": 7,
+    "percentage": 4.022988505747127,
+    "num_matches": 8,
+    "avg_score": 21.931280320068545,
+    "max_score": 52.49363222538398,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2301.07257_v1": {
+    "total_chunks": 221,
+    "plagiarized_chunks": 12,
+    "percentage": 5.429864253393665,
+    "num_matches": 13,
+    "avg_score": 19.47223475594815,
+    "max_score": 33.933692621791984,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2301.07257_v3": {
+    "total_chunks": 220,
+    "plagiarized_chunks": 8,
+    "percentage": 3.6363636363636362,
+    "num_matches": 8,
+    "avg_score": 35.37873427293323,
+    "max_score": 49.89576900776643,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2303.02837_v1": {
+    "total_chunks": 99,
+    "plagiarized_chunks": 7,
+    "percentage": 7.07070707070707,
+    "num_matches": 8,
+    "avg_score": 14.209101342505503,
+    "max_score": 22.435594080479788,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2303.02837_v2": {
+    "total_chunks": 105,
+    "plagiarized_chunks": 7,
+    "percentage": 6.666666666666667,
+    "num_matches": 8,
+    "avg_score": 11.775318570127975,
+    "max_score": 21.352746161182957,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2303.16380_v1": {
+    "total_chunks": 60,
+    "plagiarized_chunks": 2,
+    "percentage": 3.3333333333333335,
+    "num_matches": 2,
+    "avg_score": 8.965055640793958,
+    "max_score": 10.58501925271208,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2305.01012_v1": {
+    "total_chunks": 129,
+    "plagiarized_chunks": 8,
+    "percentage": 6.2015503875969,
+    "num_matches": 9,
+    "avg_score": 26.30926043818599,
+    "max_score": 58.82720850761206,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2305.01012_v2": {
+    "total_chunks": 130,
+    "plagiarized_chunks": 10,
+    "percentage": 7.6923076923076925,
+    "num_matches": 11,
+    "avg_score": 24.201384391295758,
+    "max_score": 60.39187310984966,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2305.19438_v1": {
+    "total_chunks": 391,
+    "plagiarized_chunks": 2,
+    "percentage": 0.5115089514066496,
+    "num_matches": 2,
+    "avg_score": 19.596328612431513,
+    "max_score": 19.71285023294767,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2305.19438_v4": {
+    "total_chunks": 399,
+    "plagiarized_chunks": 4,
+    "percentage": 1.0025062656641603,
+    "num_matches": 5,
+    "avg_score": 15.490949734513379,
+    "max_score": 42.49064963749919,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2308.03663_v1": {
+    "total_chunks": 128,
+    "plagiarized_chunks": 6,
+    "percentage": 4.6875,
+    "num_matches": 8,
+    "avg_score": 34.36605191605439,
+    "max_score": 57.377110653113945,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2308.03663_v3": {
+    "total_chunks": 132,
+    "plagiarized_chunks": 5,
+    "percentage": 3.787878787878788,
+    "num_matches": 6,
+    "avg_score": 30.447110912217443,
+    "max_score": 59.82373246718304,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2404.02001_v1": {
+    "total_chunks": 121,
+    "plagiarized_chunks": 1,
+    "percentage": 0.8264462809917356,
+    "num_matches": 1,
+    "avg_score": 43.89538931288001,
+    "max_score": 43.89538931288001,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2404.02001_v3": {
+    "total_chunks": 122,
+    "plagiarized_chunks": 1,
+    "percentage": 0.819672131147541,
+    "num_matches": 1,
+    "avg_score": 43.89538931288001,
+    "max_score": 43.89538931288001,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2407.20964_v1": {
+    "total_chunks": 243,
+    "plagiarized_chunks": 4,
+    "percentage": 1.646090534979424,
+    "num_matches": 5,
+    "avg_score": 14.030512837032429,
+    "max_score": 26.112671187653927,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2407.20964_v4": {
+    "total_chunks": 241,
+    "plagiarized_chunks": 1,
+    "percentage": 0.4149377593360996,
+    "num_matches": 1,
+    "avg_score": 15.542750655318082,
+    "max_score": 15.542750655318082,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2412.15549_v1": {
+    "total_chunks": 210,
+    "plagiarized_chunks": 1,
+    "percentage": 0.4761904761904762,
+    "num_matches": 1,
+    "avg_score": 67.9381657165251,
+    "max_score": 67.9381657165251,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2412.16795_v1": {
+    "total_chunks": 433,
+    "plagiarized_chunks": 4,
+    "percentage": 0.9237875288683602,
+    "num_matches": 4,
+    "avg_score": 28.640895789543933,
+    "max_score": 46.50830028612354,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2412.16795_v4": {
+    "total_chunks": 433,
+    "plagiarized_chunks": 1,
+    "percentage": 0.23094688221709006,
+    "num_matches": 1,
+    "avg_score": 0.6639792121158745,
+    "max_score": 0.6639792121158745,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2503.12771_v1": {
+    "total_chunks": 94,
+    "plagiarized_chunks": 5,
+    "percentage": 5.319148936170213,
+    "num_matches": 7,
+    "avg_score": 14.828677769469621,
+    "max_score": 32.71620906980563,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2506.20028_v1": {
+    "total_chunks": 178,
+    "plagiarized_chunks": 1,
+    "percentage": 0.5617977528089888,
+    "num_matches": 1,
+    "avg_score": 24.267413577776708,
+    "max_score": 24.267413577776708,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2506.20028_v2": {
+    "total_chunks": 178,
+    "plagiarized_chunks": 1,
+    "percentage": 0.5617977528089888,
+    "num_matches": 1,
+    "avg_score": 15.566899118005782,
+    "max_score": 15.566899118005782,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2510.06376_v1": {
+    "total_chunks": 58,
+    "plagiarized_chunks": 3,
+    "percentage": 5.172413793103448,
+    "num_matches": 3,
+    "avg_score": 17.440464264248252,
+    "max_score": 35.89403116348747,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2510.06376_v2": {
+    "total_chunks": 58,
+    "plagiarized_chunks": 2,
+    "percentage": 3.4482758620689653,
+    "num_matches": 2,
+    "avg_score": 23.03356727040745,
+    "max_score": 37.702426582024,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0706.3359_v1": {
+    "total_chunks": 205,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0710.0631_v1": {
+    "total_chunks": 206,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0712.0157_v2": {
+    "total_chunks": 42,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0804.2902_v1": {
+    "total_chunks": 201,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0804.2907_v1": {
+    "total_chunks": 134,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "0905.4795_v2": {
+    "total_chunks": 132,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1004.0616_v1": {
+    "total_chunks": 51,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1206.1407_v1": {
+    "total_chunks": 55,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1206.1407_v2": {
+    "total_chunks": 55,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1401.8048_v1": {
+    "total_chunks": 15,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1404.5346_v1": {
+    "total_chunks": 43,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1506.04086_v2": {
+    "total_chunks": 101,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1506.04293_v3": {
+    "total_chunks": 252,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1606.01989_v1": {
+    "total_chunks": 157,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1606.01989_v2": {
+    "total_chunks": 157,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1610.08297_v2": {
+    "total_chunks": 182,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1610.09758_v1": {
+    "total_chunks": 31,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1610.09758_v2": {
+    "total_chunks": 31,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1703.04612_v1": {
+    "total_chunks": 85,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1805.11559_v1": {
+    "total_chunks": 70,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1805.11559_v3": {
+    "total_chunks": 72,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1805.11965_v5": {
+    "total_chunks": 94,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1810.11912_v1": {
+    "total_chunks": 81,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1810.11912_v4": {
+    "total_chunks": 82,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1909.08775_v1": {
+    "total_chunks": 186,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "1909.08775_v3": {
+    "total_chunks": 192,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2004.05183_v1": {
+    "total_chunks": 55,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2004.05183_v2": {
+    "total_chunks": 56,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2004.14192_v1": {
+    "total_chunks": 12,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2004.14192_v2": {
+    "total_chunks": 13,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2005.12336_v1": {
+    "total_chunks": 55,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2005.12336_v2": {
+    "total_chunks": 55,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2202.03357_v1": {
+    "total_chunks": 28,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2302.02709_v1": {
+    "total_chunks": 111,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2302.02709_v2": {
+    "total_chunks": 121,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2404.19526_v1": {
+    "total_chunks": 90,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2404.19526_v2": {
+    "total_chunks": 90,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  },
+  "2507.17138_v1": {
+    "total_chunks": 74,
+    "plagiarized_chunks": 0,
+    "percentage": 0.0,
+    "num_matches": 0,
+    "avg_score": 0.0,
+    "max_score": 0.0,
+    "avg_sbert_score": 0.0,
+    "avg_jaccard_score": 0.0
+  }
+}

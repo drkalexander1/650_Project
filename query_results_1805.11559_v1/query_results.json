@@ -1,0 +1,140 @@
+{
+  "query_name": "1805.11559_v1",
+  "results": [
+    {
+      "paper_name": "1805.11559_v3",
+      "score": 1.0000001192092896,
+      "bm25_score": -5385.744395155755,
+      "sbert_score": 1.0000001192092896,
+      "jaccard_score": 1.0,
+      "chunks": [
+        {
+          "query_chunk_idx": 2,
+          "query_chunk_text": "boundary geometry Another and equally simple boundary condition is to specify the conformal geometry of M and the trace K of its extrinsic curvature or second fundamental form (which is roughly the normal derivative of the metric along M) We will call these the Dirichlet and conformal boundary conditions, respectively The main point that we aim to explain is that in general the Dirichlet boundary condition does not lead to a sensible perturbation expansion, while the conformal boundary condition...",
+          "matched_chunk_idx": 2,
+          "matched_chunk_text": "boundary geometry Another and equally simple boundary condition is to specify the conformal geometry of M and the trace K of its extrinsic curvature or second fundamental form (which is roughly the normal derivative of the metric along M) We will call these the Dirichlet and conformal boundary conditions, respectively The main point that we aim to explain is that in general the Dirichlet boundary condition does not lead to a sensible perturbation expansion, while the conformal boundary condition...",
+          "score": 1.0000001192092896,
+          "sbert_score": 1.0000001192092896,
+          "jaccard_score": 1.0
+        },
+        {
+          "query_chunk_idx": 4,
+          "query_chunk_text": "then in section 3, we explore this concept in the context of gravity In gauge theory, there is a very natural elliptic boundary condition in which the boundary value of the gauge field is specified Gravity is different, basically because of the second order nature of the Hamiltonian constraint equation As already remarked, one can get an elliptic boundary condition by specifying the conformal class of the boundary metric and the trace of the second fundamental form, but not by specifying the bou...",
+          "matched_chunk_idx": 4,
+          "matched_chunk_text": "then in section 3, we explore this concept in the context of gravity In gauge theory, there is a very natural elliptic boundary condition in which the boundary value of the gauge field is specified Gravity is different, basically because of the second order nature of the Hamiltonian constraint equation As already remarked, one can get an elliptic boundary condition by specifying the conformal class of the boundary metric and the trace of the second fundamental form, but not by specifying the bou...",
+          "score": 1.0000001192092896,
+          "sbert_score": 1.0000001192092896,
+          "jaccard_score": 1.0
+        }
+      ]
+    },
+    {
+      "paper_name": "1004.0616_v1",
+      "score": 0.5827367901802063,
+      "bm25_score": -5571.593006222146,
+      "sbert_score": 0.5827367901802063,
+      "jaccard_score": 0.14285714285714285,
+      "chunks": [
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "General Relativity on A Manifold With Boundary 15 3.3 A Boundary Condition That Works 19 3.4 Expanding or Contracting Metrics 21 1 Introduction The goal of this note is to make accessible some basic properties of boundary conditions in Eu- clidean gravity [1–4] The facts described here are not new The motivation for presenting this material is that it may have applications to semiclassical quantization of gravity There is an extensive literature on this subject, a small selection being [5–12] In...",
+          "matched_chunk_idx": 2,
+          "matched_chunk_text": "+ The purpose of this paper is to give a general Operator Algebraic method to build up new Boundary Quantum Field Theory models on M We shall obtain local, Boundary + QFT nets of von Neumann algebras on M that are not conformally covariant but only + time translation covariant Motivation for such a construction comes from the papers [15, 16, 10] where one needs a description of the space of all possible Boundary QFT’s in two dimensions compatible with a given theory in bulk There however a gener...",
+          "score": 0.5827367901802063,
+          "sbert_score": 0.5827367901802063,
+          "jaccard_score": 0.1267605633802817
+        },
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "8102 yaM 92 ]ht-peh[ 1v95511.5081:viXra A Note On Boundary Conditions In Euclidean Gravity Edward Witten School of Natural Sciences, Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract WereviewwhatisknownaboutboundaryconditionsinGeneralRelativity onaspacetime of Euclidean signature The obvious Dirichlet boundary condition, in which one specifies the boundary geometry, is actually not elliptic and in general does not lead to a well-defined perturbationtheory Itisbetter-b...",
+          "matched_chunk_idx": 0,
+          "matched_chunk_text": "0102 rpA 5 ]hp-htam[ 1v6160.4001:viXra An Algebraic Construction of Boundary Quantum Field Theory Roberto Longo∗ Dipartimento di Matematica, Universit`a di Roma “Tor Vergata”, Via della Ricerca Scientifica, 1, I-00133 Roma, Italy E-mail: longo@mat.uniroma2.it Edward Witten Institute for Advanced Study, School of Natural Sciences, Einstein Drive, Princeton, NJ 08540 E-mail: witten@ias.edu Abstract We build uplocal,time translationcovariantBoundaryQuantumFieldTheorynets of von Neumann algebras AV ...",
+          "score": 0.5297485589981079,
+          "sbert_score": 0.5297485589981079,
+          "jaccard_score": 0.12133891213389121
+        }
+      ]
+    },
+    {
+      "paper_name": "2006.03494_v1",
+      "score": 0.5750214457511902,
+      "bm25_score": -6105.515633521876,
+      "sbert_score": 0.5750214457511902,
+      "jaccard_score": 0.16216216216216217,
+      "chunks": [
+        {
+          "query_chunk_idx": 5,
+          "query_chunk_text": "in General Rel- ativity does not guarantee either existence or uniqueness of a solution of the Einstein equations with specified boundary data Nor does it have anything to do with positivity of the operator that governs gravitational perturbations Ellipticity does guarantee the properties that are needed to construct perturbation theory It ensures that the gauge-fixed Einstein equations (on a compact manifold) have only finitely many zero-modes, and that modulo these zero-modes, the linearized E...",
+          "matched_chunk_idx": 55,
+          "matched_chunk_text": "0 1 solution, there are no zero-modes In other words, a solution is nondegenerate if in perturbing around this solution, the equations cannot be satisfied to first order in the perturbation 14 The centaur geometry actually motivated a previous discussion of compact Euclidean solutions of dilaton gravity.3 ThecompactEuclideansolutionsdescribedherecanbecontinuedtoLorentzsignaturebyt → it After this continuation, the solution describes a Lorentz signature manifold in 1+1 dimensions, with a spatial ...",
+          "score": 0.5750214457511902,
+          "sbert_score": 0.5750214457511902,
+          "jaccard_score": 0.13471502590673576
+        },
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "8102 yaM 92 ]ht-peh[ 1v95511.5081:viXra A Note On Boundary Conditions In Euclidean Gravity Edward Witten School of Natural Sciences, Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract WereviewwhatisknownaboutboundaryconditionsinGeneralRelativity onaspacetime of Euclidean signature The obvious Dirichlet boundary condition, in which one specifies the boundary geometry, is actually not elliptic and in general does not lead to a well-defined perturbationtheory Itisbetter-b...",
+          "matched_chunk_idx": 11,
+          "matched_chunk_text": "guess that as in conventional black hole thermodynamics, this will be the first law of thermodynamics dE = TdS, with φ a linear function of the entropy S and b a linear function h of the energy E To confirm this interpretation, we will evaluate the action for the solution This action is interpreted as a classical approximation to −logZ = βF = βE − S, where Z is the partition function and F = E −TS is the free energy To evaluate the action, as in [4], we put a cutoff on r, at some very large valu...",
+          "score": 0.5515651702880859,
+          "sbert_score": 0.5515651702880859,
+          "jaccard_score": 0.07177033492822966
+        }
+      ]
+    },
+    {
+      "paper_name": "0812.4512_v3",
+      "score": 0.5692656636238098,
+      "bm25_score": -5772.242203578316,
+      "sbert_score": 0.5692656636238098,
+      "jaccard_score": 0.1657754010695187,
+      "chunks": [
+        {
+          "query_chunk_idx": 6,
+          "query_chunk_text": "possible.3 1 Technically, ellipticity is the right condition on a boundary condition to guarantee these properties if gauge- fixingis carriedoutinthe standardway,sothatthe gauge-fixedactionformetric fluctuationshasa nondegenerate secondorder kinetic energy In some other approachesto gauge-fixing,one wouldencounter a slight generalization of the notion of ellipticity See the remark at the end of section 2.2 2The kernel of an operator L is the space of solutions of Lu = 0 To define the cokernel, c...",
+          "matched_chunk_idx": 13,
+          "matched_chunk_text": "F =dt∧d~x·E~ + 1 d~x·d~x×B~, where E~ and 2 B~ are the electric and magnetic fields, then the energy is the conserved quantity 1 (2.3) H = d 3 xTr E~2 +B~2 2g2 Z (cid:16) (cid:17) It is non-negative, and vanishes precisely for the trivial solution with F =0 3 Quantization We next discuss the quantization, beginning with the abelian case, that is G = U(1) In the abelian case, the curvature F is linear in the connection A, that is F = dA, and Maxwell’s equations d ⋆ F = 0 are also linear The space...",
+          "score": 0.5692656636238098,
+          "sbert_score": 0.5692656636238098,
+          "jaccard_score": 0.14847161572052403
+        },
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "8102 yaM 92 ]ht-peh[ 1v95511.5081:viXra A Note On Boundary Conditions In Euclidean Gravity Edward Witten School of Natural Sciences, Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract WereviewwhatisknownaboutboundaryconditionsinGeneralRelativity onaspacetime of Euclidean signature The obvious Dirichlet boundary condition, in which one specifies the boundary geometry, is actually not elliptic and in general does not lead to a well-defined perturbationtheory Itisbetter-b...",
+          "matched_chunk_idx": 5,
+          "matched_chunk_text": "THEORY 3 Figure 1 A spacetime with a global Cauchy hypersurface energies and frequencies, one must use quantum field theory rather than classical field theory Accordingtotheory,physicalconditionsthatarewell-describedbyclassicalnon- linear wave equations can exist, but because of the minimum frequency involved, our technology does not enable use to generate the appropriate initial conditions In practice, all manifestations of Yang-Mills theory that we observe, except in the abeliancase,involvequa...",
+          "score": 0.5653868317604065,
+          "sbert_score": 0.5653868317604065,
+          "jaccard_score": 0.11013215859030837
+        }
+      ]
+    },
+    {
+      "paper_name": "0812.4512_v1",
+      "score": 0.5653868317604065,
+      "bm25_score": -5768.630560454443,
+      "sbert_score": 0.5653868317604065,
+      "jaccard_score": 0.1523809523809524,
+      "chunks": [
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "8102 yaM 92 ]ht-peh[ 1v95511.5081:viXra A Note On Boundary Conditions In Euclidean Gravity Edward Witten School of Natural Sciences, Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract WereviewwhatisknownaboutboundaryconditionsinGeneralRelativity onaspacetime of Euclidean signature The obvious Dirichlet boundary condition, in which one specifies the boundary geometry, is actually not elliptic and in general does not lead to a well-defined perturbationtheory Itisbetter-b...",
+          "matched_chunk_idx": 5,
+          "matched_chunk_text": "THEORY 3 Figure 1 A spacetime with a global Cauchy hypersurface energies and frequencies, one must use quantum field theory rather than classical field theory Accordingtotheory,physicalconditionsthatarewell-describedbyclassicalnon- linear wave equations can exist, but because of the minimum frequency involved, our technology does not enable use to generate the appropriate initial conditions In practice, all manifestations of Yang-Mills theory that we observe, except in the abeliancase,involvequa...",
+          "score": 0.5653868317604065,
+          "sbert_score": 0.5653868317604065,
+          "jaccard_score": 0.11013215859030837
+        },
+        {
+          "query_chunk_idx": 0,
+          "query_chunk_text": "8102 yaM 92 ]ht-peh[ 1v95511.5081:viXra A Note On Boundary Conditions In Euclidean Gravity Edward Witten School of Natural Sciences, Institute for Advanced Study Einstein Drive, Princeton, NJ 08540 USA Abstract WereviewwhatisknownaboutboundaryconditionsinGeneralRelativity onaspacetime of Euclidean signature The obvious Dirichlet boundary condition, in which one specifies the boundary geometry, is actually not elliptic and in general does not lead to a well-defined perturbationtheory Itisbetter-b...",
+          "matched_chunk_idx": 26,
+          "matched_chunk_text": "know what we mean by curvature in the context of such a finite-dimensional approximation This can be defined in terms of parallel transport around a small loop; in the lattice Γ, the smallest possible nontrivial loops are the squares of minimal area, which in lattice gauge theory are usually calledplaquettes Foranyplaquettes∈Γ,consistingoffournearestneighborlinks ℓ1,...,ℓ4,we letV s be the functiononAΓ thatassociatesto aconnection{U ℓ }the trace of the holonomy of that connection around s (thus,...",
+          "score": 0.535883903503418,
+          "sbert_score": 0.535883903503418,
+          "jaccard_score": 0.07727272727272727
+        }
+      ]
+    }
+  ]
+}

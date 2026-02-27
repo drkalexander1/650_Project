@@ -1,0 +1,140 @@
+{
+  "query_name": "1311.3167_v2",
+  "results": [
+    {
+      "paper_name": "1311.3167_v1",
+      "score": 1.0000001192092896,
+      "bm25_score": -5188.4401723034825,
+      "sbert_score": 1.0000001192092896,
+      "jaccard_score": 1.0,
+      "chunks": [
+        {
+          "query_chunk_idx": 2,
+          "query_chunk_text": "A Some Group Theory 56 – 1 – 1 Introduction Nahm’s equations are a system of ordinary differential equations for three functions φ~ = (φ ,φ ,φ ) of a real variable y that take values in the Lie algebra g of a compact Lie group 1 2 3 G These functions satisfy dφ 1 +[φ ,φ ]= 0, (1.1) 2 3 dy along with cyclic permutations of these equations More succinctly, we write dφ~ +φ~ φ~ = 0 (1.2) dy × or dφ 1 i + ε [φ ,φ ] = 0, (1.3) ijk j k dy 2 j,k X where ε is the antisymmetric tensor with ε = 1 These way...",
+          "matched_chunk_idx": 2,
+          "matched_chunk_text": "A Some Group Theory 56 – 1 – 1 Introduction Nahm’s equations are a system of ordinary differential equations for three functions φ~ = (φ ,φ ,φ ) of a real variable y that take values in the Lie algebra g of a compact Lie group 1 2 3 G These functions satisfy dφ 1 +[φ ,φ ]= 0, (1.1) 2 3 dy along with cyclic permutations of these equations More succinctly, we write dφ~ +φ~ φ~ = 0 (1.2) dy × or dφ 1 i + ε [φ ,φ ] = 0, (1.3) ijk j k dy 2 j,k X where ε is the antisymmetric tensor with ε = 1 These way...",
+          "score": 1.0000001192092896,
+          "sbert_score": 1.0000001192092896,
+          "jaccard_score": 1.0
+        },
+        {
+          "query_chunk_idx": 1,
+          "query_chunk_text": "along the boundary In the present paper, we show that this boundary condition is elliptic and has regularity properties analogous to morestandard elliptic boundaryconditions We alsoestablishauniquenesstheoremforthesolutionoftherelevantequationsonahalf-space with Nahm pole boundary conditions These results are expected to have a generalization involving knots, with applications to the Jones polynomial and Khovanov homology Contents 1 Introduction 2 2 Uniqueness Theorem For The Nahm Pole Solution ...",
+          "matched_chunk_idx": 1,
+          "matched_chunk_text": "along the boundary In the present paper, we show that this boundary condition is elliptic and has regularity properties analogous to morestandard elliptic boundaryconditions We alsoestablishauniquenesstheoremforthesolutionoftherelevantequationsonahalf-space with Nahm pole boundary conditions These results are expected to have a generalization involving knots, with applications to the Jones polynomial and Khovanov homology Contents 1 Introduction 2 2 Uniqueness Theorem For The Nahm Pole Solution ...",
+          "score": 1.0,
+          "sbert_score": 1.0,
+          "jaccard_score": 1.0
+        }
+      ]
+    },
+    {
+      "paper_name": "0812.4512_v1",
+      "score": 0.6716866493225098,
+      "bm25_score": -8070.997817540752,
+      "sbert_score": 0.6716866493225098,
+      "jaccard_score": 0.14795918367346939,
+      "chunks": [
+        {
+          "query_chunk_idx": 7,
+          "query_chunk_text": "and we will use this name for lack of another one For recent work on these equations, see [10–12] To explain the relation to the Nahm pole, take M to be the half-space x4 0 in a ≥ copy of R4 with Euclidean coordinates x1,...,x4 (oriented with ε = 1) We denote this 1234 half-space as R4 and write ~x = (x1,x2,x3) and y = x4 The KW equations have a simple + exact solution 3 t dxa A =0, φ= a=1 a , (1.8) y P where the t obey the su(2) commutation relations (1.5) This gives an embedding of the a basic...",
+          "matched_chunk_idx": 21,
+          "matched_chunk_text": "and then remove it A fact that was mentioned in section 2 is helpful here This concerns the space W of solutions of the Yang-Mills equations modulo gauge transformations Pick an initial value hypersurface S; we may as well simply take S to be a “time zero” subspace R3 ⊂R4 Let A be the space of gauge connections on S =R3 and G the group of gauge transformations on R3 Thus the quotient Y =A/G is the space of connections modulo gauge transformations on R3 And W can be identified as a ∗ cotangentbun...",
+          "score": 0.6716866493225098,
+          "sbert_score": 0.6716866493225098,
+          "jaccard_score": 0.10144927536231885
+        },
+        {
+          "query_chunk_idx": 7,
+          "query_chunk_text": "and we will use this name for lack of another one For recent work on these equations, see [10–12] To explain the relation to the Nahm pole, take M to be the half-space x4 0 in a ≥ copy of R4 with Euclidean coordinates x1,...,x4 (oriented with ε = 1) We denote this 1234 half-space as R4 and write ~x = (x1,x2,x3) and y = x4 The KW equations have a simple + exact solution 3 t dxa A =0, φ= a=1 a , (1.8) y P where the t obey the su(2) commutation relations (1.5) This gives an embedding of the a basic...",
+          "matched_chunk_idx": 6,
+          "matched_chunk_text": "I = TrF ∧⋆F 4g2 Z M HereTris aninvariantquadraticformonthe LiealgebraofG, andg is aconstant, known as the gauge coupling constant Ingeneral,startingwithanyaction,the spaceofclassicalsolutionsofthe Euler- Lagrangeequations,modulo the relevantgauge equivalence,is alwaysa symplectic manifold Quantization has to do with quantizing this symplectic manifold Actually, W is a cotangent bundle This can be established as follows Pick an initial value surface S ⊂M, and let Y be the space of allgauge fields...",
+          "score": 0.5547755360603333,
+          "sbert_score": 0.5547755360603333,
+          "jaccard_score": 0.12380952380952381
+        }
+      ]
+    },
+    {
+      "paper_name": "1610.09758_v1",
+      "score": 0.5884578824043274,
+      "bm25_score": -7870.369408495362,
+      "sbert_score": 0.5884578824043274,
+      "jaccard_score": 0.1437125748502994,
+      "chunks": [
+        {
+          "query_chunk_idx": 2,
+          "query_chunk_text": "A Some Group Theory 56 – 1 – 1 Introduction Nahm’s equations are a system of ordinary differential equations for three functions φ~ = (φ ,φ ,φ ) of a real variable y that take values in the Lie algebra g of a compact Lie group 1 2 3 G These functions satisfy dφ 1 +[φ ,φ ]= 0, (1.1) 2 3 dy along with cyclic permutations of these equations More succinctly, we write dφ~ +φ~ φ~ = 0 (1.2) dy × or dφ 1 i + ε [φ ,φ ] = 0, (1.3) ijk j k dy 2 j,k X where ε is the antisymmetric tensor with ε = 1 These way...",
+          "matched_chunk_idx": 9,
+          "matched_chunk_text": "ψ has nD real components, as ab ab a stated above With this choice for the fermion representation, a certain discrete subgroup of G 0 acts trivially The center of O(n) is Z , acting by sign change on the vector representation, so the 2 center of G is ZD(D+1)/2 A certain subgroup Z(D−2)(D+1)/2 acts trivially on all the ψ , so the 0 2 2 a group that will be a faithfully acting symmetry group of the theory is G = G /Z(D−2)(D+1)/2 (2.2) 0 2 We now replace the SYK action with (cid:32) (cid:33) (cid:9...",
+          "score": 0.5884578824043274,
+          "sbert_score": 0.5884578824043274,
+          "jaccard_score": 0.13114754098360656
+        },
+        {
+          "query_chunk_idx": 4,
+          "query_chunk_text": "been important in many applications of Nahm’s equations; for example, see [2], which is also relevant as background for the present paper Nahm’s work on monopoles was embedded in D-brane physics in [3] The Nahm pole therefore plays a role in D-brane physics, and this was explained conceptually in [4] Re- sults about D-branes often have implications for gauge theory, and in the case at hand, by translatingtheD-braneresultstogaugetheorylanguage, onelearns[5]thattheNahmpole should be used to define...",
+          "matched_chunk_idx": 6,
+          "matched_chunk_text": "their analogs do not have bulk duals in better- understood examples of gauge/gravity duality The tensor models that mimic the SYK model can be chosen, as we will do in section 2, to have a global symmetry group G whose dimension is relatively large, but still much less than N Gauging the G symmetry leaves as gauge-invariant operatorsthesingletoperatorsthatarerelevantinthegravitationaldualdescription,buteliminates the elementary fermion fields themselves But because the dimension of G is much les...",
+          "score": 0.4831622242927551,
+          "sbert_score": 0.4831622242927551,
+          "jaccard_score": 0.09302325581395349
+        }
+      ]
+    },
+    {
+      "paper_name": "1610.09758_v2",
+      "score": 0.5884578824043274,
+      "bm25_score": -7892.874354704584,
+      "sbert_score": 0.5884578824043274,
+      "jaccard_score": 0.1388888888888889,
+      "chunks": [
+        {
+          "query_chunk_idx": 2,
+          "query_chunk_text": "A Some Group Theory 56 – 1 – 1 Introduction Nahm’s equations are a system of ordinary differential equations for three functions φ~ = (φ ,φ ,φ ) of a real variable y that take values in the Lie algebra g of a compact Lie group 1 2 3 G These functions satisfy dφ 1 +[φ ,φ ]= 0, (1.1) 2 3 dy along with cyclic permutations of these equations More succinctly, we write dφ~ +φ~ φ~ = 0 (1.2) dy × or dφ 1 i + ε [φ ,φ ] = 0, (1.3) ijk j k dy 2 j,k X where ε is the antisymmetric tensor with ε = 1 These way...",
+          "matched_chunk_idx": 9,
+          "matched_chunk_text": "ψ has nD real components, as ab ab a stated above With this choice for the fermion representation, a certain discrete subgroup of G 0 acts trivially The center of O(n) is Z , acting by sign change on the vector representation, so the 2 center of G is ZD(D+1)/2 A certain subgroup Z(D−2)(D+1)/2 acts trivially on all the ψ , so the 0 2 2 a group that will be a faithfully acting symmetry group of the theory is G = G /Z(D−2)(D+1)/2 (2.2) 0 2 We now replace the SYK action with (cid:32) (cid:33) (cid:9...",
+          "score": 0.5884578824043274,
+          "sbert_score": 0.5884578824043274,
+          "jaccard_score": 0.13114754098360656
+        },
+        {
+          "query_chunk_idx": 4,
+          "query_chunk_text": "been important in many applications of Nahm’s equations; for example, see [2], which is also relevant as background for the present paper Nahm’s work on monopoles was embedded in D-brane physics in [3] The Nahm pole therefore plays a role in D-brane physics, and this was explained conceptually in [4] Re- sults about D-branes often have implications for gauge theory, and in the case at hand, by translatingtheD-braneresultstogaugetheorylanguage, onelearns[5]thattheNahmpole should be used to define...",
+          "matched_chunk_idx": 6,
+          "matched_chunk_text": "their analogs do not have bulk duals in better- understood examples of gauge/gravity duality The tensor models that mimic the SYK model can be chosen, as we will do in section 2, to have a global symmetry group G whose dimension is relatively large, but still much less than N Gauging the G symmetry leaves as gauge-invariant operatorsthesingletoperatorsthatarerelevantinthegravitationaldualdescription,buteliminates the elementary fermion fields themselves But because the dimension of G is much les...",
+          "score": 0.4831622242927551,
+          "sbert_score": 0.4831622242927551,
+          "jaccard_score": 0.09302325581395349
+        }
+      ]
+    },
+    {
+      "paper_name": "0812.4512_v3",
+      "score": 0.5833078622817993,
+      "bm25_score": -8066.372172033348,
+      "sbert_score": 0.5833078622817993,
+      "jaccard_score": 0.14285714285714285,
+      "chunks": [
+        {
+          "query_chunk_idx": 7,
+          "query_chunk_text": "and we will use this name for lack of another one For recent work on these equations, see [10–12] To explain the relation to the Nahm pole, take M to be the half-space x4 0 in a ≥ copy of R4 with Euclidean coordinates x1,...,x4 (oriented with ε = 1) We denote this 1234 half-space as R4 and write ~x = (x1,x2,x3) and y = x4 The KW equations have a simple + exact solution 3 t dxa A =0, φ= a=1 a , (1.8) y P where the t obey the su(2) commutation relations (1.5) This gives an embedding of the a basic...",
+          "matched_chunk_idx": 21,
+          "matched_chunk_text": "we may as well simply take S to be a “time zero” subspace R3 ⊂R4 Let A be the space of gauge connections on S =R3 and G the group of gauge transformations on R3 Thus the quotient Y =A/G is the space of connections modulo gauge transformations on R3 And W can be identified as a ∗ cotangentbundle, W =T (A/G) The ideabehind this identificationisthatto de- termineaclassicalsolution,wemustgivetheinitialvalueoftheconnection(apoint inA/G)andits time derivative(acotangentvector) Soto getafinite-dimensio...",
+          "score": 0.5833078622817993,
+          "sbert_score": 0.5833078622817993,
+          "jaccard_score": 0.09134615384615384
+        },
+        {
+          "query_chunk_idx": 7,
+          "query_chunk_text": "and we will use this name for lack of another one For recent work on these equations, see [10–12] To explain the relation to the Nahm pole, take M to be the half-space x4 0 in a ≥ copy of R4 with Euclidean coordinates x1,...,x4 (oriented with ε = 1) We denote this 1234 half-space as R4 and write ~x = (x1,x2,x3) and y = x4 The KW equations have a simple + exact solution 3 t dxa A =0, φ= a=1 a , (1.8) y P where the t obey the su(2) commutation relations (1.5) This gives an embedding of the a basic...",
+          "matched_chunk_idx": 6,
+          "matched_chunk_text": "I = TrF ∧⋆F 4g2 Z M HereTris aninvariantquadraticformonthe LiealgebraofG, andg is aconstant, known as the gauge coupling constant Ingeneral,startingwithanyaction,the spaceofclassicalsolutionsofthe Euler- Lagrangeequations,modulo the relevantgauge equivalence,is alwaysa symplectic manifold Quantization has to do with quantizing this symplectic manifold Actually, W is a cotangent bundle This can be established as follows Pick an initial value surfaceS ⊂M, and let Y be the space of allgauge fields ...",
+          "score": 0.5544860363006592,
+          "sbert_score": 0.5544860363006592,
+          "jaccard_score": 0.12380952380952381
+        }
+      ]
+    }
+  ]
+}
