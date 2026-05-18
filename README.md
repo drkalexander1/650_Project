@@ -1,9 +1,32 @@
 # Academic Plagiarism Detection System
 
+
+
 An information retrieval system that detects verbatim and paraphrased text reuse between academic papers, with a focus on **in-group plagiarism** — overlap within a researcher's lab network (self, labmates, advisors, co-authors). Built for SI 650 / EECS 549 (Information Retrieval) at the University of Michigan.
 
 ![Python](https://img.shields.io/badge/Python-3.7%2B-blue)
 ![License](https://img.shields.io/badge/License-Academic-lightgrey)
+
+---
+
+## Research Question
+
+Can an information retrieval system detect text reuse within academic author networks 
+— between a manuscript and the prior work of its author's labmates, advisors, and 
+collaborators?
+
+Existing plagiarism detection tools (Turnitin and similar) focus on overlap with the 
+broader literature. They are poorly suited to the specific context where attribution 
+failures most commonly occur: shared methods sections, boilerplate dataset 
+descriptions, and phrasing recycled within a research group. This within-network 
+reuse is expected to some degree but increasingly flagged by journals and conferences 
+— and systematically unaddressed by current tooling.
+
+This project combines BM25 lexical ranking, SBERT semantic similarity, and Jaccard 
+overlap to detect both verbatim and paraphrased reuse within a defined author 
+network. The multi-signal approach substantially reduces false positives compared to 
+single-method baselines. Evaluated on the PAN 2011 benchmark corpus and a corpus of 
+arXiv papers.
 
 ---
 
